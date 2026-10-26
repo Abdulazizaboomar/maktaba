@@ -1,0 +1,63 @@
+{
+ "site": {
+  "title": "مؤلفات الدكتور",
+  "author": "عبد العزيز بن سعيد بن غائب",
+  "subtitle": "تتضمن تصحيحات وتحقيقات وشروحات وموسوعات وفقهيات وتربويات",
+  "allowDownload": false,
+  "counter": "abdulazizaboomar",
+  "whatsapp": "966506757412",
+  "preparedDate": "2026-10-27",
+  "categories": [
+   "مشروع تصحيح العلوم",
+   "مشروع علوم القرآن",
+   "الكتب الفقهية والتربوية"
+  ]
+ },
+ "books": [
+  {
+   "id": "rawdat-alabrar",
+   "title": "روضة الأبرار في صحيح الأدعية والأذكار",
+   "file": "books/rawdat-alabrar.pdf",
+   "cover": "covers/rawdat-alabrar.jpg",
+   "pages": 283,
+   "date": "2026-06-13",
+   "category": "مشروع تصحيح العلوم"
+  },
+  {
+   "id": "nuzhat-aluqul",
+   "title": "نزهة العقول في صحيح أسباب النزول",
+   "file": "books/nuzhat-aluqul.pdf",
+   "cover": "covers/nuzhat-aluqul.jpg",
+   "pages": 313,
+   "date": "2026-07-25",
+   "category": "مشروع تصحيح العلوم"
+  },
+  {
+   "id": "almathal-alala",
+   "title": "المثل الأعلى في صحيح أسماء الله الحسنى وصفاته العلى",
+   "file": "books/almathal-alala.pdf",
+   "cover": "covers/almathal-alala.jpg",
+   "pages": 507,
+   "date": "2026-10-09",
+   "category": "مشروع تصحيح العلوم"
+  },
+  {
+   "id": "alrahma-alalamiya",
+   "title": "الرحمة العالمية في صحيح السيرة النبوية",
+   "file": "books/alrahma-alalamiya.pdf",
+   "cover": "covers/alrahma-alalamiya.jpg",
+   "pages": 946,
+   "date": "2026-10-15",
+   "category": "مشروع تصحيح العلوم"
+  },
+  {
+   "id": "alwafa",
+   "title": "الوفاء في سيرة الأربعة الخلفاء",
+   "file": "books/alwafa.pdf",
+   "cover": "covers/alwafa.jpg",
+   "pages": 151,
+   "date": "2026-10-15",
+   "category": "مشروع تصحيح العلوم"
+  }
+ ]
+}
