@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المكتبة</title>
+<meta name="description" content="مؤلفات الدكتور عبد العزيز بن سعيد بن غائب — تتضمن تصحيحات وتحقيقات وشروحات وموسوعات وفقهيات وتربويات">
+<meta name="theme-color" content="#164e3b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=22">
+</head>
+<body>
+<div class="datebar" id="today" aria-label="تاريخ اليوم"></div>
+<header class="lib-head">
+  <svg class="ornament" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M32 6l2.6 5.2 5.7.8-4.1 4 1 5.7L32 19l-5.1 2.7 1-5.7-4.1-4 5.7-.8z" fill="currentColor" stroke="none"/>
+    <path d="M8 26c9-4 17-3 24 3v28c-7-6-15-7-24-3z"/><path d="M56 26c-9-4-17-3-24 3v28c7-6 15-7 24-3z"/>
+    <path d="M13 33c5-1.6 10-1 14 2M13 39c5-1.6 10-1 14 2M13 45c5-1.6 10-1 14 2M51 33c-5-1.6-10-1-14 2M51 39c-5-1.6-10-1-14 2M51 45c-5-1.6-10-1-14 2" stroke-width="1.2" opacity=".75"/>
+  </svg>
+  <h1 class="lib-title"><span id="title">المكتبة</span><span class="lib-author" id="author"></span></h1>
+  <p class="lib-sub" id="subtitle"></p>
+  <div class="lib-tools">
+    <label class="search">
+      <span class="sr">ابحث عن كتاب</span>
+      <input id="q" type="search" placeholder="ابحث باسم الكتاب…" autocomplete="off">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </label>
+    <span class="count" id="count"></span>
+  </div>
+  <nav class="cats" id="cats" aria-label="تصنيفات الكتب" hidden></nav>
+</header>
+
+<section class="stats" id="stats" hidden aria-label="إحصاءات المكتبة">
+  <div class="stats-card">
+    <div class="st-main">
+      <div class="st-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c.8-3.2 3.2-5 6-5s5.2 1.8 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.6 14.6c2.6-.4 4.6 1.2 5.4 4.4"/></svg></div>
+      <div class="st-vis">
+        <div class="st-v">
+          <div class="st-lbl">الزوار منذ إطلاق الموقع</div>
+          <div class="st-big"><b id="stVisitors" dir="ltr">0</b><span>زائر</span></div>
+        </div>
+        <div class="st-v st-v2" id="st28Box" hidden>
+          <div class="st-lbl">آخر 28 يوماً</div>
+          <div class="st-big"><b id="st28" dir="ltr">0</b><span>زائر</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="st-mini">
+      <div class="st-chip"><b id="stBooks" dir="ltr">0</b><span>كتاباً</span></div>
+      <div class="st-chip" id="stCountriesChip" hidden><b id="stCountries" dir="ltr">0</b><span>دولة</span></div>
+    </div>
+    <div class="st-countries" id="stCountryBox" hidden>
+      <div class="st-sub">الزوار حسب الدولة</div>
+      <ul id="stCountryList"></ul>
+    </div>
+  </div>
+</section>
+<section class="cont" id="cont" hidden aria-label="تابع القراءة">
+  <h2 class="sec-h">📖 تابع القراءة</h2>
+  <div class="cont-row" id="contRow"></div>
+</section>
+<main class="shelf" id="shelf" aria-live="polite"></main>
+<footer class="lib-foot" id="foot"></footer>
+<div class="credit">تصميم وإعداد: <b>محمد الشهري</b><span class="sep">•</span>للتواصل: <a href="https://wa.me/966564824329" target="_blank" rel="noopener" dir="ltr">0564824329</a></div>
+
+<a class="wa-fab" id="waFab" hidden target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.3.65 4.45 1.8 6.28L4 29l7.97-1.76a12.1 12.1 0 0 0 4.07.7C22.66 27.94 28 22.6 28 15.97 28 9.36 22.66 3 16.04 3Zm0 22.6c-1.3 0-2.56-.25-3.72-.73l-.27-.11-4.73 1.04 1.06-4.55-.18-.29a9.6 9.6 0 0 1-1.6-5.3c0-5.3 4.04-9.97 9.44-9.97 5.32 0 9.6 4.47 9.6 9.97 0 5.42-4.28 9.94-9.6 9.94Zm5.3-7.2c-.29-.15-1.72-.85-1.98-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.71-1.61-2-.17-.3-.02-.45.13-.6.13-.13.29-.34.44-.51.14-.17.19-.29.29-.49.1-.2.05-.37-.03-.51-.07-.15-.65-1.57-.9-2.15-.23-.56-.47-.49-.65-.5h-.56c-.2 0-.51.08-.78.37-.27.29-1.02 1-1.02 2.43s1.05 2.82 1.2 3.02c.14.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.72-.7 1.97-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34Z"/></svg>
+  <span class="wa-tip">تواصل معنا</span>
+</a>
+<script src="assets/common.js?v=22"></script>
+<script>
+(async function () {
+  const { loadLibrary, readerUrl, ar, store, en, track, hits, bookPath } = window.Lib;
+  const data = await loadLibrary();
+  const site = data.site, books = data.books;
+  const shelf = document.getElementById("shelf");
+
+  const plain = (x) => (x || "").replace(/[\u064B-\u0652]/g, "");
+  if (site.title) { document.getElementById("title").textContent = site.title; document.title = plain(site.title) + (site.author ? " — " + site.author : ""); }
+  const au = document.getElementById("author"); au.textContent = site.author || ""; au.hidden = !site.author;
+  document.getElementById("subtitle").textContent = site.subtitle || "";
+  document.getElementById("count").hidden = true; // العدد يظهر في لوحة الإحصاءات
+  // تاريخ اليوم (هجري وميلادي) — يتحدّث تلقائياً
+  const fmtH = (d) => new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-arab", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(d);
+  const fmtG = (d) => new Intl.DateTimeFormat("ar-SA-u-ca-gregory-nu-arab", { day: "numeric", month: "long", year: "numeric" }).format(d) + " م";
+  const fmtH2 = (d) => new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-arab", { day: "numeric", month: "long", year: "numeric" }).format(d);
+  const now = new Date(), tb = document.getElementById("today");
+  [fmtH(now), fmtG(now)].forEach((txt, i) => { if (i) { const s = document.createElement("span"); s.className = "sep"; s.textContent = "•"; tb.appendChild(s); } const x = document.createElement("span"); x.textContent = txt; tb.appendChild(x); });
+
+  const foot = document.getElementById("foot");
+  const hint = document.createElement("span"); hint.className = "hint"; hint.textContent = "اضغط على أي كتاب لتصفّحه"; foot.appendChild(hint);
+  if (site.preparedDate) {
+    const d = new Date(site.preparedDate + "T12:00:00");
+    const pr = document.createElement("span"); pr.className = "prep";
+    pr.textContent = "تاريخ الإعداد: " + (isNaN(d) ? site.preparedDate : fmtH2(d) + " — " + fmtG(d));
+    foot.appendChild(pr);
+  }
+
+  const needCover = [];
+  const cards = books.map((b) => {
+    const a = document.createElement("a");
+    a.className = "book"; a.href = readerUrl(b);
+    a.dataset.q = (b.title || "").toLowerCase();
+    a.dataset.cat = b.category || "";
+    const cv = document.createElement("div"); cv.className = "cover";
+    if (b.cover) {
+      const img = new Image(); img.loading = "lazy"; img.decoding = "async"; img.alt = "";
+      img.src = b.cover; cv.appendChild(img);
+    } else {
+      const ph = document.createElement("div"); ph.className = "ph"; ph.textContent = b.title; cv.appendChild(ph);
+      needCover.push({ el: cv, file: b.file });
+    }
+    const h = document.createElement("h2"); h.textContent = b.title;
+    a.append(cv, h);
+    const m = document.createElement("div"); m.className = "meta";
+    const pg = document.createElement("span"); pg.textContent = b.pages ? ar(b.pages) + " صفحة" : ""; m.appendChild(pg);
+    const vw = document.createElement("span"); vw.className = "views"; vw.hidden = true; m.appendChild(vw);
+    a.dataset.path = bookPath(b);
+    a.appendChild(m);
+    shelf.appendChild(a);
+    return a;
+  });
+
+  const empty = document.createElement("p"); empty.className = "empty"; empty.hidden = true;
+  empty.textContent = books.length ? "لا توجد نتائج مطابقة" : "لا توجد كتب بعد";
+  empty.hidden = books.length > 0;
+  shelf.appendChild(empty);
+
+  // ===== زر التواصل عبر واتساب =====
+  (function () {
+    let num = String(site.whatsapp || "").replace(/[^0-9]/g, "");
+    if (!num) return;
+    if (num.startsWith("00")) num = num.slice(2);
+    if (/^05\d{8}$/.test(num)) num = "966" + num.slice(1);
+    else if (/^5\d{8}$/.test(num)) num = "966" + num;
+    const fab = document.getElementById("waFab");
+    const msg = site.whatsappMsg || ("السلام عليكم ورحمة الله، تواصلت معكم من موقع " + plain(site.title || "المكتبة"));
+    fab.href = "https://wa.me/" + num + "?text=" + encodeURIComponent(msg);
+    if (site.whatsappLabel) fab.querySelector(".wa-tip").textContent = site.whatsappLabel;
+    fab.hidden = false;
+  })();
+
+  // ===== العدادات: لوحة الإحصاءات + مشاهدات كل كتاب =====
+  const gc = site.counter || "";
+  function countUp(el, to) {
+    const dur = 900, t0 = performance.now(), from = 0;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = en(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  if (gc) {
+    track(gc, "/", plain(site.title));
+    const statsBox = document.getElementById("stats");
+    document.getElementById("stBooks").textContent = en(books.length);
+    // ملف الدول يُحدَّث تلقائياً كل بضع ساعات (GitHub Actions)
+    const loadCountries = async () => {
+      const info = window.Lib.repoInfo(); const urls = [];
+      if (info) urls.push(`https://raw.githubusercontent.com/${info.owner}/${info.repo}/main/stats.json?t=${Date.now()}`);
+      urls.push("stats.json?t=" + Date.now());
+      for (const u of urls) { try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.json(); } catch (e) {} }
+      return null;
+    };
+    const d28 = new Date(Date.now() - 27 * 86400000).toISOString().slice(0, 10);
+    Promise.all([hits(gc, "TOTAL"), loadCountries(), hits(gc, "TOTAL", d28)]).then(([n, st, n28]) => {
+      const total = Math.max(n || 0, (st && st.total) || 0);
+      if (!total) return;
+      statsBox.hidden = false;
+      countUp(document.getElementById("stVisitors"), total);
+      const last = Math.min(total, Math.max(n28 || 0, (st && st.last28) || 0));
+      if (last) { document.getElementById("st28Box").hidden = false; countUp(document.getElementById("st28"), last); }
+      const list = (st && Array.isArray(st.countries) ? st.countries : []).filter((c) => c && c.code && c.count > 0);
+      if (!list.length) return;
+      let names; try { names = new Intl.DisplayNames(["ar"], { type: "region" }); } catch (e) {}
+      const sum = list.reduce((a, c) => a + c.count, 0);
+      document.getElementById("stCountries").textContent = en(list.length);
+      document.getElementById("stCountriesChip").hidden = false;
+      const ul = document.getElementById("stCountryList");
+      list.sort((a, b) => b.count - a.count).slice(0, 6).forEach((c, i) => {
+        const li = document.createElement("li");
+        const pct = Math.max(3, Math.round((c.count / sum) * 100));
+        let nm = c.code; try { nm = (names && names.of(c.code.toUpperCase())) || c.name || c.code; } catch (e) { nm = c.name || c.code; }
+        li.innerHTML = '<span class="cn"></span><span class="bar"><i></i></span><span class="cv" dir="ltr"></span>';
+        li.querySelector(".cn").textContent = nm;
+        li.querySelector(".cv").textContent = Math.round((c.count / sum) * 100) + "%";
+        setTimeout(() => (li.querySelector("i").style.width = pct + "%"), 120 + i * 90);
+        ul.appendChild(li);
+      });
+      document.getElementById("stCountryBox").hidden = false;
+    });
+    const vio = new IntersectionObserver((ents) => ents.forEach(async (en_) => {
+      if (!en_.isIntersecting) return; vio.unobserve(en_.target);
+      const n = await hits(gc, en_.target.dataset.path);
+      if (n === null || n === 0) return;
+      const s = en_.target.querySelector(".views");
+      s.textContent = en(n) + " مشاهدة"; s.hidden = false;
+    }), { rootMargin: "300px" });
+    cards.forEach((c) => vio.observe(c));
+  }
+
+  // ===== تابع القراءة: الكتب التي بدأها القارئ (محفوظة في جهازه) =====
+  function paintCont() {
+    const row = document.getElementById("contRow"); row.innerHTML = "";
+    const list = books.map((b) => ({ b, p: parseInt(store.get("pos:" + b.file) || "0", 10), t: parseInt(store.get("last:" + b.file) || "0", 10) }))
+      .filter((x) => x.p > 1 && x.t > 0).sort((a, z) => z.t - a.t).slice(0, 6);
+    document.getElementById("cont").hidden = !list.length;
+    list.forEach(({ b, p }) => {
+      const a = document.createElement("a"); a.className = "cont-card"; a.href = readerUrl(b);
+      const img = new Image(); img.alt = ""; img.src = b.cover || ""; img.loading = "lazy";
+      const info = document.createElement("div"); info.className = "cont-info";
+      const t = document.createElement("b"); t.textContent = b.title;
+      const total = b.pages || 0, pct = total ? Math.min(100, Math.round((p / total) * 100)) : 0;
+      const sp = document.createElement("span"); sp.textContent = "صفحة " + ar(p) + (total ? " من " + ar(total) : "");
+      const pr = document.createElement("div"); pr.className = "prog"; const bar = document.createElement("i"); bar.style.width = pct + "%"; pr.appendChild(bar);
+      info.append(t, sp, pr);
+      const x = document.createElement("button"); x.className = "cont-x"; x.textContent = "✕"; x.title = "إخفاء من القائمة"; x.setAttribute("aria-label", "إخفاء من القائمة");
+      x.onclick = (e) => { e.preventDefault(); store.del("last:" + b.file); paintCont(); };
+      a.append(img, info, x); row.appendChild(a);
+    });
+  }
+  paintCont();
+  window.addEventListener("pageshow", paintCont);
+
+  // ===== التصنيفات =====
+  let curCat = "";
+  const cats = (site.categories || []).filter((c) => books.some((b) => b.category === c));
+  books.forEach((b) => { if (b.category && !cats.includes(b.category)) cats.push(b.category); });
+  if (cats.length) {
+    const nav = document.getElementById("cats"); nav.hidden = false;
+    const mk = (label, val, n) => {
+      const c = document.createElement("button"); c.className = "chip" + (val === curCat ? " on" : ""); c.dataset.val = val;
+      c.textContent = label; const sm = document.createElement("small"); sm.textContent = ar(n); c.appendChild(sm);
+      c.onclick = () => { curCat = val; nav.querySelectorAll(".chip").forEach((x) => x.classList.toggle("on", x.dataset.val === curCat)); filter(); };
+      nav.appendChild(c);
+    };
+    mk("الكل", "", books.length);
+    cats.forEach((c) => mk(c, c, books.filter((b) => b.category === c).length));
+  }
+
+  const norm = (s) => s.toLowerCase().replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[ً-ْـ]/g, "");
+  function filter() {
+    const q = norm(document.getElementById("q").value.trim()); let n = 0;
+    cards.forEach((c) => { const show = (!q || norm(c.dataset.q).includes(q)) && (!curCat || c.dataset.cat === curCat); c.hidden = !show; if (show) n++; });
+    empty.hidden = n > 0;
+    const cnt = document.getElementById("count");
+    cnt.hidden = !(q || curCat); cnt.textContent = "النتائج: " + ar(n);
+  }
+  document.getElementById("q").addEventListener("input", filter);
+
+  // الكتب بلا غلاف: نعرض صفحتها الأولى كغلاف
+  if (needCover.length) {
+    const pdfjs = await import("./lib/pdf.min.mjs");
+    pdfjs.GlobalWorkerOptions.workerSrc = "lib/pdf.worker.min.mjs";
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach(async (en) => {
+        if (!en.isIntersecting) return; io.unobserve(en.target);
+        const item = needCover.find((x) => x.el === en.target);
+        try {
+          const doc = await pdfjs.getDocument({ url: item.file, disableAutoFetch: true }).promise;
+          const page = await doc.getPage(1);
+          const vp0 = page.getViewport({ scale: 1 });
+          const vp = page.getViewport({ scale: 400 / vp0.width });
+          const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height; c.dir = "ltr";
+          const cx = c.getContext("2d"); cx.direction = "ltr";
+          await page.render({ canvasContext: cx, viewport: vp }).promise;
+          item.el.innerHTML = ""; item.el.appendChild(c); doc.destroy();
+        } catch (e) { console.warn(e); }
+      });
+    }, { rootMargin: "200px" });
+    needCover.forEach((x) => io.observe(x.el));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>إدارة المكتبة</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=22">
+</head>
+<body class="admin">
+<div class="adm">
+  <div class="row" style="justify-content:space-between;margin-bottom:6px">
+    <h1>إدارة المكتبة</h1>
+    <a class="btn ghost small" href="./" target="_blank" rel="noopener">فتح الموقع ↗</a>
+  </div>
+  <p class="lead">من هنا تضيف الكتب وتعدّلها وتحذفها. أي تغيير يظهر في الموقع خلال دقيقة إلى ثلاث دقائق.</p>
+
+  <!-- ١) الاتصال -->
+  <section class="panel" id="connPanel">
+    <h2><span class="n">١</span> مفتاح الدخول</h2>
+    <div class="conn" style="margin-bottom:12px"><span class="dot" id="dot"></span><span id="connText">غير متصل</span></div>
+    <label class="field">
+      <span>مفتاح GitHub <small>يُحفظ في هذا المتصفح فقط، ولا تحتاج إدخاله مرة أخرى على نفس الجهاز.</small></span>
+      <input class="input" id="token" type="password" placeholder="github_pat_…" autocomplete="off" dir="ltr">
+    </label>
+    <div class="row">
+      <button class="btn" id="saveToken">حفظ والاتصال</button>
+      <button class="btn ghost" id="forget">نسيان المفتاح من هذا الجهاز</button>
+    </div>
+    <div class="keybox">
+      <div><b>ما عندك مفتاح أو ضاع؟</b> اضغط الزر، وتفتح صفحة GitHub وكل شيء معبأ (صلاحية دائمة بلا انتهاء).</div>
+      <a class="btn" id="newKey" target="_blank" rel="noopener">🔑 إنشاء مفتاح جديد</a>
+    </div>
+    <details class="help">
+      <summary>خطوات إنشاء المفتاح (دقيقة واحدة)</summary>
+      <ol>
+        <li>اضغط زر «إنشاء مفتاح جديد» وسجّل دخولك في GitHub إن طُلب.</li>
+        <li>الاسم والمدة (<b dir="ltr">No expiration</b>) والصلاحية (<b dir="ltr">Contents: Read and write</b>) معبأة تلقائياً.</li>
+        <li>في <b dir="ltr">Repository access</b> اختر <b dir="ltr">Only select repositories</b> ثم اختر <b dir="ltr" id="repoName">maktaba</b>.</li>
+        <li>اضغط <b dir="ltr">Generate token</b> في الأسفل، وانسخ المفتاح (يبدأ بـ <span dir="ltr">github_pat_</span>).</li>
+        <li>ارجع هنا، والصقه في الخانة، واضغط «حفظ والاتصال».</li>
+      </ol>
+      المفتاح يبقى محفوظاً في هذا المتصفح، فلا تحتاجه مرة ثانية إلا إذا غيّرت الجهاز أو المتصفح أو مسحت بياناته. وإن ضاع، اصنع مفتاحاً جديداً بنفس الزر واحذف القديم من GitHub.
+    </details>
+    <details class="help" id="repoBox">
+      <summary>إعدادات متقدمة (المستودع)</summary>
+      <p style="margin:8px 0">يتم تحديدها تلقائياً من رابط الموقع. لا تغيّرها إلا عند الحاجة.</p>
+      <div class="row">
+        <input class="input" id="owner" placeholder="اسم الحساب" dir="ltr" style="flex:1">
+        <input class="input" id="repo" placeholder="اسم المستودع" dir="ltr" style="flex:1">
+      </div>
+    </details>
+    <div class="status" id="connStatus"></div>
+  </section>
+
+  <!-- ٢) إضافة كتاب -->
+  <section class="panel" id="addPanel">
+    <h2><span class="n">٢</span> إضافة كتاب جديد</h2>
+    <label class="field">
+      <span>اسم الكتاب</span>
+      <input class="input" id="bTitle" placeholder="مثال: فتاوى كبار العلماء في العقيدة">
+    </label>
+    <label class="field">
+      <span>التصنيف</span>
+      <select class="input" id="bCat"></select>
+    </label>
+    <div class="field">
+      <span>الغلاف <small>اختياري — إن لم ترفع غلافاً تُستخدم الصفحة الأولى من الكتاب كغلاف.</small></span>
+      <label class="drop" id="coverDrop">
+        <input type="file" id="bCover" accept="image/*">
+        <span class="ic" id="coverIc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span>
+        <span><span class="t" id="coverName">اختر صورة الغلاف</span><br><span class="s">JPG أو PNG</span></span>
+      </label>
+    </div>
+    <div class="field">
+      <span>ملف الكتاب (PDF)</span>
+      <label class="drop" id="pdfDrop">
+        <input type="file" id="bPdf" accept="application/pdf,.pdf">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 17v-6m0 0-3 3m3-3 3 3"/></svg></span>
+        <span><span class="t" id="pdfName">اختر ملف PDF</span><br><span class="s">أو اسحبه وأفلته هنا</span></span>
+      </label>
+    </div>
+    <button class="btn gold" id="publish">نشر الكتاب</button>
+    <div class="progress" id="prog"><i></i></div>
+    <div class="status" id="addStatus"></div>
+  </section>
+
+  <!-- ٣) الكتب -->
+  <section class="panel">
+    <h2><span class="n">٣</span> الكتب المنشورة <span class="count" id="bCount" style="font-weight:400"></span></h2>
+    <ul class="blist" id="list"><li style="color:var(--muted)">اتصل أولاً لعرض الكتب.</li></ul>
+    <div class="status" id="listStatus"></div>
+    <input type="file" id="coverSwap" accept="image/*" hidden>
+  </section>
+
+  <!-- ٤) إعدادات الموقع -->
+  <section class="panel">
+    <h2><span class="n">٤</span> إعدادات الموقع</h2>
+    <label class="field"><span>عنوان المكتبة</span><input class="input" id="sTitle"></label>
+    <label class="field"><span>اسم المؤلف <small>يظهر تحت العنوان بلون ذهبي.</small></span><input class="input" id="sAuthor"></label>
+    <label class="field"><span>الوصف تحت العنوان</span><input class="input" id="sSub"></label>
+    <label class="field"><span>تاريخ الإعداد <small>يظهر أسفل الصفحة الرئيسية بالهجري والميلادي.</small></span><input class="input" id="sDate" type="date" dir="ltr" style="max-width:240px"></label>
+    <label class="field"><span>رقم واتساب للتواصل <small>مثال: 05xxxxxxxx — يظهر زر واتساب في الصفحة الرئيسية. اتركه فارغاً لإخفائه.</small></span><input class="input" id="sWa" dir="ltr" inputmode="tel" placeholder="05xxxxxxxx" style="max-width:280px"></label>
+    <label class="field"><span>رمز عدّاد الزوار (GoatCounter) <small>مثال: mylibrary — اتركه فارغاً لإخفاء العدادات.</small></span><input class="input" id="sCounter" dir="ltr" placeholder="mylibrary" style="max-width:280px"></label>
+    <label class="check"><input type="checkbox" id="sDl"> السماح للقرّاء بتحميل الكتب (يظهر زر تحميل في صفحة القراءة)</label>
+    <button class="btn" id="saveSite">حفظ الإعدادات</button>
+    <div class="status" id="siteStatus"></div>
+  </section>
+</div>
+
+<script src="assets/common.js?v=22"></script>
+<script type="module">
+import * as pdfjs from "./lib/pdf.min.mjs";
+pdfjs.GlobalWorkerOptions.workerSrc = "lib/pdf.worker.min.mjs";
+const { store, repoInfo, ar, titleFromFile } = window.Lib;
+const $ = (id) => document.getElementById(id);
+
+// ===== رسائل الحالة =====
+function say(id, kind, msg) { const s = $(id); s.className = "status show " + kind; s.textContent = msg; }
+function hush(id) { $(id).className = "status"; }
+
+// ===== إعداد المستودع =====
+const auto = repoInfo() || {};
+$("owner").value = store.get("gh.owner") || auto.owner || "";
+$("repo").value = store.get("gh.repo") || auto.repo || "";
+$("token").value = store.get("gh.token") || "";
+let branch = "main", lib = null, connected = false;
+
+function setKeyLink() {
+  const o = $("owner").value.trim(), r = $("repo").value.trim() || "maktaba";
+  const q = new URLSearchParams({ name: (r + "-admin").slice(0, 40), description: "Library admin page for " + r, expires_in: "none", contents: "write" });
+  if (o) q.set("target_name", o);
+  $("newKey").href = "https://github.com/settings/personal-access-tokens/new?" + q.toString();
+  $("repoName").textContent = r;
+}
+setKeyLink(); $("owner").addEventListener("input", setKeyLink); $("repo").addEventListener("input", setKeyLink);
+const R = () => `https://api.github.com/repos/${$("owner").value.trim()}/${$("repo").value.trim()}`;
+
+async function gh(method, path, body) {
+  const r = await fetch(R() + path, {
+    method,
+    headers: {
+      Authorization: "Bearer " + $("token").value.trim(),
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(body ? { "Content-Type": "application/json" } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    cache: "no-store",
+  });
+  if (!r.ok) {
+    let m = ""; try { m = (await r.json()).message || ""; } catch (e) {}
+    const err = new Error(m || r.status); err.status = r.status; throw err;
+  }
+  return r.status === 204 ? null : r.json();
+}
+function explain(e) {
+  if (e.status === 401) return "المفتاح غير صحيح أو انتهت صلاحيته. اضغط زر «إنشاء مفتاح جديد» بالأسفل.";
+  if (e.status === 403) return "المفتاح لا يملك صلاحية الكتابة. تأكد من اختيار Contents: Read and write.";
+  if (e.status === 404) return "لم يتم العثور على المستودع، أو أن المفتاح لا يملك صلاحية عليه.";
+  if (e.status === 409 || e.status === 422) return "حدث تعارض مؤقت، حاول مرة أخرى.";
+  if (e.name === "TypeError") return "تعذّر الاتصال بالإنترنت. تحقق من الاتصال وحاول مرة أخرى.";
+  return "حدث خطأ: " + e.message;
+}
+
+// ===== أدوات الترميز =====
+function b64(buf) {
+  const bytes = new Uint8Array(buf); let s = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+const b64text = (t) => b64(new TextEncoder().encode(t));
+const fromB64text = (s) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g, "")), (c) => c.charCodeAt(0)));
+
+// رفع ملف كبير مع شريط تقدّم
+function uploadBlob(buf, onProg) {
+  return new Promise((res, rej) => {
+    const x = new XMLHttpRequest();
+    x.open("POST", R() + "/git/blobs");
+    x.setRequestHeader("Authorization", "Bearer " + $("token").value.trim());
+    x.setRequestHeader("Accept", "application/vnd.github+json");
+    x.setRequestHeader("Content-Type", "application/json");
+    x.upload.onprogress = (e) => e.lengthComputable && onProg && onProg(e.loaded / e.total);
+    x.onload = () => {
+      if (x.status >= 200 && x.status < 300) res(JSON.parse(x.responseText).sha);
+      else { const err = new Error(x.statusText); err.status = x.status; rej(err); }
+    };
+    x.onerror = () => { const e = new TypeError("network"); rej(e); };
+    x.send(JSON.stringify({ content: b64(buf), encoding: "base64" }));
+  });
+}
+
+// حفظ عدة ملفات في تعديل واحد
+async function commit(changes, message, onProg) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const ref = await gh("GET", `/git/ref/heads/${branch}`);
+      const base = await gh("GET", `/git/commits/${ref.object.sha}`);
+      const tree = [];
+      for (const c of changes) {
+        if (c.delete) { tree.push({ path: c.path, mode: "100644", type: "blob", sha: null }); continue; }
+        if (!c.sha) c.sha = c.buf ? await uploadBlob(c.buf, c.big ? onProg : null)
+                                  : (await gh("POST", "/git/blobs", { content: b64text(c.text), encoding: "base64" })).sha;
+        tree.push({ path: c.path, mode: "100644", type: "blob", sha: c.sha });
+      }
+      const t = await gh("POST", "/git/trees", { base_tree: base.tree.sha, tree });
+      const cm = await gh("POST", "/git/commits", { message, tree: t.sha, parents: [ref.object.sha] });
+      await gh("PATCH", `/git/refs/heads/${branch}`, { sha: cm.sha });
+      return;
+    } catch (e) { if (attempt === 1 || !(e.status === 409 || e.status === 422)) throw e; }
+  }
+}
+
+// ===== قراءة قائمة الكتب =====
+async function loadLib() {
+  try {
+    const f = await gh("GET", `/contents/books.json?ref=${branch}`);
+    lib = JSON.parse(fromB64text(f.content));
+  } catch (e) { if (e.status === 404) lib = { site: {}, books: [] }; else throw e; }
+  lib.site = lib.site || {}; lib.books = lib.books || [];
+  let extra = [];
+  try {
+    const files = await gh("GET", `/contents/books?ref=${branch}`);
+    const known = new Set(lib.books.map((b) => b.file));
+    extra = files.filter((f) => f.type === "file" && /\.pdf$/i.test(f.name) && !known.has("books/" + f.name));
+  } catch (e) {}
+  fillCats();
+  render(extra);
+  $("sTitle").value = lib.site.title || ""; $("sAuthor").value = lib.site.author || ""; $("sCounter").value = lib.site.counter || ""; $("sSub").value = lib.site.subtitle || ""; $("sDl").checked = !!lib.site.allowDownload; $("sDate").value = lib.site.preparedDate || ""; $("sWa").value = lib.site.whatsapp || "";
+}
+function catList() {
+  const c = [...(lib.site.categories || [])];
+  lib.books.forEach((b) => { if (b.category && !c.includes(b.category)) c.push(b.category); });
+  return c;
+}
+function catSelect(sel, value) {
+  sel.innerHTML = "";
+  const o0 = document.createElement("option"); o0.value = ""; o0.textContent = "بدون تصنيف"; sel.appendChild(o0);
+  catList().forEach((c) => { const o = document.createElement("option"); o.value = c; o.textContent = c; sel.appendChild(o); });
+  const on = document.createElement("option"); on.value = "__new"; on.textContent = "＋ تصنيف جديد…"; sel.appendChild(on);
+  sel.value = value || "";
+}
+function pickNewCat(sel, prev) {
+  const v = (prompt("اسم التصنيف الجديد:") || "").trim();
+  if (!v) { sel.value = prev || ""; return null; }
+  if (!lib.site.categories) lib.site.categories = [];
+  if (!lib.site.categories.includes(v)) lib.site.categories.push(v);
+  return v;
+}
+function fillCats() { const prev = $("bCat").value; catSelect($("bCat"), prev && prev !== "__new" ? prev : ""); }
+$("bCat").addEventListener("change", (e) => { if (e.target.value === "__new") { const v = pickNewCat(e.target, ""); catSelect(e.target, v || ""); } });
+const saveLib = (msg, more = []) => commit([...more, { path: "books.json", text: JSON.stringify(lib, null, 2) + "\n" }], msg);
+
+// ===== عرض القائمة =====
+function render(extra = []) {
+  const ul = $("list"); ul.innerHTML = "";
+  $("bCount").textContent = "(" + ar(lib.books.length) + ")";
+  if (!lib.books.length && !extra.length) { ul.innerHTML = '<li style="color:var(--muted)">لا توجد كتب بعد.</li>'; return; }
+  lib.books.forEach((b, i) => {
+    const li = document.createElement("li");
+    const img = new Image(); img.alt = ""; if (b.cover) img.src = b.cover + "?v=" + (b.v || 0);
+    const bt = document.createElement("div"); bt.className = "bt";
+    const t = document.createElement("b"); t.textContent = b.title;
+    const s = document.createElement("span"); s.textContent = (b.pages ? ar(b.pages) + " صفحة · " : "") + (b.date || b.added || "");
+    bt.append(t, s);
+    const acts = document.createElement("div"); acts.className = "acts";
+    const mk = (label, fn, cls = "ghost") => { const x = document.createElement("button"); x.className = "btn small " + cls; x.textContent = label; x.onclick = fn; acts.appendChild(x); return x; };
+    mk("↑", () => move(i, -1)).disabled = i === 0;
+    mk("↓", () => move(i, 1)).disabled = i === lib.books.length - 1;
+    const cs = document.createElement("select"); cs.className = "input catsel"; cs.title = "التصنيف";
+    catSelect(cs, b.category || "");
+    cs.onchange = () => {
+      let v = cs.value;
+      if (v === "__new") { v = pickNewCat(cs, b.category); if (!v) return; }
+      run("listStatus", async () => { lib.books[i].category = v; await saveLib("تصنيف كتاب: " + b.title); }, "تم تغيير التصنيف ✓");
+    };
+    acts.appendChild(cs);
+    mk("تعديل الاسم", () => rename(i));
+    mk("تغيير الغلاف", () => swapCover(i));
+    mk("حذف", () => remove(i), "danger");
+    li.append(img, bt, acts); ul.appendChild(li);
+  });
+  extra.forEach((f) => {
+    const li = document.createElement("li");
+    const bt = document.createElement("div"); bt.className = "bt";
+    const t = document.createElement("b"); t.textContent = titleFromFile(f.name);
+    const s = document.createElement("span"); s.textContent = "ملف مرفوع مباشرة وغير مسجّل";
+    bt.append(t, s);
+    const acts = document.createElement("div"); acts.className = "acts";
+    const x = document.createElement("button"); x.className = "btn small gold"; x.textContent = "تسجيل في القائمة";
+    x.onclick = () => run("listStatus", async () => {
+      lib.books.push({ id: f.name.replace(/\.pdf$/i, "").replace(/[^\w-]/g, "") || "b" + Date.now().toString(36), title: titleFromFile(f.name), file: "books/" + f.name, cover: "", added: today() });
+      await saveLib("تسجيل كتاب: " + titleFromFile(f.name));
+    }, "تم التسجيل ✓");
+    acts.appendChild(x); li.append(document.createElement("span"), bt, acts); ul.appendChild(li);
+  });
+}
+
+const today = () => new Date().toISOString().slice(0, 10);
+async function run(statusId, fn, okMsg) {
+  if (!connected) return say(statusId, "err", "اتصل أولاً بإدخال المفتاح.");
+  document.querySelectorAll("button").forEach((b) => (b.dataset.d = b.disabled, b.disabled = true));
+  say(statusId, "info", "جارٍ الحفظ…");
+  try { await fn(); say(statusId, "ok", okMsg + " سيظهر التغيير في الموقع خلال دقيقة إلى ثلاث دقائق."); await loadLib(); }
+  catch (e) { console.error(e); say(statusId, "err", explain(e)); try { await loadLib(); } catch (_) {} }
+  finally { document.querySelectorAll("button").forEach((b) => (b.disabled = b.dataset.d === "true")); }
+}
+
+function move(i, d) { run("listStatus", async () => { const a = lib.books; [a[i], a[i + d]] = [a[i + d], a[i]]; await saveLib("ترتيب الكتب"); }, "تم تغيير الترتيب ✓"); }
+function rename(i) {
+  const v = prompt("الاسم الجديد للكتاب:", lib.books[i].title);
+  if (!v || !v.trim() || v.trim() === lib.books[i].title) return;
+  run("listStatus", async () => { lib.books[i].title = v.trim(); await saveLib("تعديل اسم كتاب"); }, "تم تعديل الاسم ✓");
+}
+function remove(i) {
+  const b = lib.books[i];
+  if (!confirm("هل تريد حذف «" + b.title + "» نهائياً من الموقع؟")) return;
+  run("listStatus", async () => {
+    lib.books.splice(i, 1);
+    const del = [{ path: b.file, delete: true }]; if (b.cover) del.push({ path: b.cover, delete: true });
+    await saveLib("حذف كتاب: " + b.title, del);
+  }, "تم الحذف ✓");
+}
+let swapIdx = -1;
+function swapCover(i) { swapIdx = i; $("coverSwap").value = ""; $("coverSwap").click(); }
+$("coverSwap").onchange = (e) => {
+  const f = e.target.files[0]; if (!f || swapIdx < 0) return;
+  const b = lib.books[swapIdx];
+  run("listStatus", async () => {
+    const buf = await imageToJpeg(f);
+    const path = "covers/" + (b.id || "c" + Date.now().toString(36)) + ".jpg";
+    const more = [{ path, buf }];
+    if (b.cover && b.cover !== path) more.push({ path: b.cover, delete: true });
+    b.cover = path; b.v = Date.now();
+    await saveLib("تغيير غلاف: " + b.title, more);
+  }, "تم تغيير الغلاف ✓");
+};
+
+// ===== تجهيز الصور =====
+async function canvasToJpeg(c) { const blob = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.86)); return blob.arrayBuffer(); }
+async function imageToJpeg(file) {
+  const bmp = await createImageBitmap(file);
+  const w = Math.min(600, bmp.width), h = Math.round(bmp.height * (w / bmp.width));
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const ctx = c.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h); ctx.drawImage(bmp, 0, 0, w, h);
+  return canvasToJpeg(c);
+}
+
+// ===== الاتصال =====
+async function connect() {
+  if (!$("token").value.trim()) { $("connText").textContent = "أدخل المفتاح"; return; }
+  say("connStatus", "info", "جارٍ الاتصال…");
+  try {
+    const repo = await gh("GET", "");
+    if (repo.permissions && !repo.permissions.push) throw Object.assign(new Error("no push"), { status: 403 });
+    branch = repo.default_branch || "main";
+    connected = true; $("dot").className = "dot on"; $("connText").textContent = "متصل بـ " + repo.full_name;
+    hush("connStatus");
+    await loadLib();
+  } catch (e) { connected = false; $("dot").className = "dot bad"; $("connText").textContent = "غير متصل"; say("connStatus", "err", explain(e)); }
+}
+$("saveToken").onclick = () => {
+  store.set("gh.token", $("token").value.trim());
+  if ($("owner").value.trim() !== (auto.owner || "")) store.set("gh.owner", $("owner").value.trim()); else store.del("gh.owner");
+  if ($("repo").value.trim() !== (auto.repo || "")) store.set("gh.repo", $("repo").value.trim()); else store.del("gh.repo");
+  connect();
+};
+$("forget").onclick = () => { store.del("gh.token"); $("token").value = ""; connected = false; $("dot").className = "dot"; $("connText").textContent = "غير متصل"; say("connStatus", "info", "تم حذف المفتاح من هذا الجهاز."); };
+
+// ===== اختيار الملفات =====
+function wireDrop(dropId, inputId, onPick) {
+  const d = $(dropId), inp = $(inputId);
+  inp.onchange = () => inp.files[0] && onPick(inp.files[0]);
+  d.addEventListener("dragover", (e) => { e.preventDefault(); d.classList.add("over"); });
+  d.addEventListener("dragleave", () => d.classList.remove("over"));
+  d.addEventListener("drop", (e) => { e.preventDefault(); d.classList.remove("over"); const f = e.dataTransfer.files[0]; if (f) { const dt = new DataTransfer(); dt.items.add(f); inp.files = dt.files; onPick(f); } });
+}
+const mb = (n) => (n / 1048576).toFixed(1) + " MB";
+wireDrop("pdfDrop", "bPdf", (f) => {
+  $("pdfName").textContent = f.name + " — " + mb(f.size);
+  if (!$("bTitle").value.trim()) $("bTitle").value = titleFromFile(f.name);
+});
+wireDrop("coverDrop", "bCover", (f) => {
+  $("coverName").textContent = f.name;
+  const img = new Image(); img.src = URL.createObjectURL(f); $("coverIc").replaceWith(img); img.id = "coverIc";
+});
+
+// ===== نشر كتاب =====
+$("publish").onclick = async () => {
+  const title = $("bTitle").value.trim(), pdfFile = $("bPdf").files[0], coverFile = $("bCover").files[0];
+  if (!connected) return say("addStatus", "err", "اتصل أولاً بإدخال المفتاح في الخطوة ١.");
+  if (!title) return say("addStatus", "err", "اكتب اسم الكتاب.");
+  if (!pdfFile) return say("addStatus", "err", "اختر ملف الكتاب (PDF).");
+  if (pdfFile.size > 95 * 1048576) return say("addStatus", "err", "حجم الملف أكبر من 95 ميجابايت. يجب ضغطه أولاً قبل رفعه.");
+
+  const prog = $("prog"), bar = prog.firstElementChild;
+  const setP = (x) => { prog.classList.add("show"); bar.style.width = Math.round(x * 100) + "%"; };
+  $("publish").disabled = true;
+  try {
+    say("addStatus", "info", "جارٍ تجهيز الكتاب…"); setP(0.03);
+    const buf = await pdfFile.arrayBuffer();
+    let doc;
+    try { doc = await pdfjs.getDocument({ data: new Uint8Array(buf.slice(0)) }).promise; }
+    catch (e) { throw new Error("الملف ليس PDF صالحاً أو أنه محمي بكلمة مرور."); }
+    const pages = doc.numPages;
+    let coverBuf;
+    if (coverFile) coverBuf = await imageToJpeg(coverFile);
+    else {
+      const p1 = await doc.getPage(1); const v0 = p1.getViewport({ scale: 1 });
+      const vp = p1.getViewport({ scale: 600 / v0.width });
+      const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height; c.dir = "ltr";
+      const ctx = c.getContext("2d"); ctx.direction = "ltr"; ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
+      await p1.render({ canvasContext: ctx, viewport: vp }).promise; coverBuf = await canvasToJpeg(c);
+    }
+    doc.destroy();
+
+    const id = "b" + Date.now().toString(36);
+    const file = `books/${id}.pdf`, cover = `covers/${id}.jpg`;
+    say("addStatus", "info", "جارٍ رفع الكتاب… لا تغلق الصفحة" + (pdfFile.size > 30 * 1048576 ? " (الملف كبير وقد يستغرق عدة دقائق)" : ""));
+    lib.books.push({ id, title, file, cover, pages, category: $("bCat").value === "__new" ? "" : $("bCat").value, date: today(), added: today() });
+    await commit([
+      { path: file, buf, big: true },
+      { path: cover, buf: coverBuf },
+      { path: "books.json", text: JSON.stringify(lib, null, 2) + "\n" },
+    ], "إضافة كتاب: " + title, (x) => setP(0.05 + x * 0.85));
+    setP(1);
+    say("addStatus", "ok", "تم نشر «" + title + "» ✓ سيظهر في الموقع خلال دقيقة إلى ثلاث دقائق.");
+    $("bTitle").value = ""; $("bPdf").value = ""; $("bCover").value = "";
+    $("pdfName").textContent = "اختر ملف PDF"; $("coverName").textContent = "اختر صورة الغلاف";
+    await loadLib();
+  } catch (e) {
+    console.error(e);
+    say("addStatus", "err", e.status || e.name === "TypeError" ? explain(e) : e.message);
+    try { await loadLib(); } catch (_) {}
+  } finally { $("publish").disabled = false; setTimeout(() => prog.classList.remove("show"), 1500); }
+};
+
+// ===== إعدادات الموقع =====
+$("saveSite").onclick = () => run("siteStatus", async () => {
+  lib.site.title = $("sTitle").value.trim(); lib.site.author = $("sAuthor").value.trim(); lib.site.counter = $("sCounter").value.trim().toLowerCase(); lib.site.subtitle = $("sSub").value.trim(); lib.site.allowDownload = $("sDl").checked; lib.site.preparedDate = $("sDate").value; lib.site.whatsapp = $("sWa").value.replace(/[^0-9+]/g, "");
+  await saveLib("تعديل إعدادات الموقع");
+}, "تم حفظ الإعدادات ✓");
+
+if ($("token").value) connect();
+</script>
+</body>
+</html>
