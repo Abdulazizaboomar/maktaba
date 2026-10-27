@@ -260,3 +260,27 @@
 .colls[data-n="3"],.colls[data-n="5"],.colls[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:980px){.colls[data-n]{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.colls[data-n]{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== v26: ملاحظات الدكتور ===== */
+/* العنوان: «مشروع تصحيح العلوم وتهذيبها» أبيض سميك، وتحته سطر المؤلف بأصفر واضح أصغر قليلاً */
+.hero h1{font-size:clamp(36px,4.3vw,62px);line-height:1.45;font-weight:700;color:#fff;text-wrap:balance}
+.hero h1 .au{font-size:.6em;line-height:1.6;font-weight:700;color:#f0c35a;margin-top:6px}
+.brand-txt b{overflow:hidden;text-overflow:ellipsis}
+/* الإحصاءات السريعة: ثلاث خانات متساوية ومتناسقة */
+.hfacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:540px;margin-top:26px}
+.hfacts li,.hfacts li+li{flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:14px 8px 12px;border:1px solid rgba(247,243,232,.14);border-radius:14px;background:rgba(255,255,255,.05);text-align:center}
+.hfacts b{font-size:30px;line-height:1.15}
+.hfacts span{font-size:14px;color:rgba(247,243,232,.8)}
+@media (max-width:900px){.hfacts{margin-inline:auto}}
+@media (max-width:640px){
+  .hero h1{font-size:30px;line-height:1.5}
+  .hero h1 .au{font-size:20px;margin-top:4px}
+  .hfacts{gap:8px;margin-top:16px}
+  .hfacts li,.hfacts li+li{padding:10px 4px 9px;border-radius:12px}
+  .hfacts b{font-size:23px}
+  .hfacts span{font-size:12.5px}
+  .home .stats-wrap{margin-top:16px}
+}
+/* لوحة الزوار: عدد الكتب ظاهر فوق، فلا نكرره هنا */
+.home .st-chip:has(#stBooks){display:none}
+.home .st-mini:has(#stCountriesChip[hidden]){display:none}
