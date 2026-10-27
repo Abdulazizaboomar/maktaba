@@ -255,3 +255,8 @@
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.fan a,.card img,.coll,.coll-covers img{transition:none}html{scroll-behavior:auto}}
 .home .wa-fab{z-index:60}
 @media (max-width:640px){.home .wa-fab{width:52px;height:52px;left:14px;bottom:16px}}
+/* توزيع متوازن لبطاقات المجموعات حسب عددها */
+.colls[data-n="2"],.colls[data-n="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+.colls[data-n="3"],.colls[data-n="5"],.colls[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.colls[data-n]{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.colls[data-n]{grid-template-columns:minmax(0,1fr)}}
