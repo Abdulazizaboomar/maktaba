@@ -284,3 +284,24 @@
 /* لوحة الزوار: عدد الكتب ظاهر فوق، فلا نكرره هنا */
 .home .st-chip:has(#stBooks){display:none}
 .home .st-mini:has(#stCountriesChip[hidden]){display:none}
+/* v27: مسافة أوضح بين سطري الشعار */
+.brand-txt{gap:5px}
+.brand-txt b{line-height:1.3}
+.brand-txt small{line-height:1.3}
+.foot .brand-txt{gap:7px}
+
+/* ===== v28 ===== */
+/* إصلاح اختفاء الغلاف الجانبي عند التحميل: بلا تدوير ثلاثي الأبعاد، والعمق بالتصغير والظل فقط */
+.fan{perspective:none}
+.fan a{transform:translateX(var(--x,0)) scale(var(--s,1));will-change:auto;backface-visibility:visible}
+.fan a.r,.fan a.l{--ry:0deg}
+.fan a.side{--s:.86;filter:brightness(.92)}
+.fan a.r{--x:calc(var(--w) * .78)}
+.fan a.l{--x:calc(var(--w) * -.78)}
+
+/* الشعار (الشريط العلوي والتذييل): سطران بنفس الخط والحجم واللون الذهبي، ومسافة واضحة بينهما */
+.brand-txt{gap:6px}
+.brand-txt b,.brand-txt small{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.25;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.foot .brand-txt{gap:8px}
+.foot .brand-txt b,.foot .brand-txt small{font-size:21px;color:var(--gold-l)}
+@media (max-width:640px){.brand-txt{gap:4px}.brand-txt b,.brand-txt small{font-size:15.5px}}
