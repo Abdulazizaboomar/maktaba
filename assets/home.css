@@ -311,3 +311,10 @@
 @keyframes cvld{to{background-position:-300% 0}}
 .frame img{background:transparent}
 @media (prefers-reduced-motion:reduce){.frame .cv.ld{animation:none}}
+
+/* ===== v34: الشعار — مساحة كافية لأعالي حروف خط Amiri (الهمزات والشدّات) حتى لا تُقص ===== */
+.brand-txt{gap:0}
+.brand-txt b,.brand-txt small{line-height:1.65;padding:0 .08em;overflow:hidden;text-overflow:ellipsis}
+.brand-txt b{margin-bottom:-.12em}
+.foot .brand-txt{gap:2px}
+@media (max-width:640px){.brand-txt b,.brand-txt small{line-height:1.6}}
