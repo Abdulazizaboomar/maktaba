@@ -1,318 +1,318 @@
 {
- "site": {
-  "title": "مشروع تصحيح العلوم وتهذيبها",
-  "author": "مؤلفات د.عبدالعزيز بن سعيد بن غائب",
-  "subtitle": "تتضمن تصحيحات وتحقيقات وشروحات وموسوعات وفقهيات وتربويات",
-  "allowDownload": false,
-  "counter": "abdulazizaboomar",
-  "whatsapp": "966506757412",
-  "preparedDate": "2026-10-27",
-  "categories": [
-   "مشروع تصحيح العلوم",
-   "موسوعة علوم القرآن",
-   "بحوث فقهية وأصولية",
-   "بحوث تربوية ودعوية",
-   "رسائل علمية"
+  "site": {
+    "title": "مشروع تصحيح العلوم وتهذيبها",
+    "author": "مؤلفات د.عبدالعزيز بن سعيد بن غائب",
+    "subtitle": "تتضمن تصحيحات وتحقيقات وشروحات وموسوعات وفقهيات وتربويات",
+    "allowDownload": false,
+    "counter": "abdulazizaboomar",
+    "whatsapp": "966506757412",
+    "preparedDate": "2026-10-27",
+    "categories": [
+      "مشروع تصحيح العلوم",
+      "موسوعة علوم القرآن",
+      "بحوث فقهية وأصولية",
+      "بحوث تربوية ودعوية",
+      "رسائل علمية"
+    ]
+  },
+  "books": [
+    {
+      "id": "rawdat-alabrar",
+      "title": "روضة الأبرار في صحيح الأدعية والأذكار",
+      "file": "books/rawdat-alabrar.pdf",
+      "cover": "covers/rawdat-alabrar.jpg",
+      "pages": 283,
+      "date": "2026-06-13",
+      "category": "مشروع تصحيح العلوم"
+    },
+    {
+      "id": "nuzhat-aluqul",
+      "title": "نزهة العقول في صحيح أسباب النزول",
+      "file": "books/nuzhat-aluqul.pdf",
+      "cover": "covers/nuzhat-aluqul.jpg",
+      "pages": 313,
+      "date": "2026-07-25",
+      "category": "مشروع تصحيح العلوم",
+      "alsoIn": [
+        "موسوعة علوم القرآن"
+      ]
+    },
+    {
+      "id": "almathal-alala",
+      "title": "المثل الأعلى في صحيح أسماء الله الحسنى وصفاته العلى",
+      "file": "books/almathal-alala.pdf",
+      "cover": "covers/almathal-alala.jpg",
+      "pages": 507,
+      "date": "2026-10-09",
+      "category": "مشروع تصحيح العلوم"
+    },
+    {
+      "id": "alrahma-alalamiya",
+      "title": "الرحمة العالمية في صحيح السيرة النبوية",
+      "file": "books/alrahma-alalamiya.pdf",
+      "cover": "covers/alrahma-alalamiya.jpg",
+      "pages": 946,
+      "date": "2026-10-15",
+      "category": "مشروع تصحيح العلوم"
+    },
+    {
+      "id": "alwafa",
+      "title": "الوفاء في سيرة الأربعة الخلفاء",
+      "file": "books/alwafa.pdf",
+      "cover": "covers/alwafa.jpg",
+      "pages": 151,
+      "date": "2026-10-15",
+      "category": "مشروع تصحيح العلوم"
+    },
+    {
+      "id": "bmvpsc0uc",
+      "title": "مشروع تصحيح العلوم من حيث العقائد والأدلة والفهوم",
+      "file": "books/bmvpsc0uc.pdf",
+      "cover": "covers/bmvpsc0uc.jpg",
+      "pages": 2183,
+      "category": "مشروع تصحيح العلوم",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvpsstlg",
+      "title": "التنبيهات في علم المتشابهات",
+      "file": "books/bmvpsstlg.pdf",
+      "cover": "covers/bmvpsstlg.jpg",
+      "pages": 145,
+      "category": "موسوعة علوم القرآن",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvpstcvd",
+      "title": "الروح والريحان في صحيح فضائل القرآن",
+      "file": "books/bmvpstcvd.pdf",
+      "cover": "covers/bmvpstcvd.jpg",
+      "pages": 147,
+      "category": "مشروع تصحيح العلوم",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvpstvmq",
+      "title": "آداب التلاوة وأخلاق القراء وقواعد الحفظ والتجويد والإقراء",
+      "file": "books/bmvpstvmq.pdf",
+      "cover": "covers/bmvpstvmq.jpg",
+      "pages": 227,
+      "category": "موسوعة علوم القرآن",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvpsugqk",
+      "title": "أساليب القرآن الكريم وتطبيقاتها التربوية والعملية والدعوية",
+      "file": "books/bmvpsugqk.pdf",
+      "cover": "covers/bmvpsugqk.jpg",
+      "pages": 113,
+      "category": "موسوعة علوم القرآن",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvpsuzcv",
+      "title": "حدائق الأفنان في المهم اللازم من علوم القرآن",
+      "file": "books/bmvpsuzcv.pdf",
+      "cover": "covers/bmvpsuzcv.jpg",
+      "pages": 380,
+      "category": "موسوعة علوم القرآن",
+      "date": "2026-10-26",
+      "added": "2026-10-26"
+    },
+    {
+      "id": "bmvqqe6ai",
+      "title": "الرسوخ في الناسخ والمنسوخ",
+      "file": "books/bmvqqe6ai.pdf",
+      "cover": "covers/bmvqqe6ai.jpg",
+      "pages": 34,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqqeoih",
+      "title": "تسع غنائم أو تسع مهالك في حفظ الصلاة أو تضييعها",
+      "file": "books/bmvqqeoih.pdf",
+      "cover": "covers/bmvqqeoih.jpg",
+      "pages": 84,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqqf4lz",
+      "title": "أدلة الفقه",
+      "file": "books/bmvqqf4lz.pdf",
+      "cover": "covers/bmvqqf4lz.jpg",
+      "pages": 238,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqqfsho",
+      "title": "التحفة البهية في القواعد الفقهية",
+      "file": "books/bmvqqfsho.pdf",
+      "cover": "covers/bmvqqfsho.jpg",
+      "pages": 148,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqu0uxe",
+      "title": "التشريف في علوم السنة ومصطلح الحديث الشريف",
+      "file": "books/bmvqu0uxe.pdf",
+      "cover": "covers/bmvqu0uxe.jpg",
+      "pages": 119,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqqgrah",
+      "title": "حروف المعاني وأثرها في الفقه والأحكام واللغة والمباني",
+      "file": "books/bmvqqgrah.pdf",
+      "cover": "covers/bmvqqgrah.jpg",
+      "pages": 135,
+      "category": "بحوث فقهية وأصولية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtochg",
+      "title": "دور الوسائل والتقنيات في طلب العلم والمعلومات",
+      "file": "books/bmvqtochg.pdf",
+      "cover": "covers/bmvqtochg.jpg",
+      "pages": 119,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtp4sq",
+      "title": "نونية القحطاني",
+      "file": "books/bmvqtp4sq.pdf",
+      "cover": "covers/bmvqtp4sq.jpg",
+      "pages": 63,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtpmzm",
+      "title": "تقارير وشهادات وأخبار حول القرآن والوحي والآثار",
+      "file": "books/bmvqtpmzm.pdf",
+      "cover": "covers/bmvqtpmzm.jpg",
+      "pages": 30,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtq4nc",
+      "title": "محاسن الإسلام وفقه العادات والأعراف والقوانين والاعتصام",
+      "file": "books/bmvqtq4nc.pdf",
+      "cover": "covers/bmvqtq4nc.jpg",
+      "pages": 90,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtqu7z",
+      "title": "فقه الدعوة إلى الله",
+      "file": "books/bmvqtqu7z.pdf",
+      "cover": "covers/bmvqtqu7z.jpg",
+      "pages": 367,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtrtxv",
+      "title": "يحبهم ويحبونه",
+      "file": "books/bmvqtrtxv.pdf",
+      "cover": "covers/bmvqtrtxv.jpg",
+      "pages": 61,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtsg2p",
+      "title": "مرض الرسول ووصاياه وآخر أيامه من دنياه وأخلاقه وشمائله وسجاياه",
+      "file": "books/bmvqtsg2p.pdf",
+      "cover": "covers/bmvqtsg2p.jpg",
+      "pages": 83,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtt16g",
+      "title": "خطبة الوداع ووصية الراحل المودع",
+      "file": "books/bmvqtt16g.pdf",
+      "cover": "covers/bmvqtt16g.jpg",
+      "pages": 21,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqttm8c",
+      "title": "هدى وشفاء",
+      "file": "books/bmvqttm8c.pdf",
+      "cover": "covers/bmvqttm8c.jpg",
+      "pages": 201,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtucpd",
+      "title": "الخلق العظيم على صاحبه الصلاة والتسليم",
+      "file": "books/bmvqtucpd.pdf",
+      "cover": "covers/bmvqtucpd.jpg",
+      "pages": 88,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvqtuv0f",
+      "title": "إشادة البناء في سعادة الأسرة وتربية الأبناء",
+      "file": "books/bmvqtuv0f.pdf",
+      "cover": "covers/bmvqtuv0f.jpg",
+      "pages": 337,
+      "category": "بحوث تربوية ودعوية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvquabd8",
+      "title": "جرائم الحدود والحرابة والجنايات أحكامها وعقوباتها ونوازلها المعاصرة",
+      "file": "books/bmvquabd8.pdf",
+      "cover": "covers/bmvquabd8.jpg",
+      "pages": 422,
+      "category": "رسائل علمية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    },
+    {
+      "id": "bmvquazuh",
+      "title": "التأصيل والتفريع في الفقه والأحكام والتشريع",
+      "file": "books/bmvquazuh.pdf",
+      "cover": "covers/bmvquazuh.jpg",
+      "pages": 937,
+      "category": "رسائل علمية",
+      "date": "2026-10-27",
+      "added": "2026-10-27"
+    }
   ]
- },
- "books": [
-  {
-   "id": "rawdat-alabrar",
-   "title": "روضة الأبرار في صحيح الأدعية والأذكار",
-   "file": "books/rawdat-alabrar.pdf",
-   "cover": "covers/rawdat-alabrar.jpg",
-   "pages": 283,
-   "date": "2026-06-13",
-   "category": "مشروع تصحيح العلوم"
-  },
-  {
-   "id": "nuzhat-aluqul",
-   "title": "نزهة العقول في صحيح أسباب النزول",
-   "file": "books/nuzhat-aluqul.pdf",
-   "cover": "covers/nuzhat-aluqul.jpg",
-   "pages": 313,
-   "date": "2026-07-25",
-   "category": "مشروع تصحيح العلوم",
-   "alsoIn": [
-    "موسوعة علوم القرآن"
-   ]
-  },
-  {
-   "id": "almathal-alala",
-   "title": "المثل الأعلى في صحيح أسماء الله الحسنى وصفاته العلى",
-   "file": "books/almathal-alala.pdf",
-   "cover": "covers/almathal-alala.jpg",
-   "pages": 507,
-   "date": "2026-10-09",
-   "category": "مشروع تصحيح العلوم"
-  },
-  {
-   "id": "alrahma-alalamiya",
-   "title": "الرحمة العالمية في صحيح السيرة النبوية",
-   "file": "books/alrahma-alalamiya.pdf",
-   "cover": "covers/alrahma-alalamiya.jpg",
-   "pages": 946,
-   "date": "2026-10-15",
-   "category": "مشروع تصحيح العلوم"
-  },
-  {
-   "id": "alwafa",
-   "title": "الوفاء في سيرة الأربعة الخلفاء",
-   "file": "books/alwafa.pdf",
-   "cover": "covers/alwafa.jpg",
-   "pages": 151,
-   "date": "2026-10-15",
-   "category": "مشروع تصحيح العلوم"
-  },
-  {
-   "id": "bmvpsc0uc",
-   "title": "مشروع تصحيح العلوم من حيث العقائد والأدلة والفهوم",
-   "file": "books/bmvpsc0uc.pdf",
-   "cover": "covers/bmvpsc0uc.jpg",
-   "pages": 2183,
-   "category": "مشروع تصحيح العلوم",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvpsstlg",
-   "title": "التنبيهات في علم المتشابهات",
-   "file": "books/bmvpsstlg.pdf",
-   "cover": "covers/bmvpsstlg.jpg",
-   "pages": 145,
-   "category": "موسوعة علوم القرآن",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvpstcvd",
-   "title": "الروح والريحان في صحيح فضائل القرآن",
-   "file": "books/bmvpstcvd.pdf",
-   "cover": "covers/bmvpstcvd.jpg",
-   "pages": 147,
-   "category": "موسوعة علوم القرآن",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvpstvmq",
-   "title": "آداب التلاوة وأخلاق القراء وقواعد الحفظ والتجويد والإقراء",
-   "file": "books/bmvpstvmq.pdf",
-   "cover": "covers/bmvpstvmq.jpg",
-   "pages": 227,
-   "category": "موسوعة علوم القرآن",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvpsugqk",
-   "title": "أساليب القرآن الكريم وتطبيقاتها التربوية والعملية والدعوية",
-   "file": "books/bmvpsugqk.pdf",
-   "cover": "covers/bmvpsugqk.jpg",
-   "pages": 113,
-   "category": "موسوعة علوم القرآن",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvpsuzcv",
-   "title": "حدائق الأفنان في المهم اللازم من علوم القرآن",
-   "file": "books/bmvpsuzcv.pdf",
-   "cover": "covers/bmvpsuzcv.jpg",
-   "pages": 380,
-   "category": "موسوعة علوم القرآن",
-   "date": "2026-10-26",
-   "added": "2026-10-26"
-  },
-  {
-   "id": "bmvqqe6ai",
-   "title": "الرسوخ في الناسخ والمنسوخ",
-   "file": "books/bmvqqe6ai.pdf",
-   "cover": "covers/bmvqqe6ai.jpg",
-   "pages": 34,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqqeoih",
-   "title": "تسع غنائم أو تسع مهالك في حفظ الصلاة أو تضييعها",
-   "file": "books/bmvqqeoih.pdf",
-   "cover": "covers/bmvqqeoih.jpg",
-   "pages": 84,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqqf4lz",
-   "title": "أدلة الفقه",
-   "file": "books/bmvqqf4lz.pdf",
-   "cover": "covers/bmvqqf4lz.jpg",
-   "pages": 238,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqqfsho",
-   "title": "التحفة البهية في القواعد الفقهية",
-   "file": "books/bmvqqfsho.pdf",
-   "cover": "covers/bmvqqfsho.jpg",
-   "pages": 148,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqu0uxe",
-   "title": "التشريف في علوم السنة ومصطلح الحديث الشريف",
-   "file": "books/bmvqu0uxe.pdf",
-   "cover": "covers/bmvqu0uxe.jpg",
-   "pages": 119,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqqgrah",
-   "title": "حروف المعاني وأثرها في الفقه والأحكام واللغة والمباني",
-   "file": "books/bmvqqgrah.pdf",
-   "cover": "covers/bmvqqgrah.jpg",
-   "pages": 135,
-   "category": "بحوث فقهية وأصولية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtochg",
-   "title": "دور الوسائل والتقنيات في طلب العلم والمعلومات",
-   "file": "books/bmvqtochg.pdf",
-   "cover": "covers/bmvqtochg.jpg",
-   "pages": 119,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtp4sq",
-   "title": "نونية القحطاني",
-   "file": "books/bmvqtp4sq.pdf",
-   "cover": "covers/bmvqtp4sq.jpg",
-   "pages": 63,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtpmzm",
-   "title": "تقارير وشهادات وأخبار حول القرآن والوحي والآثار",
-   "file": "books/bmvqtpmzm.pdf",
-   "cover": "covers/bmvqtpmzm.jpg",
-   "pages": 30,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtq4nc",
-   "title": "محاسن الإسلام وفقه العادات والأعراف والقوانين والاعتصام",
-   "file": "books/bmvqtq4nc.pdf",
-   "cover": "covers/bmvqtq4nc.jpg",
-   "pages": 90,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtqu7z",
-   "title": "فقه الدعوة إلى الله",
-   "file": "books/bmvqtqu7z.pdf",
-   "cover": "covers/bmvqtqu7z.jpg",
-   "pages": 367,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtrtxv",
-   "title": "يحبهم ويحبونه",
-   "file": "books/bmvqtrtxv.pdf",
-   "cover": "covers/bmvqtrtxv.jpg",
-   "pages": 61,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtsg2p",
-   "title": "مرض الرسول ووصاياه وآخر أيامه من دنياه وأخلاقه وشمائله وسجاياه",
-   "file": "books/bmvqtsg2p.pdf",
-   "cover": "covers/bmvqtsg2p.jpg",
-   "pages": 83,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtt16g",
-   "title": "خطبة الوداع ووصية الراحل المودع",
-   "file": "books/bmvqtt16g.pdf",
-   "cover": "covers/bmvqtt16g.jpg",
-   "pages": 21,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqttm8c",
-   "title": "هدى وشفاء",
-   "file": "books/bmvqttm8c.pdf",
-   "cover": "covers/bmvqttm8c.jpg",
-   "pages": 201,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtucpd",
-   "title": "الخلق العظيم على صاحبه الصلاة والتسليم",
-   "file": "books/bmvqtucpd.pdf",
-   "cover": "covers/bmvqtucpd.jpg",
-   "pages": 88,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvqtuv0f",
-   "title": "إشادة البناء في سعادة الأسرة وتربية الأبناء",
-   "file": "books/bmvqtuv0f.pdf",
-   "cover": "covers/bmvqtuv0f.jpg",
-   "pages": 337,
-   "category": "بحوث تربوية ودعوية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvquabd8",
-   "title": "جرائم الحدود والحرابة والجنايات أحكامها وعقوباتها ونوازلها المعاصرة",
-   "file": "books/bmvquabd8.pdf",
-   "cover": "covers/bmvquabd8.jpg",
-   "pages": 422,
-   "category": "رسائل علمية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  },
-  {
-   "id": "bmvquazuh",
-   "title": "التأصيل والتفريع في الفقه والأحكام والتشريع",
-   "file": "books/bmvquazuh.pdf",
-   "cover": "covers/bmvquazuh.jpg",
-   "pages": 937,
-   "category": "رسائل علمية",
-   "date": "2026-10-27",
-   "added": "2026-10-27"
-  }
- ]
 }
