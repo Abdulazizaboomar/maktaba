@@ -305,3 +305,9 @@
 .foot .brand-txt{gap:8px}
 .foot .brand-txt b,.foot .brand-txt small{font-size:21px;color:var(--gold-l)}
 @media (max-width:640px){.brand-txt{gap:4px}.brand-txt b,.brand-txt small{font-size:15.5px}}
+
+/* ===== v31: حالة تحميل الغلاف (بدل إطار فارغ) ===== */
+.frame .cv.ld{border-radius:2px 6px 6px 2px;background:linear-gradient(110deg,#ece4cf 30%,#f6f0e2 50%,#ece4cf 70%);background-size:300% 100%;animation:cvld 1.3s linear infinite}
+@keyframes cvld{to{background-position:-300% 0}}
+.frame img{background:transparent}
+@media (prefers-reduced-motion:reduce){.frame .cv.ld{animation:none}}
