@@ -1,17 +1,22 @@
 {
- "updated": "2026-10-28T22:48Z",
- "total": 52,
- "last28": 52,
+ "updated": "2026-10-28T23:45Z",
+ "total": 60,
+ "last28": 60,
  "countries": [
   {
    "code": "SA",
    "name": "Saudi Arabia",
-   "count": 45
+   "count": 52
   },
   {
    "code": "KW",
    "name": "Kuwait",
    "count": 3
+  },
+  {
+   "code": "US",
+   "name": "United States",
+   "count": 2
   },
   {
    "code": "BY",
@@ -26,11 +31,6 @@
   {
    "code": "NL",
    "name": "Netherlands",
-   "count": 1
-  },
-  {
-   "code": "US",
-   "name": "United States",
    "count": 1
   }
  ]
