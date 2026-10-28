@@ -27,7 +27,7 @@
 <meta name="theme-color" content="#164e3b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=24">
-<link rel="stylesheet" href="assets/home.css?v=28">
+<link rel="stylesheet" href="assets/home.css?v=31">
 </head>
 <body class="home">
 <div class="datebar" id="today" aria-label="تاريخ اليوم"></div>
@@ -180,9 +180,11 @@
   [fmtH(now), fmtG(now)].forEach((txt, i) => { if (i) tb.appendChild(el("span", "sep", "•")); tb.appendChild(el("span", "", txt)); });
 
   // ===== التصنيفات =====
-  const cats = (site.categories || []).filter((c) => books.some((b) => b.category === c));
-  books.forEach((b) => { if (b.category && !cats.includes(b.category)) cats.push(b.category); });
-  const inCat = (c) => books.filter((b) => b.category === c);
+  // الكتاب له تصنيف أساسي (category) ويمكن أن يتبع تصنيفات إضافية (alsoIn) دون أن يتكرر في «الكل»
+  const catsOf = (b) => [b.category, ...(Array.isArray(b.alsoIn) ? b.alsoIn : [])].filter(Boolean);
+  const cats = (site.categories || []).filter((c) => books.some((b) => catsOf(b).includes(c)));
+  books.forEach((b) => catsOf(b).forEach((c) => { if (!cats.includes(c)) cats.push(c); }));
+  const inCat = (c) => books.filter((b) => catsOf(b).includes(c));
   const pagesOf = (list) => list.reduce((a, b) => a + (+b.pages || 0), 0);
 
   // حقائق سريعة (محسوبة من بيانات المكتبة فقط)
@@ -222,7 +224,19 @@
     coverFromPdf(b).then((src) => { const img = new Image(); img.alt = ""; img.src = src; holder.replaceChildren(img); }).catch((e) => { console.warn(e); holder.querySelector(".ph").classList.remove("loading"); });
   }), { rootMargin: "300px" });
   function coverInto(holder, b) {
-    if (b.cover) { const img = new Image(); img.loading = "lazy"; img.decoding = "async"; img.alt = ""; img.src = b.cover; holder.appendChild(img); return; }
+    if (b.cover) {
+      // الغلاف: تحميل كسول + إعادة محاولة مرتين عند فشل الشبكة، ثم الصفحة الأولى من الكتاب كبديل
+      const img = new Image(); img.loading = "lazy"; img.alt = b.title || ""; img.dataset.try = "0";
+      holder.classList.add("ld");
+      img.onload = () => { holder.classList.remove("ld"); };
+      img.onerror = () => {
+        const t = +img.dataset.try + 1; img.dataset.try = t;
+        if (t <= 2) { setTimeout(() => { img.src = b.cover + (b.cover.includes("?") ? "&" : "?") + "r=" + t + Date.now(); }, 600 * t); return; }
+        img.remove(); holder.classList.remove("ld");
+        holder.appendChild(el("div", "ph loading", b.title)); holder._book = b; lazy.observe(holder);
+      };
+      img.src = b.cover; holder.appendChild(img); return;
+    }
     holder.appendChild(el("div", "ph loading", b.title)); holder._book = b; lazy.observe(holder);
   }
 
@@ -231,7 +245,7 @@
     const a = el("a", "card"); a.href = readerUrl(b); a.dataset.path = bookPath(b);
     const fr = el("div", "frame"), cv = el("div", "cv"); coverInto(cv, b); fr.appendChild(cv);
     a.appendChild(fr);
-    if (b.category) a.appendChild(el("div", "card-tag", b.category));
+    if (b.category) a.appendChild(el("div", "card-tag", catsOf(b).join(" • ")));
     a.appendChild(el("h3", "", b.title)); a.title = b.title;
     const m = el("div", "meta"); if (b.pages) m.appendChild(el("span", "", ar(b.pages) + " صفحة"));
     const vw = el("span", "views"); vw.hidden = true; m.appendChild(vw); a.appendChild(m);
@@ -240,7 +254,7 @@
 
   // ===== مروحة الأغلفة في القسم الرئيسي: أكبر كتاب في كل مجموعة =====
   const withCover = books.filter((b) => b.cover);
-  let feat = cats.map((c) => inCat(c).filter((b) => b.cover).sort((x, y) => (+y.pages || 0) - (+x.pages || 0))[0]).filter(Boolean);
+  let feat = [...new Set(cats.map((c) => inCat(c).filter((b) => b.cover).sort((x, y) => (+y.pages || 0) - (+x.pages || 0))[0]).filter(Boolean))];
   withCover.slice().sort((x, y) => (+y.pages || 0) - (+x.pages || 0)).forEach((b) => { if (feat.length < 3 && !feat.includes(b)) feat.push(b); });
   feat = feat.slice(0, 3).sort((x, y) => (+x.pages || 0) - (+y.pages || 0)); // الأكبر في المنتصف (آخر عنصر)
   if (feat.length === 3) {
@@ -287,7 +301,7 @@
   // ===== جميع الكتب =====
   const shelf = $("shelf");
   $("libSub").textContent = books.length ? ar(books.length) + " كتاباً مرتبة كما أعدّها المؤلف" : "";
-  const cards = books.map((b, i) => { const c = card(b); c._b = b; c._i = i; c.dataset.q = norm([b.title, b.category, site.author].join(" ")); c.dataset.cat = b.category || ""; shelf.appendChild(c); return c; });
+  const cards = books.map((b, i) => { const c = card(b); c._b = b; c._i = i; c.dataset.q = norm([b.title, ...catsOf(b), site.author].join(" ")); c._cats = catsOf(b); shelf.appendChild(c); return c; });
   const empty = el("div", "empty"); empty.innerHTML = "<b></b><span></span>";
   empty.querySelector("b").textContent = books.length ? "لا توجد نتائج مطابقة" : "لا توجد كتب بعد";
   empty.querySelector("span").textContent = books.length ? "جرّب كلمة أخرى، أو اختر «الكل»." : "";
@@ -315,7 +329,7 @@
   function norm(s) { return String(s || "").toLowerCase().replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[ً-ْـ]/g, ""); }
   function filter() {
     const q = norm($("q").value.trim()); let n = 0;
-    cards.forEach((c) => { const show = (!q || c.dataset.q.includes(q)) && (!curCat || c.dataset.cat === curCat); c.hidden = !show; if (show) { n++; c.classList.add("in"); } });
+    cards.forEach((c) => { const show = (!q || c.dataset.q.includes(q)) && (!curCat || c._cats.includes(curCat)); c.hidden = !show; if (show) { n++; c.classList.add("in"); } });
     empty.hidden = n > 0;
     const on = !!(q || curCat);
     const cnt = $("count"); cnt.hidden = !on; cnt.innerHTML = "النتائج: <b></b>"; cnt.querySelector("b").textContent = ar(n);
@@ -432,7 +446,7 @@
   // ===== الحركة: ظهور تدريجي + الشريط العلوي =====
   const io = "IntersectionObserver" in window ? new IntersectionObserver((ents) => ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" }) : null;
   function reveal(root) { (root || document).querySelectorAll(".rv:not(.in)").forEach((x) => io ? io.observe(x) : x.classList.add("in")); }
-  cards.forEach((c, i) => { c.classList.add("rv"); c.style.transitionDelay = (i % 6) * 0.05 + "s"; });
+  // بطاقات الكتب بلا حركة ظهور: الحركة (شفافية/انزلاق) كانت تمنع كروم أحياناً من رسم الغلاف بعد تحميله
   reveal();
   requestAnimationFrame(() => document.querySelectorAll(".hero .rv").forEach((x) => x.classList.add("in")));
   const tbar = $("topbar"), lb = $("libBar");
