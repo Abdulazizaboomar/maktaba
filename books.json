@@ -15,7 +15,8 @@
    "رسائل علمية"
   ],
   "brandTitle": "مؤلفات أبي عمر",
-  "brandSub": "د. عبد العزيز بن سعيد بن غائب"
+  "brandSub": "د. عبد العزيز بن سعيد بن غائب",
+  "upcomingTitle": "كتب قيد الإعداد"
  },
  "books": [
   {
@@ -328,6 +329,40 @@
    "category": "رسائل علمية",
    "date": "2026-10-27",
    "added": "2026-10-27"
+  }
+ ],
+ "upcoming": [
+  {
+   "id": "soon-ahsan-alhadith",
+   "title": "أحسن الحديث في علم الفرائض والمواريث",
+   "cover": "covers/soon-ahsan-alhadith.jpg"
+  },
+  {
+   "id": "soon-aljami-alsadid",
+   "title": "الجامع السديد في العقيدة والتوحيد",
+   "cover": "covers/soon-aljami-alsadid.jpg"
+  },
+  {
+   "id": "soon-altafsirat",
+   "title": "التفسيرات الصائبه لكلمات القرآن وغرائبه",
+   "cover": "covers/soon-altafsirat.jpg"
+  },
+  {
+   "id": "soon-shuab-aldin",
+   "title": "شعب الدين والإيمان كما في السنة والقرآن",
+   "cover": "covers/soon-shuab-aldin.jpg",
+   "note": "القضايا الكبرى في القرآن"
+  },
+  {
+   "id": "soon-kunuz-alajaib",
+   "title": "كنوز العجائب من الحكم والمواعظ والتاريخ والتجارب",
+   "cover": "covers/soon-kunuz-alajaib.jpg",
+   "note": "ثلاثة أجزاء"
+  },
+  {
+   "id": "soon-shadd-alrihal",
+   "title": "شد الرحال إلى الأحاديث الطوال",
+   "cover": "covers/soon-shadd-alrihal.jpg"
   }
  ]
 }

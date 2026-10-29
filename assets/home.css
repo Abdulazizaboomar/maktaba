@@ -318,3 +318,44 @@
 .brand-txt b{margin-bottom:-.12em}
 .foot .brand-txt{gap:2px}
 @media (max-width:640px){.brand-txt b,.brand-txt small{line-height:1.6}}
+
+/* ===== v35: كتب قيد الإعداد — لون ذهبي مميز ضمن هوية المكتبة ===== */
+.soon-sec{padding-top:56px}
+.soon-box{position:relative;overflow:hidden;border-radius:22px;padding:28px 28px 26px;
+  background:radial-gradient(ellipse at 100% 0%,rgba(198,161,91,.28),transparent 55%),linear-gradient(135deg,#fbf4e2 0%,#f3e6c4 100%);
+  border:1px solid #e3cf9c;box-shadow:0 20px 44px -30px rgba(138,106,44,.55)}
+.soon-box::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23a8853f' stroke-width='.7' stroke-opacity='.2'%3E%3Cpath d='M42 18l7 17 17 7-17 7-7 17-7-17-17-7 17-7z'/%3E%3Crect x='27' y='27' width='30' height='30' transform='rotate(45 42 42)'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image:linear-gradient(to left,#000,transparent 70%);mask-image:linear-gradient(to left,#000,transparent 70%)}
+.soon-head{position:relative;display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.soon-ic{flex:none;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#a8853f,#8a6a2c);color:#fff8e6;box-shadow:0 10px 22px -12px rgba(138,106,44,.8)}
+.soon-ic svg{width:30px;height:30px}
+.soon-kicker{color:#8a6a2c;font-size:13px;font-weight:700}
+.soon-head h2{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(26px,3vw,36px);line-height:1.4;color:#6e521c}
+.soon-head p{margin:2px 0 0;color:#7a6a48;font-size:14.5px}
+.soon-row{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
+.soon-card{cursor:pointer;outline:none;min-width:0}
+.soon-frame{position:relative;aspect-ratio:5/7;border-radius:12px;padding:10px;background:rgba(255,255,255,.55);border:1px dashed #d9bf83;display:grid;place-items:center;transition:background .25s,border-color .25s}
+.soon-frame img{max-width:100%;max-height:100%;object-fit:contain;display:block;border-radius:2px 5px 5px 2px;box-shadow:0 10px 22px -12px rgba(80,60,20,.55);transition:transform .35s var(--ease)}
+.soon-frame .ph{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:12px;font-family:var(--display);color:#6e521c}
+.soon-badge{position:absolute;top:8px;right:8px;padding:3px 10px;border-radius:999px;background:linear-gradient(145deg,#a8853f,#8a6a2c);color:#fff;font-size:11.5px;font-weight:700;box-shadow:0 4px 10px -4px rgba(0,0,0,.4)}
+.soon-card h3{margin:10px 0 0;font-size:14.5px;line-height:1.6;font-weight:600;color:#4b3c1c;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.soon-note{margin-top:2px;font-size:12px;color:#8a6a2c}
+@media (hover:hover){.soon-card:hover .soon-frame{background:rgba(255,255,255,.8);border-color:#c6a15b}.soon-card:hover img{transform:translateY(-4px)}}
+.soon-card:focus-visible .soon-frame{box-shadow:0 0 0 2px #fbf4e2,0 0 0 4px #a8853f}
+@media (max-width:1100px){.soon-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.soon-sec{padding-top:30px}.soon-box{padding:18px 14px 16px;border-radius:18px}.soon-head{gap:12px;margin-bottom:14px}.soon-ic{width:46px;height:46px;border-radius:13px}.soon-ic svg{width:25px;height:25px}.soon-head h2{font-size:24px}.soon-head p{font-size:13px}
+  .soon-row{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:40%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+  .soon-row::-webkit-scrollbar{display:none}.soon-card{scroll-snap-align:start}.soon-card h3{font-size:13.5px}}
+.soon-toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,16px);z-index:70;max-width:calc(100vw - 32px);padding:11px 18px;border-radius:14px;background:#6e521c;color:#fff8e6;font-size:14px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.soon-toast.show{opacity:1;transform:translate(-50%,0)}
+/* بطاقة «قيد الإعداد» في المجموعات العلمية */
+.coll.coll-soon{background:linear-gradient(135deg,#8a6a2c 0%,#b8924a 100%);border-color:#8a6a2c;color:#fff8e6}
+.coll.coll-soon h3{color:#fff}
+.coll.coll-soon .coll-meta,.coll.coll-soon .coll-meta b{color:#fbecc8}
+.coll.coll-soon .coll-ic{background:rgba(255,255,255,.16);color:#fff}
+.coll.coll-soon:hover .coll-ic{background:#fff;color:#8a6a2c}
+.coll.coll-soon .coll-go{color:#fff}
+.coll.coll-soon .coll-covers img{border-color:#e9d39f}
+.coll.coll-soon::before{background:linear-gradient(90deg,#fff,#f0c35a)}
+@media (prefers-reduced-motion:reduce){.soon-toast,.soon-frame img{transition:none}}
