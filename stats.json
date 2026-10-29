@@ -1,7 +1,7 @@
 {
- "updated": "2026-10-29T16:01Z",
- "total": 99,
- "last28": 99,
+ "updated": "2026-10-29T17:00Z",
+ "total": 100,
+ "last28": 100,
  "countries": [
   {
    "code": "SA",
@@ -16,7 +16,7 @@
   {
    "code": "US",
    "name": "United States",
-   "count": 2
+   "count": 3
   },
   {
    "code": "BY",
