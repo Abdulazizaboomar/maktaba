@@ -430,3 +430,45 @@ body.ann-open{overflow:hidden}
 .toast,.ann-hint{background:rgba(10,30,23,.94)}
 .pg .pg-ph{color:#a99c7d;background:linear-gradient(110deg,#fbf8f0 30%,#f1ebdc 50%,#fbf8f0 70%);background-size:300% 100%}
 .pg.blank{background:#fbf8f0}
+
+/* ===== v35: «شاركها في حالة الواتس» — زر أسفل القارئ + نافذة معاينة البطاقة ===== */
+.ws-strip{flex:none;display:flex;justify-content:center;padding:6px 12px;background:var(--stage);z-index:4}
+.ws-strip[hidden]{display:none}
+.ws-btn{--wa:#1fa855;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;height:38px;padding:0 16px 0 14px;border:0;border-radius:999px;
+  background:var(--wa);color:#fff;font:600 14.5px/1 var(--ui);cursor:pointer;box-shadow:0 6px 18px -8px rgba(0,0,0,.6);transition:transform .12s,filter .15s;white-space:nowrap;max-width:100%}
+.ws-btn:hover{filter:brightness(1.07)}.ws-btn:active{transform:scale(.97)}
+.ws-btn:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
+.ws-btn svg{flex:none;width:20px;height:20px}
+.ws-btn .ws-arr{width:17px;height:17px;opacity:.9}
+.ws-btn span{overflow:hidden;text-overflow:ellipsis}
+.ws-btn.shine{animation:wsPulse 1.6s ease-out .6s 1}
+.ws-btn.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(120%);animation:wsSheen 1.3s ease-in-out .6s 1}
+@keyframes wsSheen{to{transform:translateX(-120%)}}
+@keyframes wsPulse{0%{box-shadow:0 0 0 0 rgba(31,168,85,.55)}70%{box-shadow:0 0 0 14px rgba(31,168,85,0)}100%{box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}}
+@media (prefers-reduced-motion:reduce){.ws-btn.shine,.ws-btn.shine::after{animation:none}}
+@media (max-width:640px){.ws-strip{padding:5px 8px}.ws-btn{height:36px;font-size:14px}}
+
+.ws-modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}
+.ws-modal[hidden]{display:none}
+.ws-panel{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;width:min(420px,100%);max-height:100%;padding:14px;border-radius:18px;
+  background:var(--stage);color:var(--on-dark);border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.ws-head{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px}
+.ws-head b{font-size:15px}
+.ws-pages{display:flex;gap:6px}
+.ws-pages[hidden]{display:none}
+.ws-pages button{border:1px solid rgba(255,255,255,.18);background:transparent;color:var(--on-dark);border-radius:999px;padding:4px 12px;font:500 13px var(--ui);cursor:pointer}
+.ws-pages button.on{background:var(--gold-2);border-color:var(--gold-2);color:var(--stage)}
+.ws-prev{position:relative;flex:1 1 auto;min-height:0;display:grid;place-items:center;width:100%}
+.ws-prev img{display:block;max-width:100%;max-height:min(62vh,62dvh);aspect-ratio:9/16;object-fit:contain;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.ws-prev img[hidden]{display:none}
+.ws-wait{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 0;font-size:14px;color:var(--on-dark)}
+.ws-wait[hidden]{display:none}
+.ws-wait i{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:var(--gold-2);animation:wsSpin .8s linear infinite}
+@keyframes wsSpin{to{transform:rotate(1turn)}}
+.ws-note{margin:0;font-size:13px;line-height:1.7;text-align:center;color:var(--on-dark);opacity:.85}
+.ws-note:empty{display:none}
+.ws-go{--wa:#1fa855;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;border:0;border-radius:14px;background:var(--wa);color:#fff;font:700 17px var(--ui);cursor:pointer}
+.ws-go:disabled{opacity:.5;cursor:default}
+.ws-go svg{width:22px;height:22px}
+@media (max-height:640px){.ws-prev img{max-height:52vh}}
+body.ws-on .toast{bottom:122px;z-index:35}

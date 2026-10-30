@@ -16,7 +16,8 @@
   ],
   "brandTitle": "مؤلفات أبي عمر",
   "brandSub": "د. عبد العزيز بن سعيد بن غائب",
-  "upcomingTitle": "كتب قيد الإعداد"
+  "upcomingTitle": "كتب قيد الإعداد",
+  "allowPageShare": true
  },
  "books": [
   {
@@ -333,11 +334,6 @@
  ],
  "upcoming": [
   {
-   "id": "soon-ahsan-alhadith",
-   "title": "أحسن الحديث في علم الفرائض والمواريث",
-   "cover": "covers/soon-ahsan-alhadith.jpg"
-  },
-  {
    "id": "soon-aljami-alsadid",
    "title": "الجامع السديد في العقيدة والتوحيد",
    "cover": "covers/soon-aljami-alsadid.jpg"
@@ -363,6 +359,11 @@
    "id": "soon-shadd-alrihal",
    "title": "شد الرحال إلى الأحاديث الطوال",
    "cover": "covers/soon-shadd-alrihal.jpg"
+  },
+  {
+   "id": "soon-alkhair-walbarakat",
+   "title": "الخير والبركات في فقه الفرائض والتركات",
+   "cover": "covers/soon-alkhair-walbarakat.jpg"
   }
  ]
 }
