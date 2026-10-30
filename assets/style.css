@@ -440,7 +440,7 @@ body.ann-open{overflow:hidden}
 .ws-btn:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
 .ws-btn svg{flex:none;width:20px;height:20px}
 .ws-btn .ws-arr{width:17px;height:17px;opacity:.9}
-.ws-btn span{overflow:hidden;text-overflow:ellipsis;line-height:1.8;padding:0 2px}
+.ws-btn span{display:block;line-height:1.9;padding:1px 2px 0}
 .ws-btn.shine{animation:wsPulse 1.6s ease-out .6s 1}
 .ws-btn.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(120%);animation:wsSheen 1.3s ease-in-out .6s 1}
 @keyframes wsSheen{to{transform:translateX(-120%)}}

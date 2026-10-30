@@ -66,6 +66,25 @@
 
   const ar = (n) => Number(n).toLocaleString("ar-SA");
 
+  // تمييز العدد بالعربية الصحيحة: [مفرد، مثنى، جمع (٣–١٠)، مفرد منصوب (١١–٩٩)، بعد المئة والألف (١٠٠، ١٠١، ٢٠٠…)]
+  const WORDS = {
+    book: ["كتاب", "كتابان", "كتب", "كتاباً", "كتاب"],
+    page: ["صفحة", "صفحتان", "صفحات", "صفحة", "صفحة"],
+    group: ["مجموعة علمية", "مجموعتان علميتان", "مجموعات علمية", "مجموعة علمية", "مجموعة علمية"],
+    country: ["دولة", "دولتان", "دول", "دولة", "دولة"],
+    visitor: ["زائر", "زائران", "زوار", "زائراً", "زائر"],
+    view: ["مشاهدة", "مشاهدتان", "مشاهدات", "مشاهدة", "مشاهدة"],
+    work: ["مؤلَّف جديد", "مؤلَّفان جديدان", "مؤلفات جديدة", "مؤلَّفاً جديداً", "مؤلَّف جديد"],
+  };
+  function plural(n, w) {
+    const f = WORDS[w] || w; n = Math.abs(Math.round(Number(n) || 0)); const m = n % 100;
+    if (n === 1) return f[0];
+    if (n === 2) return f[1];
+    if (n >= 100 && m <= 2) return f[4];
+    if (m >= 11) return f[3];
+    return f[2];
+  }
+
   // ===== العدادات (GoatCounter) — إن تعطلت الخدمة يعمل الموقع عادياً وتختفي الأرقام فقط =====
   const isLocal = () => /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname) || location.protocol === "file:";
   const en = (n) => Number(n).toLocaleString("en-US");
@@ -127,5 +146,5 @@
   }
   const bookPath = (b) => "/book/" + (b.id || (b.file || "").replace(/^books\//, "").replace(/\.pdf$/i, ""));
 
-  window.Lib = { repoInfo, loadLibrary, readerUrl, store, ar, titleFromFile, en, track, hits, bookPath };
+  window.Lib = { repoInfo, loadLibrary, readerUrl, store, ar, plural, titleFromFile, en, track, hits, bookPath };
 })();
