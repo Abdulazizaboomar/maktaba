@@ -1,7 +1,7 @@
 {
- "updated": "2026-10-30T20:50Z",
- "total": 141,
- "last28": 141,
+ "updated": "2026-10-31T02:54Z",
+ "total": 142,
+ "last28": 142,
  "countries": [
   {
    "code": "SA",
@@ -41,6 +41,11 @@
   {
    "code": "NL",
    "name": "Netherlands",
+   "count": 1
+  },
+  {
+   "code": "PK",
+   "name": "Pakistan",
    "count": 1
   }
  ]
