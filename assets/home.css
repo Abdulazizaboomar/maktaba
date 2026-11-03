@@ -359,3 +359,7 @@
 .coll.coll-soon .coll-covers img{border-color:#e9d39f}
 .coll.coll-soon::before{background:linear-gradient(90deg,#fff,#f0c35a)}
 @media (prefers-reduced-motion:reduce){.soon-toast,.soon-frame img{transition:none}}
+
+/* ===== v38: شارة «جديد» على الكتب المضافة حديثاً (بألوان المكتبة) ===== */
+.frame .new-badge{position:absolute;top:8px;left:8px;z-index:3;padding:2px 11px 3px;border-radius:999px;background:var(--emerald);color:var(--white);font:700 12.5px/1.7 "Plex",system-ui,sans-serif;box-shadow:0 0 0 2px color-mix(in srgb,var(--white) 90%,transparent),0 6px 14px -6px color-mix(in srgb,var(--emerald-d) 70%,transparent);pointer-events:none}
+@media (max-width:520px){.frame .new-badge{top:6px;left:6px;font-size:11.5px;padding:1px 9px 2px}}

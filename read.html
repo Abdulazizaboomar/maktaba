@@ -184,7 +184,10 @@ else if (params.get("file")) book = data.books.find((b) => b.file === params.get
 if (!book) { fail("لم يتم العثور على الكتاب"); throw new Error("book not found"); }
 
 const siteName = (data.site.title || "المكتبة").replace(/[\u064B-\u0652]/g, "") + (data.site.author ? " — " + data.site.author : "");
-document.title = book.title + " — " + siteName;
+// عنوان التبويب: «اسم الكتاب — اسم المكتبة» (نفس قاعدة tools/build_seo.py)، و siteName يبقى لنص المشاركة
+const libName = (() => { const p = (x) => String(x || "").replace(/[\u064B-\u0652\u0670]/g, "").trim(); const bt = p(data.site.brandTitle), bs = p(data.site.brandSub);
+  return p(data.site.libraryName) || (bt && bs.startsWith("مؤلفات") ? bt + " ل" + bs : "") || p(data.site.title) || bt || "المكتبة"; })();
+document.title = book.title + " — " + libName;
 $("title").textContent = book.title; $("zTitle").textContent = book.title;
 // تسجيل مشاهدة الكتاب
 if (data.site.counter) track(data.site.counter, bookPath(book), book.title);

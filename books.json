@@ -16,6 +16,8 @@
   ],
   "brandTitle": "مؤلفات أبي عمر",
   "brandSub": "د. عبد العزيز بن سعيد بن غائب",
+  "libraryName": "مؤلفات أبي عمر د. عبد العزيز بن سعيد بن غائب",
+  "authorName": "د. عبد العزيز بن سعيد بن غائب",
   "upcomingTitle": "كتب قيد الإعداد",
   "allowPageShare": true
  },
@@ -214,6 +216,8 @@
   {
    "id": "bmvqtp4sq",
    "title": "نونية القحطاني",
+   "author": "الإمام أبو محمد عبد الله بن محمد الأندلسي القحطاني",
+   "reviewer": "د. عبد العزيز بن سعيد بن غائب",
    "file": "books/bmvqtp4sq.pdf",
    "cover": "covers/bmvqtp4sq.jpg",
    "pages": 63,
