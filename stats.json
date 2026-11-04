@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-03T21:56Z",
- "total": 155,
- "last28": 155,
+ "updated": "2026-11-04T05:06Z",
+ "total": 157,
+ "last28": 157,
  "countries": [
   {
    "code": "SA",
@@ -26,6 +26,11 @@
   {
    "code": "BF",
    "name": "Burkina Faso",
+   "count": 2
+  },
+  {
+   "code": "IN",
+   "name": "India",
    "count": 2
   },
   {
