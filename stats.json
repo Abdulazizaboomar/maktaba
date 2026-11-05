@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-05T09:09Z",
- "total": 165,
- "last28": 165,
+ "updated": "2026-11-05T10:13Z",
+ "total": 170,
+ "last28": 170,
  "countries": [
   {
    "code": "SA",
    "name": "Saudi Arabia",
-   "count": 145
+   "count": 148
   },
   {
    "code": "KW",
@@ -26,6 +26,11 @@
   {
    "code": "BF",
    "name": "Burkina Faso",
+   "count": 2
+  },
+  {
+   "code": "DJ",
+   "name": "Djibouti",
    "count": 2
   },
   {
