@@ -74,13 +74,13 @@
 </div>
 <div class="q-toast m-toast" id="mToast" role="status"></div>
 
-<script src="assets/common.js?v=39"></script>
+<script src="assets/common.js?v=40"></script>
 <script>
 (async function () {
   const $ = (id) => document.getElementById(id);
   const { loadLibrary, store, track, iaFiles, mediaOf, plural } = window.Lib;
   let data = {}; try { data = await loadLibrary(); } catch (e) {}
-  const site = data.site || {}, M = mediaOf(data);
+  const site = data.site || {}, M = mediaOf(data); M.quranLocal = M.quranLocal || [];
   if (site.brandTitle) $("bTitle").textContent = site.brandTitle;
   if (site.brandSub) $("bAuthor").textContent = site.brandSub;
   const who = site.authorName || site.brandSub || "";

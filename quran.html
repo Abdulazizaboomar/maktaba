@@ -87,7 +87,7 @@
 </div>
 <div class="q-toast" id="qToast" role="status"></div>
 
-<script src="assets/common.js?v=39"></script>
+<script src="assets/common.js?v=40"></script>
 <script>
 (async function () {
   const $ = (id) => document.getElementById(id);
@@ -99,7 +99,7 @@
   if (site.brandTitle) $("bTitle").textContent = site.brandTitle;
   if (site.brandSub) $("bAuthor").textContent = site.brandSub;
   // مصدر الملفات (v39): عنصر archive.org في books.json ← media.quran. السورة تُعرف من رقمها أول اسم الملف («001 الفاتحة.mp3»)
-  const M = mediaOf(data); const ITEM = M.quran || (data.quran && data.quran.item) || ""; const LOCAL = M.quranLocal;
+  const M = mediaOf(data); const ITEM = M.quran || (data.quran && data.quran.item) || ""; const LOCAL = M.quranLocal || [];
   if (M.videos.length || M.audio.length) $("navMedia").hidden = false;
   const who = site.authorName || site.brandSub || "";
   if (who) { $("qVoice").textContent = "بصوت: " + who; document.title = "المصحف المرتّل — بصوت " + who; }
