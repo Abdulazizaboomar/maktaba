@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>المصحف المرتّل — بصوت د. عبد العزيز بن سعيد بن غائب</title>
+<meta name="description" content="المصحف المرتّل كاملاً، سورة سورة، بصوت أبي عمر د. عبد العزيز بن سعيد بن غائب.">
+<meta name="theme-color" content="#164e3b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css?v=36">
+<link rel="stylesheet" href="assets/home.css?v=39">
+<link rel="stylesheet" href="assets/quran.css?v=39">
+</head>
+<body class="home q-page">
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="المكتبة"><span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22c8-3.5 15-2.5 22 2.5v27c-7-5-14-6-22-2.5z M54 22c-8-3.5-15-2.5-22 2.5v27c7-5 14-6 22-2.5z" fill="#c6a15b"/><path d="M32 7l2.4 4.9 5.4.8-3.9 3.8.9 5.4L32 19.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" fill="#f7f3e8"/></svg></span>
+      <span class="brand-txt"><b id="bTitle">مؤلفات أبي عمر</b><small id="bAuthor">د. عبد العزيز بن سعيد بن غائب</small></span></a>
+    <nav class="nav" aria-label="التنقل"><a href="./">المكتبة</a><a href="#qGrid">السور</a><a href="media.html" id="navMedia" hidden>الصوتيات والمرئيات</a></nav>
+    <a class="tb-search" href="./" aria-label="العودة إلى المكتبة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></a>
+  </div>
+</header>
+
+<section class="hero q-hero">
+  <div class="pat"></div><div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow">المصحف المرتّل</span>
+    <h1>القرآن الكريم</h1>
+    <p class="q-voice" id="qVoice">بصوت: أبو عمر / د. عبد العزيز بن غائب</p>
+    <ul class="hfacts"><li><b dir="ltr">114</b><span>سورة</span></li><li><b dir="ltr">30</b><span>جزءاً</span></li><li><b dir="ltr">6,236</b><span>آية</span></li></ul>
+    <div class="q-prog" id="qProg" hidden><div class="q-prog-t" id="qProgT"></div><div class="q-prog-bar"><i id="qProgBar"></i></div></div>
+    <button class="q-cont" id="qCont" hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>تابع الاستماع:</span><b id="qContName"></b><span id="qContTime"></span></button>
+  </div>
+</section>
+<div class="q-note" id="qNote" hidden><div id="qNoteT"></div></div>
+
+<div class="q-bar" id="qBar">
+  <div class="wrap">
+    <label class="q-search"><span class="sr">ابحث عن سورة</span><input id="qq" type="search" placeholder="ابحث باسم السورة أو رقمها…" autocomplete="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></label>
+    <div class="q-seg" role="group" aria-label="نوع السورة"><button class="on" data-t="">الكل</button><button data-t="A" id="segAvail" hidden>المتوفرة</button><button data-t="M">مكية</button><button data-t="D">مدنية</button></div>
+    <label class="q-juz"><span class="sr">الجزء</span><select id="qJuz"><option value="">كل الأجزاء</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></label>
+    <span class="q-count" id="qCount"></span>
+  </div>
+</div>
+<main class="wrap q-grid" id="qGrid" aria-label="سور القرآن الكريم"></main>
+
+<footer class="foot">
+  <div class="foot-bot"><div class="wrap"><div class="credit">تصميم وإعداد: <b>محمد الشهري</b><span class="sep">•</span>للتواصل: <a href="https://wa.me/966564824329" target="_blank" rel="noopener" dir="ltr">0564824329</a></div></div></div>
+</footer>
+
+<!-- المشغّل -->
+<div class="qp" id="qp">
+  <div class="qp-bar" role="region" aria-label="مشغّل التلاوة">
+    <div class="qp-med" id="qpMed" title="فتح المشغّل"><svg viewBox="0 0 52 52"><circle class="tr" cx="26" cy="26" r="23"/><circle class="pr" id="qpRing" cx="26" cy="26" r="23"/></svg><b id="qpNum">1</b></div>
+    <div class="qp-info" id="qpInfo"><div class="n" id="qpName">الفاتحة</div><div class="t" id="qpTime">0:00</div></div>
+    <button class="qp-btn prevb" id="qpPrev" aria-label="السورة السابقة"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 5h2v14h-2zM4 5v14l9-7z"/></svg></button>
+    <button class="qp-btn main" id="qpPlay" aria-label="تشغيل"><svg viewBox="0 0 24 24" fill="currentColor"><path class="ic" d="M8 5v14l11-7z"/></svg><span class="spin"></span></button>
+    <button class="qp-btn nextb" id="qpNext" aria-label="السورة التالية"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5h2v14H8zM20 5v14l-9-7z"/></svg></button>
+  </div>
+  <div class="qp-sheet" id="qs" role="dialog" aria-modal="true" aria-label="التلاوة الحالية">
+    <div class="qs-card">
+      <div class="pat"></div>
+      <button class="qp-btn qs-close" id="qsClose" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="qs-grab"></div>
+      <div class="qs-head"><small id="qsNum">السورة 1</small><h2 id="qsName">سورة الفاتحة</h2></div>
+      <div class="qs-sub" id="qsSub"></div>
+      <div class="qs-ring">
+        <svg class="star" viewBox="0 0 100 100"><rect x="18" y="18" width="64" height="64"/><rect x="18" y="18" width="64" height="64" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#f0c35a" stroke-width=".6"/></svg>
+        <svg class="r" viewBox="0 0 200 200"><circle class="tr" cx="100" cy="100" r="94"/><circle class="pr" id="qsRing" cx="100" cy="100" r="94"/></svg>
+        <button class="qp-btn main" id="qsPlay" aria-label="تشغيل"><svg viewBox="0 0 24 24" fill="currentColor"><path class="ic" d="M8 5v14l11-7z"/></svg><span class="spin"></span></button>
+      </div>
+      <div class="qs-seek"><span id="qsCur" dir="ltr">0:00</span><input type="range" id="qsSeek" min="0" max="1000" value="0" aria-label="موضع التلاوة"><span id="qsDur" dir="ltr">0:00</span></div>
+      <div class="qs-ctl">
+        <button class="qp-btn" id="qsPrev" aria-label="السورة السابقة"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 5h2v14h-2zM4 5v14l9-7z"/></svg></button>
+        <button class="qp-btn" id="qsBack" aria-label="رجوع 10 ثوانٍ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg><small>10</small></button>
+        <button class="qp-btn" id="qsFwd" aria-label="تقديم 10 ثوانٍ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg><small>10</small></button>
+        <button class="qp-btn" id="qsNext" aria-label="السورة التالية"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5h2v14H8zM20 5v14l-9-7z"/></svg></button>
+      </div>
+      <div class="qs-opts">
+        <button class="qs-opt" id="qsMode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg><span id="qsModeT">تشغيل متتابع</span></button>
+        <button class="qs-opt" id="qsRate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 13l4-4M4 18a9 9 0 1 1 16 0"/></svg><span>السرعة</span><b id="qsRateT" dir="ltr">1×</b></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="q-toast" id="qToast" role="status"></div>
+
+<script src="assets/common.js?v=39"></script>
+<script>
+(async function () {
+  const $ = (id) => document.getElementById(id);
+  const { loadLibrary, store, track, iaFiles, mediaOf, plural } = window.Lib;
+  // [الاسم، عدد الآيات، مكية/مدنية، جزء البداية، جزء النهاية]
+  const SUR = [["الفاتحة",7,"M",1,1],["البقرة",286,"D",1,3],["آل عمران",200,"D",3,4],["النساء",176,"D",4,6],["المائدة",120,"D",6,7],["الأنعام",165,"M",7,8],["الأعراف",206,"M",8,9],["الأنفال",75,"D",9,10],["التوبة",129,"D",10,11],["يونس",109,"M",11,11],["هود",123,"M",11,12],["يوسف",111,"M",12,13],["الرعد",43,"D",13,13],["إبراهيم",52,"M",13,13],["الحجر",99,"M",14,14],["النحل",128,"M",14,14],["الإسراء",111,"M",15,15],["الكهف",110,"M",15,16],["مريم",98,"M",16,16],["طه",135,"M",16,16],["الأنبياء",112,"M",17,17],["الحج",78,"D",17,17],["المؤمنون",118,"M",18,18],["النور",64,"D",18,18],["الفرقان",77,"M",18,19],["الشعراء",227,"M",19,19],["النمل",93,"M",19,20],["القصص",88,"M",20,20],["العنكبوت",69,"M",20,21],["الروم",60,"M",21,21],["لقمان",34,"M",21,21],["السجدة",30,"M",21,21],["الأحزاب",73,"D",21,22],["سبأ",54,"M",22,22],["فاطر",45,"M",22,22],["يس",83,"M",22,23],["الصافات",182,"M",23,23],["ص",88,"M",23,23],["الزمر",75,"M",23,24],["غافر",85,"M",24,24],["فصلت",54,"M",24,25],["الشورى",53,"M",25,25],["الزخرف",89,"M",25,25],["الدخان",59,"M",25,25],["الجاثية",37,"M",25,25],["الأحقاف",35,"M",26,26],["محمد",38,"D",26,26],["الفتح",29,"D",26,26],["الحجرات",18,"D",26,26],["ق",45,"M",26,26],["الذاريات",60,"M",26,27],["الطور",49,"M",27,27],["النجم",62,"M",27,27],["القمر",55,"M",27,27],["الرحمن",78,"D",27,27],["الواقعة",96,"M",27,27],["الحديد",29,"D",27,27],["المجادلة",22,"D",28,28],["الحشر",24,"D",28,28],["الممتحنة",13,"D",28,28],["الصف",14,"D",28,28],["الجمعة",11,"D",28,28],["المنافقون",11,"D",28,28],["التغابن",18,"D",28,28],["الطلاق",12,"D",28,28],["التحريم",12,"D",28,28],["الملك",30,"M",29,29],["القلم",52,"M",29,29],["الحاقة",52,"M",29,29],["المعارج",44,"M",29,29],["نوح",28,"M",29,29],["الجن",28,"M",29,29],["المزمل",20,"M",29,29],["المدثر",56,"M",29,29],["القيامة",40,"M",29,29],["الإنسان",31,"D",29,29],["المرسلات",50,"M",29,29],["النبأ",40,"M",30,30],["النازعات",46,"M",30,30],["عبس",42,"M",30,30],["التكوير",29,"M",30,30],["الانفطار",19,"M",30,30],["المطففين",36,"M",30,30],["الانشقاق",25,"M",30,30],["البروج",22,"M",30,30],["الطارق",17,"M",30,30],["الأعلى",19,"M",30,30],["الغاشية",26,"M",30,30],["الفجر",30,"M",30,30],["البلد",20,"M",30,30],["الشمس",15,"M",30,30],["الليل",21,"M",30,30],["الضحى",11,"M",30,30],["الشرح",8,"M",30,30],["التين",8,"M",30,30],["العلق",19,"M",30,30],["القدر",5,"M",30,30],["البينة",8,"D",30,30],["الزلزلة",8,"D",30,30],["العاديات",11,"M",30,30],["القارعة",11,"M",30,30],["التكاثر",8,"M",30,30],["العصر",3,"M",30,30],["الهمزة",9,"M",30,30],["الفيل",5,"M",30,30],["قريش",4,"M",30,30],["الماعون",7,"M",30,30],["الكوثر",3,"M",30,30],["الكافرون",6,"M",30,30],["النصر",3,"D",30,30],["المسد",5,"M",30,30],["الإخلاص",4,"M",30,30],["الفلق",5,"M",30,30],["الناس",6,"M",30,30]];
+  let data = {}; try { data = await loadLibrary(); } catch (e) {}
+  const site = data.site || {};
+  if (site.brandTitle) $("bTitle").textContent = site.brandTitle;
+  if (site.brandSub) $("bAuthor").textContent = site.brandSub;
+  // مصدر الملفات (v39): عنصر archive.org في books.json ← media.quran. السورة تُعرف من رقمها أول اسم الملف («001 الفاتحة.mp3»)
+  const M = mediaOf(data); const ITEM = M.quran || (data.quran && data.quran.item) || "";
+  if (M.videos.length || M.audio.length) $("navMedia").hidden = false;
+  const who = site.authorName || site.brandSub || "";
+  if (who) { $("qVoice").textContent = "بصوت: " + who; document.title = "المصحف المرتّل — بصوت " + who; }
+  if (site.counter) track(site.counter, "/quran", "المصحف المرتّل");
+  const SRC = new Array(114).fill(""); // رابط كل سورة متوفرة
+  const url = (i) => SRC[i];
+  const has = (i) => !!SRC[i];
+  const enN = (n) => Number(n).toLocaleString("en-US");
+  const fmt = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(x).padStart(2, "0"); };
+  const norm = (s) => String(s).replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[ً-ْـ]/g, "").replace(/^ال/, "").trim();
+  const toast = (t) => { const e = $("qToast"); e.textContent = t; e.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => e.classList.remove("show"), 2400); };
+
+  // ===== الشبكة =====
+  const done = new Set(JSON.parse(store.get("q:done") || "[]"));
+  const grid = $("qGrid"); const tiles = [];
+  const STAR = '<svg viewBox="0 0 64 64" aria-hidden="true"><polygon class="s1" points="32.00,2.00 40.79,10.79 53.21,10.79 53.21,23.21 62.00,32.00 53.21,40.79 53.21,53.21 40.79,53.21 32.00,62.00 23.21,53.21 10.79,53.21 10.79,40.79 2.00,32.00 10.79,23.21 10.79,10.79 23.21,10.79"/><circle class="s2" cx="32" cy="32" r="15"/></svg>';
+  SUR.forEach((s, i) => {
+    const b = document.createElement("button"); b.className = "q-tile" + (done.has(i) ? " done" : ""); b.type = "button";
+    b.setAttribute("aria-label", "سورة " + s[0] + "، " + s[1] + " آية");
+    b.innerHTML = '<span class="q-eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="q-done" title="استمعت لها"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span class="q-star">' + STAR + '<b>' + (i + 1) + '</b></span><span class="q-name"></span><span class="q-meta"><span></span><i></i></span>';
+    b.querySelector(".q-name").textContent = s[0];
+    b.querySelector(".q-meta span").textContent = enN(s[1]) + " آية";
+    const t = b.querySelector(".q-meta i"); t.textContent = s[2] === "M" ? "مكية" : "مدنية"; if (s[2] === "D") t.className = "d";
+    b.disabled = true; b.classList.add("soon");
+    b.onclick = () => { if (!has(i)) return; if (cur === i) { toggle(); openSheet(); } else play(i, 0, true); };
+    b._q = norm(s[0]) + " " + (i + 1); grid.appendChild(b); tiles.push(b);
+  });
+  const empty = document.createElement("p"); empty.className = "q-empty"; empty.textContent = "لا توجد سورة مطابقة"; empty.hidden = true; grid.appendChild(empty);
+  for (let j = 1; j <= 30; j++) { const o = document.createElement("option"); o.value = j; o.textContent = "الجزء " + j; $("qJuz").appendChild(o); }
+  let fT = "", fJ = 0;
+  function filter() {
+    const q = norm($("qq").value); let n = 0;
+    tiles.forEach((b, i) => { const s = SUR[i]; const ok = (!q || b._q.includes(q)) && (!fT || (fT === "A" ? has(i) : s[2] === fT)) && (!fJ || (s[3] <= fJ && fJ <= s[4])); b.hidden = !ok; if (ok) n++; });
+    empty.hidden = n > 0; $("qCount").textContent = (q || fT || fJ) ? enN(n) + " " + plural(n, "surah") : "";
+  }
+  $("qq").addEventListener("input", filter);
+  document.querySelectorAll(".q-seg button").forEach((b) => b.onclick = () => { fT = b.dataset.t; document.querySelectorAll(".q-seg button").forEach((x) => x.classList.toggle("on", x === b)); filter(); });
+  $("qJuz").onchange = (e) => { fJ = +e.target.value || 0; filter(); };
+
+  // ===== المشغّل: عنصر صوت واحد يُعاد استخدامه =====
+  const audio = new Audio(); audio.preload = "none";
+  let cur = -1, retries = 0, pendingSeek = 0, lastSave = 0;
+  const MODES = [["next", "تشغيل متتابع"], ["one", "تكرار السورة"], ["stop", "إيقاف بعد السورة"]];
+  let mode = Math.max(0, MODES.findIndex((m) => m[0] === store.get("q:mode")));
+  const RATES = [1, 1.25, 1.5, 0.75]; let rate = +store.get("q:rate") || 1; if (!RATES.includes(rate)) rate = 1;
+  const C1 = 2 * Math.PI * 23, C2 = 2 * Math.PI * 94;
+  $("qpRing").style.strokeDasharray = C1; $("qsRing").style.strokeDasharray = C2;
+  const PLAY = "M8 5v14l11-7z", PAUSE = "M7 5h4v14H7zM13 5h4v14h-4z";
+  const setIcon = (p) => document.querySelectorAll("#qp .qp-btn.main .ic").forEach((e) => e.setAttribute("d", p));
+  function paintMode() { $("qsModeT").textContent = MODES[mode][1]; }
+  function paintRate() { $("qsRateT").textContent = rate + "×"; audio.playbackRate = rate; }
+  paintMode(); paintRate();
+
+  function setInfo(i) {
+    const s = SUR[i];
+    $("qpNum").textContent = i + 1; $("qpName").textContent = "سورة " + s[0];
+    $("qsNum").textContent = "السورة " + (i + 1); $("qsName").textContent = "سورة " + s[0];
+    $("qsSub").textContent = enN(s[1]) + " آية • " + (s[2] === "M" ? "مكية" : "مدنية") + " • " + (s[3] === s[4] ? "الجزء " + s[3] : "الأجزاء " + s[3] + "–" + s[4]);
+    tiles.forEach((t, k) => t.classList.toggle("cur", k === i));
+    $("qp").classList.add("on");
+    if ("mediaSession" in navigator) {
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: "سورة " + s[0], artist: who || "المصحف المرتّل", album: "المصحف المرتّل", artwork: [{ src: "assets/apple-touch-icon.png", sizes: "180x180", type: "image/png" }] });
+      } catch (e) {}
+    }
+  }
+  // أقرب سورة متوفرة في اتجاه معيّن (للتالي والسابق والتشغيل المتتابع)
+  function near(i, d) { for (let k = 1; k <= 114; k++) { const j = ((i + d * k) % 114 + 114) % 114; if (has(j)) return j; } return -1; }
+  function play(i, at = 0, open = false) {
+    i = (i + 114) % 114;
+    if (!has(i)) { const j = near(i - 1, 1); if (j < 0) return toast("لا توجد سور متوفرة بعد"); i = j; at = 0; }
+    if (i !== cur) { cur = i; retries = 0; pendingSeek = at || 0; audio.src = url(i); audio.playbackRate = rate; setInfo(i); paint(0, 0); }
+    else if (at) audio.currentTime = at;
+    $("qp").classList.add("loading");
+    const p = audio.play(); if (p && p.catch) p.catch((e) => { if (e && e.name === "NotAllowedError") { $("qp").classList.remove("loading"); setIcon(PLAY); } });
+    if (open) openSheet();
+    store.set("q:last", JSON.stringify({ i, t: at || 0 }));
+  }
+  function toggle() { if (cur < 0) { const l = last(); return play(l ? l.i : 0, l ? l.t : 0); } audio.paused ? play(cur) : audio.pause(); }
+  const next = () => { const j = near(cur, 1); if (j >= 0) play(j); }, prev = () => { if (audio.currentTime > 5) audio.currentTime = 0; else { const j = near(cur, -1); if (j >= 0) play(j); } };
+  function paint(t, d) {
+    const k = d ? Math.min(1, t / d) : 0;
+    $("qpRing").style.strokeDashoffset = C1 * (1 - k); $("qsRing").style.strokeDashoffset = C2 * (1 - k);
+    $("qpTime").textContent = d ? fmt(t) + " / " + fmt(d) : fmt(t);
+    $("qsCur").textContent = fmt(t); $("qsDur").textContent = d ? fmt(d) : "0:00";
+    if (!seeking) $("qsSeek").value = Math.round(k * 1000);
+  }
+  let seeking = false;
+  audio.addEventListener("loadedmetadata", () => { if (pendingSeek && pendingSeek < audio.duration - 2) audio.currentTime = pendingSeek; pendingSeek = 0; });
+  audio.addEventListener("timeupdate", () => {
+    paint(audio.currentTime, audio.duration);
+    const now = Date.now(); if (now - lastSave > 4000) { lastSave = now; store.set("q:last", JSON.stringify({ i: cur, t: Math.floor(audio.currentTime) })); }
+    if (audio.duration && audio.currentTime / audio.duration > 0.92 && !done.has(cur)) { done.add(cur); tiles[cur].classList.add("done"); store.set("q:done", JSON.stringify([...done])); }
+    if ("mediaSession" in navigator && navigator.mediaSession.setPositionState && audio.duration) { try { navigator.mediaSession.setPositionState({ duration: audio.duration, playbackRate: audio.playbackRate, position: audio.currentTime }); } catch (e) {} }
+  });
+  audio.addEventListener("playing", () => { retries = 0; $("qp").classList.remove("loading"); setIcon(PAUSE); tiles[cur] && tiles[cur].classList.add("playing"); });
+  audio.addEventListener("waiting", () => $("qp").classList.add("loading"));
+  audio.addEventListener("pause", () => { $("qp").classList.remove("loading"); setIcon(PLAY); tiles.forEach((t) => t.classList.remove("playing")); store.set("q:last", JSON.stringify({ i: cur, t: Math.floor(audio.currentTime) })); });
+  audio.addEventListener("ended", () => {
+    const nx = near(cur, 1); store.set("q:last", JSON.stringify({ i: nx > cur ? nx : cur, t: 0 }));
+    const m = MODES[mode][0];
+    if (m === "one") { audio.currentTime = 0; audio.play(); } else if (m === "next" && nx > cur) { next(); } else { setIcon(PLAY); }
+  });
+  audio.addEventListener("error", () => {
+    if (cur < 0 || !audio.src) return;
+    if (retries < 2) { retries++; const at = audio.currentTime || 0; setTimeout(() => { pendingSeek = at; audio.src = url(cur) + (url(cur).includes("?") ? "&" : "?") + "r=" + retries; audio.play().catch(() => {}); }, 800 * retries); return; }
+    $("qp").classList.remove("loading"); setIcon(PLAY); toast("تعذّر تشغيل السورة، تحقق من الاتصال ثم حاول مرة أخرى");
+  });
+
+  // أزرار
+  $("qpPlay").onclick = $("qsPlay").onclick = toggle;
+  $("qpNext").onclick = $("qsNext").onclick = next;
+  $("qpPrev").onclick = $("qsPrev").onclick = prev;
+  $("qsFwd").onclick = () => { if (audio.duration) audio.currentTime = Math.min(audio.duration - 1, audio.currentTime + 10); };
+  $("qsBack").onclick = () => { audio.currentTime = Math.max(0, audio.currentTime - 10); };
+  $("qsMode").onclick = () => { mode = (mode + 1) % MODES.length; store.set("q:mode", MODES[mode][0]); paintMode(); toast(MODES[mode][1]); };
+  $("qsRate").onclick = () => { rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length]; store.set("q:rate", String(rate)); paintRate(); };
+  const sk = $("qsSeek");
+  sk.addEventListener("input", () => { seeking = true; if (audio.duration) $("qsCur").textContent = fmt(audio.duration * sk.value / 1000); });
+  sk.addEventListener("change", () => { if (audio.duration) audio.currentTime = audio.duration * sk.value / 1000; seeking = false; });
+  function openSheet() { $("qs").classList.add("open"); document.body.style.overflow = "hidden"; }
+  function closeSheet() { $("qs").classList.remove("open"); document.body.style.overflow = ""; }
+  $("qpMed").onclick = $("qpInfo").onclick = openSheet; $("qsClose").onclick = closeSheet;
+  $("qs").addEventListener("click", (e) => { if (e.target.id === "qs") closeSheet(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSheet();
+    if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (e.code === "Space" && cur >= 0) { e.preventDefault(); toggle(); }
+  });
+  if ("mediaSession" in navigator) {
+    const ms = navigator.mediaSession, h = (a, f) => { try { ms.setActionHandler(a, f); } catch (e) {} };
+    h("play", () => toggle()); h("pause", () => audio.pause()); h("nexttrack", next); h("previoustrack", () => { const j = near(cur, -1); if (j >= 0) play(j); });
+    h("seekforward", () => $("qsFwd").onclick()); h("seekbackward", () => $("qsBack").onclick());
+    h("seekto", (d) => { if (d.seekTime != null) audio.currentTime = d.seekTime; });
+  }
+
+  // تابع الاستماع
+  function last() { try { const l = JSON.parse(store.get("q:last") || "null"); return l && l.i >= 0 && l.i < 114 ? l : null; } catch (e) { return null; } }
+  function initCont() {
+    const l = last(); if (!l || !has(l.i)) return;
+    $("qCont").hidden = false; $("qContName").textContent = "سورة " + SUR[l.i][0]; $("qContTime").textContent = l.t ? "(" + fmt(l.t) + ")" : "";
+    $("qCont").onclick = () => play(l.i, l.t, true);
+    cur = -1; setInfo(l.i); tiles[l.i].classList.remove("cur"); $("qp").classList.add("on"); paint(0, 0);
+    $("qpPlay").onclick = $("qsPlay").onclick = () => { if (cur < 0) play(l.i, l.t); else toggle(); };
+  }
+  // تحميل قائمة السور المرفوعة
+  function note(t) { $("qNoteT").textContent = t; $("qNote").hidden = !t; }
+  function applyFiles(files) {
+    files.forEach((f) => { const m = f.name.match(/(?:^|\/)0*(\d{1,3})(?=\D|$)/); const n = m ? +m[1] : 0; if (n >= 1 && n <= 114 && !SRC[n - 1]) SRC[n - 1] = f.url; });
+    let n = 0; tiles.forEach((b, i) => { const ok = has(i); b.disabled = !ok; b.classList.toggle("soon", !ok); if (ok) n++; });
+    if (n && n < 114) {
+      $("qProg").hidden = false; $("qProgT").textContent = "متوفر الآن " + enN(n) + " من 114 سورة، وتُضاف بقية السور تباعاً بإذن الله";
+      $("qProgBar").style.width = Math.max(2, n / 114 * 100) + "%"; $("segAvail").hidden = false;
+    }
+    if (!n) note("التلاوة قيد الرفع، وستظهر السور هنا تباعاً بإذن الله.");
+    filter(); initCont();
+  }
+  if (!ITEM) note("المصحف المرتّل قيد الإعداد، وستظهر السور هنا تباعاً بإذن الله.");
+  else {
+    grid.classList.add("wait");
+    iaFiles(ITEM).then(applyFiles, () => note("تعذّر تحميل قائمة السور الآن، تحقق من الاتصال ثم حدّث الصفحة."))
+      .finally(() => grid.classList.remove("wait"));
+  }
+  const bar = $("qBar"); addEventListener("scroll", () => { bar.classList.toggle("stuck", bar.getBoundingClientRect().top <= $("topbar").offsetHeight + 1); }, { passive: true });
+})();
+</script>
+</body>
+</html>

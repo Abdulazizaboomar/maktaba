@@ -369,5 +369,33 @@
    "title": "الخير والبركات في فقه الفرائض والتركات",
    "cover": "covers/soon-alkhair-walbarakat.jpg"
   }
- ]
+ ],
+ "media": {
+  "quran": "abdulaziz-bin-ghaib-quran",
+  "preview": true,
+  "videos": [
+   {
+    "title": "خطب الجمعة",
+    "playlist": "https://www.youtube.com/playlist?list=UUcgYb2hWIgs5R0jcIG71tIw"
+   },
+   {
+    "title": "الدروس العلمية",
+    "playlist": "https://www.youtube.com/playlist?list=UUcgYb2hWIgs5R0jcIG71tIw"
+   },
+   {
+    "title": "المحاضرات والكلمات",
+    "playlist": "https://www.youtube.com/playlist?list=UUcgYb2hWIgs5R0jcIG71tIw"
+   }
+  ],
+  "audio": [
+   {
+    "title": "خطب وكلمات",
+    "item": "abdulaziz-bin-ghaib-quran"
+   },
+   {
+    "title": "دروس علمية",
+    "item": "abdulaziz-bin-ghaib-quran"
+   }
+  ]
+ }
 }

@@ -298,6 +298,12 @@ def main():
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
           f"  <url><loc>{e(base)}</loc><lastmod>{last}</lastmod></url>"]
     sm += [f"  <url><loc>{e(base)}kitab/{quote(b['id'])}.html</loc>" + (f"<lastmod>{day(b)}</lastmod>" if day(b) else "") + "</url>" for b in books]
+    # v39: صفحتا المصحف والصوتيات والمرئيات (فقط إذا مفعّلتان في books.json ← media)
+    med = data.get("media") or {}
+    has_q = bool(str(med.get("quran") or "").strip()) and Path("quran.html").exists()
+    has_m = bool(med.get("videos") or med.get("audio")) and not med.get("preview") and Path("media.html").exists()  # المعاينة لا تُفهرس
+    if has_q: sm.append(f"  <url><loc>{e(base)}quran.html</loc></url>")
+    if has_m: sm.append(f"  <url><loc>{e(base)}media.html</loc></url>")
     sm.append("</urlset>")
     put("sitemap.xml", "\n".join(sm) + "\n")
     # 4) llms.txt
@@ -306,6 +312,8 @@ def main():
           f"> {sub_(site)}{' — ' + au2 if au2 else ''}، فيها {count(len(books), 'book')} باللغة العربية.",
           "> تُقرأ الكتب مجاناً على الموقع بتقليب الصفحات؛ ولكل كتاب صفحة فيها بياناته ورابط قراءته.", "",
           f"- الموقع: {base}"]
+    if has_q: lt.append(f"- المصحف المرتّل (تلاوة صوتية سورة سورة): {base}quran.html")
+    if has_m: lt.append(f"- الصوتيات والمرئيات (خطب ودروس ومحاضرات): {base}media.html")
     for c in cats:
         lt += ["", f"## {c or 'أخرى'}", ""]
         for b in books:

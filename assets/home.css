@@ -363,3 +363,33 @@
 /* ===== v38: شارة «جديد» على الكتب المضافة حديثاً (بألوان المكتبة) ===== */
 .frame .new-badge{position:absolute;top:8px;left:8px;z-index:3;padding:2px 11px 3px;border-radius:999px;background:var(--emerald);color:var(--white);font:700 12.5px/1.7 "Plex",system-ui,sans-serif;box-shadow:0 0 0 2px color-mix(in srgb,var(--white) 90%,transparent),0 6px 14px -6px color-mix(in srgb,var(--emerald-d) 70%,transparent);pointer-events:none}
 @media (max-width:520px){.frame .new-badge{top:6px;left:6px;font-size:11.5px;padding:1px 9px 2px}}
+
+/* ===== v39: قسم «الصوتيات والمرئيات» في الرئيسية ===== */
+.media-sec{padding-top:56px}
+.media-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.media-cards[data-n="1"]{grid-template-columns:minmax(0,1fr)}
+.media-cards[data-n="2"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mcard{position:relative;display:flex;align-items:center;gap:16px;min-height:132px;padding:20px 22px;border-radius:var(--r);border:1px solid var(--line);background:var(--white);color:var(--ink);text-decoration:none;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.mcard .pat{opacity:0}
+@media (hover:hover){.mcard:hover{transform:translateY(-3px);border-color:#d6c9a3;box-shadow:0 18px 34px -24px color-mix(in srgb,var(--emerald-dd) 70%,transparent)}}
+.mc-ic{position:relative;display:grid;place-items:center;flex:none;width:58px;height:58px;border-radius:16px;background:color-mix(in srgb,var(--emerald) 8%,transparent);color:var(--emerald)}
+.mc-ic svg{width:30px;height:30px}
+.mc-body{position:relative;display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.mc-body b{font-family:var(--display);font-size:23px;line-height:1.5;color:var(--emerald)}
+.mc-body small{font-size:14px;color:var(--muted);line-height:1.6}
+.mc-body em{font-style:normal;font-size:13px;font-weight:600;color:var(--gold);line-height:1.6}
+.mc-body em:empty{display:none}
+.mc-cta{position:relative;display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 14px;border-radius:999px;background:var(--emerald);color:var(--ivory);font-size:14px;font-weight:600;white-space:nowrap}
+.mc-cta svg{width:16px;height:16px}
+/* بطاقة المصحف: بلون المكتبة الأساسي */
+.mcard.mc-quran{background:linear-gradient(135deg,var(--emerald),var(--emerald-dd));border-color:transparent;color:#fff}
+.mcard.mc-quran .pat{opacity:.45}
+.mc-quran .mc-ic{width:66px;height:66px;background:none;color:var(--gold-l)}
+.mc-quran .mc-ic svg{width:66px;height:66px}
+.mc-quran .mc-body b{color:#fff;font-size:26px}
+.mc-quran .mc-body small{color:#e9dfc4}
+.mc-quran .mc-body em{color:var(--gold-l)}
+.mc-quran .mc-cta{background:var(--gold-l);color:var(--emerald-dd)}
+@media (max-width:980px){.media-cards,.media-cards[data-n="2"]{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.media-sec{padding-top:30px}.media-cards{gap:10px}.mcard{gap:12px;min-height:0;padding:16px 14px}.mc-ic{width:48px;height:48px;border-radius:13px}.mc-ic svg{width:26px;height:26px}.mc-quran .mc-ic,.mc-quran .mc-ic svg{width:54px;height:54px}.mc-body b{font-size:20px}.mc-quran .mc-body b{font-size:22px}.mc-body small{font-size:13px}.mc-cta{padding:0;width:38px;height:38px;justify-content:center}.mc-cta span{display:none}}
+.mc-prev{position:absolute;top:10px;left:12px;padding:1px 9px;border-radius:999px;background:#fbf4e2;border:1px dashed #d9bf83;color:#6e521c;font-size:11.5px;line-height:1.7}

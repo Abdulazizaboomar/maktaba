@@ -27,7 +27,7 @@
 <meta name="theme-color" content="#164e3b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=36">
-<link rel="stylesheet" href="assets/home.css?v=37">
+<link rel="stylesheet" href="assets/home.css?v=39">
 </head>
 <body class="home">
 <div class="datebar" id="today" aria-label="تاريخ اليوم"></div>
@@ -39,6 +39,7 @@
       <span class="brand-txt"><b id="bTitle">المكتبة</b><small id="bAuthor"></small></span>
     </a>
     <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="#media" id="navMedia" hidden>الصوتيات والمرئيات</a>
       <a href="#soon" id="navSoon" hidden>قيد الإعداد</a>
       <a href="#colls">المجموعات العلمية</a>
       <a href="#library">جميع الكتب</a>
@@ -96,6 +97,16 @@
   </div>
 </section>
 </div>
+
+<section class="sec media-sec" id="media" aria-labelledby="mediaH" hidden>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="sec-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4.5" height="7" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="7" rx="1.5"/></svg>استمع وشاهد</div>
+      <h2 id="mediaH">الصوتيات والمرئيات</h2></div>
+    </div>
+    <div class="media-cards" id="mediaCards"></div>
+  </div>
+</section>
 
 <section class="sec soon-sec" id="soon" aria-labelledby="soonH" hidden>
   <div class="wrap">
@@ -181,10 +192,10 @@
   <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.3.65 4.45 1.8 6.28L4 29l7.97-1.76a12.1 12.1 0 0 0 4.07.7C22.66 27.94 28 22.6 28 15.97 28 9.36 22.66 3 16.04 3Zm0 22.6c-1.3 0-2.56-.25-3.72-.73l-.27-.11-4.73 1.04 1.06-4.55-.18-.29a9.6 9.6 0 0 1-1.6-5.3c0-5.3 4.04-9.97 9.44-9.97 5.32 0 9.6 4.47 9.6 9.97 0 5.42-4.28 9.94-9.6 9.94Zm5.3-7.2c-.29-.15-1.72-.85-1.98-.95-.27-.1-.46-.15-.66.15-.19.29-.75.95-.92 1.14-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.71-1.61-2-.17-.3-.02-.45.13-.6.13-.13.29-.34.44-.51.14-.17.19-.29.29-.49.1-.2.05-.37-.03-.51-.07-.15-.65-1.57-.9-2.15-.23-.56-.47-.49-.65-.5h-.56c-.2 0-.51.08-.78.37-.27.29-1.02 1-1.02 2.43s1.05 2.82 1.2 3.02c.14.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.72-.7 1.97-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.56-.34Z"/></svg>
   <span class="wa-tip">تواصل معنا</span>
 </a>
-<script src="assets/common.js?v=36"></script>
+<script src="assets/common.js?v=39"></script>
 <script>
 (async function () {
-  const { loadLibrary, readerUrl, ar, plural, store, en, track, hits, bookPath } = window.Lib;
+  const { loadLibrary, readerUrl, ar, plural, store, en, track, hits, bookPath, iaFiles, mediaOf } = window.Lib;
   const $ = (id) => document.getElementById(id);
   const data = await loadLibrary();
   const site = data.site, books = data.books;
@@ -326,6 +337,34 @@
       $("collList").appendChild(btn);
       const li = el("li"); const a = el("a", "", c); a.href = "#library"; a.onclick = (e) => { e.preventDefault(); setCat(c); goLib(); }; li.appendChild(a); $("fCats").appendChild(li);
     });
+  }
+
+  // ===== v39: الصوتيات والمرئيات (books.json ← media) =====
+  const MED = mediaOf(data);
+  if (MED.quran || MED.videos.length || MED.audio.length) {
+    const box = $("mediaCards"), who = site.authorName || site.brandSub || "";
+    const ICON = {
+      quran: '<svg viewBox="0 0 64 64" aria-hidden="true"><polygon points="32,3 40.5,11.5 52.5,11.5 52.5,23.5 61,32 52.5,40.5 52.5,52.5 40.5,52.5 32,61 23.5,52.5 11.5,52.5 11.5,40.5 3,32 11.5,23.5 11.5,11.5 23.5,11.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 24c4-1.6 8-1 12 1.4v15c-4-2.4-8-3-12-1.4zM44 24c-4-1.6-8-1-12 1.4v15c4-2.4 8-3 12-1.4z" fill="currentColor"/></svg>',
+      videos: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor"/></svg>',
+      audio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4.5" height="7" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="7" rx="1.5"/></svg>' };
+    const card = (cls, href, ic, title, sub, cta) => {
+      const a = el("a", "mcard " + cls); a.href = href;
+      a.innerHTML = '<span class="pat"></span><span class="mc-ic">' + ic + '</span><span class="mc-body"><b></b><small></small><em></em></span><span class="mc-cta"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>';
+      a.querySelector("b").textContent = title; a.querySelector("small").textContent = sub; a.querySelector(".mc-cta span").textContent = cta;
+      box.appendChild(a); return a;
+    };
+    if (MED.quran) {
+      const q = card("mc-quran", "quran.html", ICON.quran, "المصحف المرتّل", who ? "بصوت " + who : "تلاوة القرآن الكريم كاملاً", "استمع الآن");
+      iaFiles(MED.quran).then((files) => {
+        const n = new Set(files.map((f) => +((f.name.match(/(?:^|\/)0*(\d{1,3})(?=\D|$)/) || [])[1] || 0)).filter((x) => x >= 1 && x <= 114)).size;
+        q.querySelector("em").textContent = n >= 114 ? "114 سورة كاملة" : n ? "متوفر " + en(n) + " من 114 سورة" : "قريباً بإذن الله";
+      }, () => {});
+    }
+    if (MED.videos.length) card("mc-vid", "media.html#videos", ICON.videos, "المرئيات", "خطب ودروس ومحاضرات مصوّرة", "شاهد").querySelector("em").textContent = en(MED.videos.length) + " " + plural(MED.videos.length, "list");
+    if (MED.audio.length) card("mc-aud", "media.html#audio", ICON.audio, "الصوتيات", "خطب وكلمات ودروس صوتية", "استمع").querySelector("em").textContent = en(MED.audio.length) + " " + plural(MED.audio.length, "category");
+    if (MED.preview) box.querySelectorAll(".mc-vid,.mc-aud").forEach((a) => { const t = el("span", "mc-prev", "معاينة"); a.appendChild(t); });
+    box.dataset.n = box.children.length;
+    $("media").hidden = false; $("navMedia").hidden = false;
   }
 
   // ===== كتب قيد الإعداد (data.upcoming): بلا ملفات، فلا تدخل «الكل» ولا عدد الكتب والصفحات =====

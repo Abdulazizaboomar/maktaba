@@ -4,6 +4,7 @@
 > تُقرأ الكتب مجاناً على الموقع بتقليب الصفحات؛ ولكل كتاب صفحة فيها بياناته ورابط قراءته.
 
 - الموقع: https://abdulazizaboomar.github.io/maktaba/
+- المصحف المرتّل (تلاوة صوتية سورة سورة): https://abdulazizaboomar.github.io/maktaba/quran.html
 
 ## مشروع تصحيح العلوم
 

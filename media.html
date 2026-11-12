@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الصوتيات والمرئيات</title>
+<meta name="description" content="الخطب والدروس والمحاضرات صوتاً وصورة.">
+<meta name="theme-color" content="#164e3b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css?v=36">
+<link rel="stylesheet" href="assets/home.css?v=39">
+<link rel="stylesheet" href="assets/media.css?v=39">
+</head>
+<body class="home m-page">
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="المكتبة"><span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22c8-3.5 15-2.5 22 2.5v27c-7-5-14-6-22-2.5z M54 22c-8-3.5-15-2.5-22 2.5v27c7-5 14-6 22-2.5z" fill="#c6a15b"/><path d="M32 7l2.4 4.9 5.4.8-3.9 3.8.9 5.4L32 19.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" fill="#f7f3e8"/></svg></span>
+      <span class="brand-txt"><b id="bTitle">مؤلفات أبي عمر</b><small id="bAuthor">د. عبد العزيز بن سعيد بن غائب</small></span></a>
+    <nav class="nav" aria-label="التنقل"><a href="./">المكتبة</a><a href="quran.html" id="navQuran" hidden>المصحف المرتّل</a><a href="#videos" id="navVid" hidden>المرئيات</a><a href="#audio" id="navAud" hidden>الصوتيات</a></nav>
+    <a class="tb-search" href="./" aria-label="العودة إلى المكتبة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></a>
+  </div>
+</header>
+
+<section class="hero m-hero">
+  <div class="pat"></div><div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow">الصوتيات والمرئيات</span>
+    <h1>دروس وخطب ومحاضرات</h1>
+    <p class="m-voice" id="mVoice"></p>
+    <ul class="hfacts" id="mFacts"></ul>
+  </div>
+</section>
+
+<div class="m-tabs" id="mTabs" hidden>
+  <div class="wrap" role="tablist" aria-label="نوع المحتوى">
+    <button role="tab" id="tabVid" data-p="videos" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor"/></svg>المرئيات<b id="cVid"></b></button>
+    <button role="tab" id="tabAud" data-p="audio" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4.5" height="7" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="7" rx="1.5"/></svg>الصوتيات<b id="cAud"></b></button>
+  </div>
+</div>
+
+<main class="wrap m-main">
+  <div class="m-prev" id="mPrev" hidden><b>معاينة</b><span>هذا عرض تجريبي لشكل القسم، وتُستبدل المقاطع بالمحتوى المعتمد قريباً بإذن الله.</span></div>
+  <p class="m-empty" id="mEmpty" hidden>الصوتيات والمرئيات قيد الإعداد، وتظهر هنا تباعاً بإذن الله.</p>
+
+  <section class="m-panel" id="videos" hidden aria-label="المرئيات">
+    <div class="m-viewer" id="vView" hidden>
+      <div class="m-frame"><iframe id="vFrame" title="مشغّل المرئيات" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="m-vbar"><div><small>تُعرض الآن</small><h2 id="vTitle"></h2></div><a id="vYt" target="_blank" rel="noopener">فتح في يوتيوب<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+    </div>
+    <div class="m-lists" id="vLists"></div>
+  </section>
+
+  <section class="m-panel" id="audio" hidden aria-label="الصوتيات">
+    <div class="m-chips" id="aCats" role="tablist" aria-label="تصنيفات الصوتيات"></div>
+    <div class="m-tracks" id="aList" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-bot"><div class="wrap"><div class="credit">تصميم وإعداد: <b>محمد الشهري</b><span class="sep">•</span>للتواصل: <a href="https://wa.me/966564824329" target="_blank" rel="noopener" dir="ltr">0564824329</a></div></div></div>
+</footer>
+
+<div class="m-player" id="mp" role="region" aria-label="مشغّل الصوتيات">
+  <div class="wrap">
+    <button class="m-pbtn" id="mpPrev" aria-label="السابق"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 5h2v14h-2zM4 5v14l9-7z"/></svg></button>
+    <button class="m-pbtn main" id="mpPlay" aria-label="تشغيل"><svg viewBox="0 0 24 24" fill="currentColor"><path class="ic" d="M8 5v14l11-7z"/></svg><span class="spin"></span></button>
+    <button class="m-pbtn" id="mpNext" aria-label="التالي"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5h2v14H8zM20 5v14l-9-7z"/></svg></button>
+    <div class="m-pinfo"><div class="n" id="mpName"></div><div class="c" id="mpCat"></div>
+      <div class="m-pseek"><span id="mpCur" dir="ltr">0:00</span><input type="range" id="mpSeek" min="0" max="1000" value="0" aria-label="موضع التشغيل"><span id="mpDur" dir="ltr">0:00</span></div></div>
+    <button class="m-pbtn" id="mpRate" aria-label="سرعة التشغيل"><b id="mpRateT" dir="ltr">1×</b></button>
+  </div>
+</div>
+<div class="q-toast m-toast" id="mToast" role="status"></div>
+
+<script src="assets/common.js?v=39"></script>
+<script>
+(async function () {
+  const $ = (id) => document.getElementById(id);
+  const { loadLibrary, store, track, iaFiles, mediaOf, plural } = window.Lib;
+  let data = {}; try { data = await loadLibrary(); } catch (e) {}
+  const site = data.site || {}, M = mediaOf(data);
+  if (site.brandTitle) $("bTitle").textContent = site.brandTitle;
+  if (site.brandSub) $("bAuthor").textContent = site.brandSub;
+  const who = site.authorName || site.brandSub || "";
+  if (who) { $("mVoice").textContent = who; document.title = "الصوتيات والمرئيات — " + who; }
+  if (site.counter) track(site.counter, "/media", "الصوتيات والمرئيات");
+  if (M.quran) $("navQuran").hidden = false;
+  const enN = (n) => Number(n).toLocaleString("en-US");
+  const fmt = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(x).padStart(2, "0"); };
+  const toast = (t) => { const e = $("mToast"); e.textContent = t; e.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => e.classList.remove("show"), 2400); };
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const clean = (t) => String(t).replace(/^\s*\d+\s*[-_.)]*\s*/, "").replace(/[_]+/g, " ").trim() || t;
+
+  // الأرقام في القسم الافتتاحي
+  const facts = [];
+  if (M.videos.length) facts.push([M.videos.length, plural(M.videos.length, "list")]);
+  if (M.audio.length) facts.push([M.audio.length, plural(M.audio.length, "acat")]);
+  facts.forEach(([n, w]) => { const li = el("li"); const b = el("b", "", enN(n)); b.dir = "ltr"; li.append(b, el("span", "", w)); $("mFacts").appendChild(li); });
+
+  // التبويبات
+  const panels = [];
+  if (M.videos.length) { $("tabVid").hidden = false; $("navVid").hidden = false; $("cVid").textContent = enN(M.videos.length); panels.push("videos"); }
+  if (M.audio.length) { $("tabAud").hidden = false; $("navAud").hidden = false; $("cAud").textContent = enN(M.audio.length); panels.push("audio"); }
+  if (!panels.length) { $("mEmpty").hidden = false; return; }
+  if (M.preview) $("mPrev").hidden = false;
+  $("mTabs").hidden = panels.length < 2;
+  function show(p, scroll) {
+    if (!panels.includes(p)) p = panels[0];
+    panels.forEach((x) => { $(x).hidden = x !== p; });
+    document.querySelectorAll("#mTabs button").forEach((b) => { const on = b.dataset.p === p; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+    if (p === "audio") loadAudio();
+    if (scroll) { const y = $("mTabs").getBoundingClientRect().top + scrollY - $("topbar").offsetHeight - 6; scrollTo({ top: Math.max(0, y), behavior: "smooth" }); }
+  }
+  document.querySelectorAll("#mTabs button").forEach((b) => b.onclick = () => { history.replaceState(null, "", "#" + b.dataset.p); show(b.dataset.p); });
+  document.querySelectorAll('.nav a[href^="#"]').forEach((a) => a.onclick = (e) => { e.preventDefault(); const p = a.getAttribute("href").slice(1); history.replaceState(null, "", "#" + p); show(p, true); });
+
+  // ===== المرئيات: قوائم تشغيل يوتيوب (الترتيب يتبع القائمة نفسها) =====
+  const PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  M.videos.forEach((v, i) => {
+    const c = el("button", "m-list"); c.type = "button";
+    c.innerHTML = '<span class="m-lart" aria-hidden="true"><span class="pat"></span><span class="m-lplay">' + PLAY + '</span><span class="m-lnum"></span></span><span class="m-lbody"><b></b><small>قائمة تشغيل • يوتيوب</small></span>';
+    c.querySelector(".m-lnum").textContent = enN(i + 1); c.querySelector("b").textContent = v.title;
+    c.onclick = () => openList(i, true);
+    $("vLists").appendChild(c);
+  });
+  function openList(i, scroll) {
+    const v = M.videos[i]; if (!v) return;
+    $("vFrame").src = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(v.list) + "&rel=0&hl=ar";
+    $("vTitle").textContent = v.title; $("vYt").href = "https://www.youtube.com/playlist?list=" + encodeURIComponent(v.list);
+    $("vView").hidden = false;
+    document.querySelectorAll(".m-list").forEach((c, k) => c.classList.toggle("on", k === i));
+    store.set("m:vid", String(i));
+    if (scroll) { const y = $("vView").getBoundingClientRect().top + scrollY - $("topbar").offsetHeight - 70; scrollTo({ top: Math.max(0, y), behavior: "smooth" }); }
+  }
+
+  // ===== الصوتيات: كل تصنيف عنصر في archive.org =====
+  const audio = new Audio(); audio.preload = "none";
+  let aCat = -1, queue = [], qi = -1, aLoaded = false, seeking = false;
+  const RATES = [1, 1.25, 1.5, 0.75]; let rate = +store.get("m:rate") || 1; if (!RATES.includes(rate)) rate = 1;
+  const PL = "M8 5v14l11-7z", PA = "M7 5h4v14H7zM13 5h4v14h-4z";
+  const icon = (d) => document.querySelectorAll("#mp .main .ic").forEach((e) => e.setAttribute("d", d));
+  $("mpRateT").textContent = rate + "×";
+  function loadAudio() {
+    if (aLoaded) return; aLoaded = true;
+    M.audio.forEach((a, i) => { const b = el("button", "m-chip", a.title); b.type = "button"; b.setAttribute("role", "tab"); b.onclick = () => pickCat(i); $("aCats").appendChild(b); });
+    const s = +store.get("m:cat"); pickCat(s >= 0 && s < M.audio.length ? s : 0);
+  }
+  async function pickCat(i) {
+    aCat = i; store.set("m:cat", String(i));
+    document.querySelectorAll(".m-chip").forEach((b, k) => { b.classList.toggle("on", k === i); b.setAttribute("aria-selected", k === i); });
+    const box = $("aList"); box.innerHTML = ""; box.appendChild(el("p", "m-wait", "جاري تحميل المقاطع…"));
+    let files = [];
+    try { files = await iaFiles(M.audio[i].item); } catch (e) { if (aCat === i) { box.innerHTML = ""; box.appendChild(el("p", "m-wait", "تعذّر تحميل المقاطع الآن، تحقق من الاتصال ثم حدّث الصفحة.")); } return; }
+    if (aCat !== i) return;
+    box.innerHTML = "";
+    if (!files.length) { box.appendChild(el("p", "m-wait", "لا توجد مقاطع في هذا التصنيف بعد.")); return; }
+    const head = el("div", "m-thead"); head.append(el("b", "", M.audio[i].title), el("span", "", enN(files.length) + " " + plural(files.length, "lesson")));
+    box.appendChild(head);
+    files.forEach((f, k) => {
+      const r = el("button", "m-track"); r.type = "button";
+      r.innerHTML = '<span class="m-tn"></span><span class="m-tt"></span><span class="m-td" dir="ltr"></span><span class="m-teq" aria-hidden="true"><i></i><i></i><i></i></span>';
+      r.querySelector(".m-tn").textContent = enN(k + 1); r.querySelector(".m-tt").textContent = clean(f.title);
+      r.querySelector(".m-td").textContent = f.length ? fmt(f.length) : "";
+      r.onclick = () => { if (queue === files && qi === k) toggle(); else { queue = files; playAt(k); } };
+      if (audio.src && f.url === curUrl) r.classList.add("cur");
+      box.appendChild(r);
+    });
+  }
+  let curUrl = "";
+  function mark() { document.querySelectorAll(".m-track").forEach((r, k) => r.classList.toggle("cur", queue[qi] && aCatOf === aCat && k === qi)); }
+  let aCatOf = -1;
+  function playAt(k) {
+    if (!queue[k]) return; qi = k; aCatOf = aCat; const f = queue[k]; curUrl = f.url;
+    audio.src = f.url; audio.playbackRate = rate; $("mp").classList.add("on", "loading");
+    $("mpName").textContent = clean(f.title); $("mpCat").textContent = M.audio[aCatOf] ? M.audio[aCatOf].title : "";
+    audio.play().catch(() => { $("mp").classList.remove("loading"); icon(PL); });
+    mark();
+    if ("mediaSession" in navigator) { try { navigator.mediaSession.metadata = new MediaMetadata({ title: clean(f.title), artist: who, album: $("mpCat").textContent, artwork: [{ src: "assets/apple-touch-icon.png", sizes: "180x180", type: "image/png" }] }); } catch (e) {} }
+  }
+  function toggle() { if (qi < 0) return; audio.paused ? audio.play().catch(() => {}) : audio.pause(); }
+  const next = () => { if (qi + 1 < queue.length) playAt(qi + 1); }, prev = () => { if (audio.currentTime > 5) audio.currentTime = 0; else if (qi > 0) playAt(qi - 1); };
+  $("mpPlay").onclick = toggle; $("mpNext").onclick = next; $("mpPrev").onclick = prev;
+  $("mpRate").onclick = () => { rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length]; store.set("m:rate", String(rate)); audio.playbackRate = rate; $("mpRateT").textContent = rate + "×"; };
+  audio.addEventListener("playing", () => { $("mp").classList.remove("loading"); icon(PA); document.body.classList.add("m-playing"); });
+  audio.addEventListener("waiting", () => $("mp").classList.add("loading"));
+  audio.addEventListener("pause", () => { $("mp").classList.remove("loading"); icon(PL); document.body.classList.remove("m-playing"); });
+  audio.addEventListener("ended", next);
+  audio.addEventListener("error", () => { if (!audio.src) return; $("mp").classList.remove("loading"); icon(PL); toast("تعذّر تشغيل المقطع، حاول مرة أخرى"); });
+  audio.addEventListener("timeupdate", () => { const t = audio.currentTime, d = audio.duration || 0; $("mpCur").textContent = fmt(t); $("mpDur").textContent = d ? fmt(d) : "0:00"; if (!seeking && d) $("mpSeek").value = Math.round(t / d * 1000); });
+  const sk = $("mpSeek");
+  sk.addEventListener("input", () => { seeking = true; if (audio.duration) $("mpCur").textContent = fmt(audio.duration * sk.value / 1000); });
+  sk.addEventListener("change", () => { if (audio.duration) audio.currentTime = audio.duration * sk.value / 1000; seeking = false; });
+  if ("mediaSession" in navigator) { const ms = navigator.mediaSession, h = (a, f) => { try { ms.setActionHandler(a, f); } catch (e) {} }; h("play", toggle); h("pause", () => audio.pause()); h("nexttrack", next); h("previoustrack", prev); }
+  document.addEventListener("keydown", (e) => { if (e.target.tagName === "INPUT") return; if (e.code === "Space" && qi >= 0) { e.preventDefault(); toggle(); } });
+
+  // البداية: من الرابط (#videos / #audio) أو أول قسم
+  show(location.hash.slice(1));
+  if (M.videos.length) { const s = +store.get("m:vid"); openList(s >= 0 && s < M.videos.length ? s : 0, false); }
+})();
+</script>
+</body>
+</html>

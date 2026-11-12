@@ -74,6 +74,11 @@
     country: ["دولة", "دولتان", "دول", "دولة", "دولة"],
     visitor: ["زائر", "زائران", "زوار", "زائراً", "زائر"],
     view: ["مشاهدة", "مشاهدتان", "مشاهدات", "مشاهدة", "مشاهدة"],
+    surah: ["سورة", "سورتان", "سور", "سورة", "سورة"],
+    list: ["قائمة تشغيل", "قائمتا تشغيل", "قوائم تشغيل", "قائمة تشغيل", "قائمة تشغيل"],
+    acat: ["تصنيف صوتي", "تصنيفان صوتيان", "تصنيفات صوتية", "تصنيفاً صوتياً", "تصنيف صوتي"],
+    lesson: ["مقطع", "مقطعان", "مقاطع", "مقطعاً", "مقطع"],
+    category: ["تصنيف", "تصنيفان", "تصنيفات", "تصنيفاً", "تصنيف"],
     work: ["مؤلَّف جديد", "مؤلَّفان جديدان", "مؤلفات جديدة", "مؤلَّفاً جديداً", "مؤلَّف جديد"],
   };
   function plural(n, w) {
@@ -146,5 +151,32 @@
   }
   const bookPath = (b) => "/book/" + (b.id || (b.file || "").replace(/^books\//, "").replace(/\.pdf$/i, ""));
 
-  window.Lib = { repoInfo, loadLibrary, readerUrl, store, ar, plural, titleFromFile, en, track, hits, bookPath };
+  // ===== v39: الصوتيات والمرئيات =====
+  // ملفات عنصر في archive.org (الأصلية فقط) — قراءة مباشرة من API العام، مع ذاكرة 10 دقائق
+  async function iaFiles(item) {
+    item = String(item || "").trim().replace(/^https?:\/\/archive\.org\/(details|download)\//, "").split(/[/?#]/)[0];
+    if (!item) return [];
+    const key = "ia:" + item;
+    try { const c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 600000) return c.f; } catch (e) {}
+    const r = await fetch("https://archive.org/metadata/" + encodeURIComponent(item) + "/files", { cache: "no-store" });
+    if (!r.ok) throw new Error("ia " + r.status);
+    const j = await r.json(); const list = Array.isArray(j) ? j : (j.result || j.files || []);
+    const f = list.filter((x) => x && x.source === "original" && /\.(mp3|m4a|ogg|opus|wav)$/i.test(x.name || ""))
+      .map((x) => ({ name: x.name, title: String(x.title || x.name).replace(/\.[^.]+$/, ""), length: +x.length || 0,
+        url: "https://archive.org/download/" + encodeURIComponent(item) + "/" + String(x.name).split("/").map(encodeURIComponent).join("/") }))
+      .sort((a, b) => a.name.localeCompare(b.name, "ar", { numeric: true }));
+    try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), f })); } catch (e) {}
+    return f;
+  }
+  // معرّف قائمة تشغيل يوتيوب من رابط كامل أو معرّف مباشر
+  const ytList = (v) => { v = String(v || "").trim(); const m = v.match(/[?&]list=([\w-]+)/); return m ? m[1] : (/^[\w-]{10,}$/.test(v) ? v : ""); };
+  // إعدادات الوسائط من books.json ← media { quran, videos: [{title, playlist}], audio: [{title, item}] }
+  function mediaOf(data) {
+    const m = (data && data.media) || {};
+    const videos = (m.videos || []).map((v) => ({ title: String(v.title || "").trim(), list: ytList(v.playlist || v.list) })).filter((v) => v.title && v.list);
+    const audio = (m.audio || []).map((a) => ({ title: String(a.title || "").trim(), item: String(a.item || "").trim() })).filter((a) => a.title && a.item);
+    return { quran: String(m.quran || "").trim(), videos, audio, preview: !!m.preview };
+  }
+
+  window.Lib = { repoInfo, loadLibrary, readerUrl, store, ar, plural, iaFiles, ytList, mediaOf, titleFromFile, en, track, hits, bookPath };
 })();

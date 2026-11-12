@@ -8,6 +8,7 @@
 <title>إدارة المكتبة</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=36">
+<style>/* v39 */.media-set{margin:18px 0 6px;padding-top:16px;border-top:1px solid var(--line,#e3dac3)}.media-set h3{margin:0 0 12px;font-size:17px}.media-set h3 small{display:block;font-size:13px;font-weight:400;color:var(--muted,#5f6d65)}.media-ta{width:100%;min-height:96px;padding:10px 12px;resize:vertical;font:inherit;line-height:1.7}</style>
 </head>
 <body class="admin">
 <div class="adm">
@@ -106,12 +107,19 @@
     <label class="field"><span>رمز عدّاد الزوار (GoatCounter) <small>مثال: mylibrary — اتركه فارغاً لإخفاء العدادات.</small></span><input class="input" id="sCounter" dir="ltr" placeholder="mylibrary" style="max-width:280px"></label>
     <label class="check"><input type="checkbox" id="sDl"> السماح للقرّاء بتحميل الكتب (يظهر زر تحميل في صفحة القراءة)</label>
     <label class="check"><input type="checkbox" id="sPs"> زر «شاركها في حالة الواتس» في صفحة القراءة (يصمّم صورة للصفحة الحالية بمقاس الحالة)</label>
+    <div class="media-set">
+      <h3>الصوتيات والمرئيات <small>تظهر في الصفحة الرئيسية فقط إذا انكتب فيها شي.</small></h3>
+      <label class="field"><span>المصحف المرتّل — صفحة archive.org <small>مثال: abdulaziz-bin-ghaib-quran أو رابط الصفحة كامل. السور تظهر في الموقع تلقائياً من الملفات المرفوعة هناك (اسم الملف يبدأ برقم السورة: 001 الفاتحة.mp3).</small></span><input class="input" id="sQuran" dir="ltr" placeholder="abdulaziz-bin-ghaib-quran"></label>
+      <label class="field"><span>المرئيات — قوائم تشغيل يوتيوب <small>سطر لكل قائمة: الاسم | رابط القائمة. وترتيب المقاطع يتبع ترتيبها في يوتيوب.</small></span><textarea class="input media-ta" id="sVideos" rows="4" placeholder="خطب الجمعة | https://www.youtube.com/playlist?list=..."></textarea></label>
+      <label class="field"><span>الصوتيات — تصنيفات archive.org <small>سطر لكل تصنيف: الاسم | صفحة archive.org (المعرّف أو الرابط). كل تصنيف صفحة مستقلة هناك.</small></span><textarea class="input media-ta" id="sAudio" rows="4" placeholder="خطب وكلمات | abdulaziz-bin-ghaib-khutab"></textarea></label>
+      <label class="check"><input type="checkbox" id="sPv"> عرض تجريبي: تظهر كلمة «معاينة» على المرئيات والصوتيات (شيل الصح لما يكون المحتوى معتمداً)</label>
+    </div>
     <button class="btn" id="saveSite">حفظ الإعدادات</button>
     <div class="status" id="siteStatus"></div>
   </section>
 </div>
 
-<script src="assets/common.js?v=36"></script>
+<script src="assets/common.js?v=39"></script>
 <script type="module">
 import * as pdfjs from "./lib/pdf.min.mjs";
 pdfjs.GlobalWorkerOptions.workerSrc = "lib/pdf.worker.min.mjs";
@@ -230,6 +238,7 @@ async function loadLib() {
   fillCats();
   render(extra);
   $("sTitle").value = lib.site.title || ""; $("sAuthor").value = lib.site.author || ""; $("sCounter").value = lib.site.counter || ""; $("sSub").value = lib.site.subtitle || ""; $("sDl").checked = !!lib.site.allowDownload; $("sPs").checked = lib.site.allowPageShare !== false; $("sDate").value = lib.site.preparedDate || ""; $("sWa").value = lib.site.whatsapp || "";
+  { const m = lib.media || {}; $("sQuran").value = m.quran || ""; $("sVideos").value = (m.videos || []).map((v) => v.title + " | " + v.playlist).join("\n"); $("sAudio").value = (m.audio || []).map((v) => v.title + " | " + v.item).join("\n"); $("sPv").checked = !!m.preview; }
 }
 function catList() {
   const c = [...(lib.site.categories || [])];
@@ -441,6 +450,13 @@ $("publish").onclick = async () => {
 // ===== إعدادات الموقع =====
 $("saveSite").onclick = () => run("siteStatus", async () => {
   lib.site.title = $("sTitle").value.trim(); lib.site.author = $("sAuthor").value.trim(); lib.site.counter = $("sCounter").value.trim().toLowerCase(); lib.site.subtitle = $("sSub").value.trim(); lib.site.allowDownload = $("sDl").checked; lib.site.allowPageShare = $("sPs").checked; lib.site.preparedDate = $("sDate").value; lib.site.whatsapp = $("sWa").value.replace(/[^0-9+]/g, "");
+  { // v39: الصوتيات والمرئيات ← lib.media
+    const rows = (id, key) => $(id).value.split("\n").map((l) => { const i = l.lastIndexOf("|"); if (i < 0) return null; const t = l.slice(0, i).trim(), v = l.slice(i + 1).trim(); return t && v ? { title: t, [key]: v } : null; }).filter(Boolean);
+    const quran = $("sQuran").value.trim().replace(/^https?:\/\/archive\.org\/(details|download)\//, "").split(/[/?#]/)[0];
+    const videos = rows("sVideos", "playlist"), audio = rows("sAudio", "item");
+    if (quran || videos.length || audio.length) { lib.media = Object.assign({}, lib.media); if (quran) lib.media.quran = quran; else delete lib.media.quran; lib.media.videos = videos; lib.media.audio = audio; if ($("sPv").checked) lib.media.preview = true; else delete lib.media.preview; }
+    else delete lib.media;
+  }
   await saveLib("تعديل إعدادات الموقع");
 }, "تم حفظ الإعدادات ✓");
 
