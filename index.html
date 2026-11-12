@@ -341,7 +341,7 @@
 
   // ===== v39: الصوتيات والمرئيات (books.json ← media) =====
   const MED = mediaOf(data);
-  if (MED.quran || MED.videos.length || MED.audio.length) {
+  if (MED.quran || MED.quranLocal.length || MED.videos.length || MED.audio.length) {
     const box = $("mediaCards"), who = site.authorName || site.brandSub || "";
     const ICON = {
       quran: '<svg viewBox="0 0 64 64" aria-hidden="true"><polygon points="32,3 40.5,11.5 52.5,11.5 52.5,23.5 61,32 52.5,40.5 52.5,52.5 40.5,52.5 32,61 23.5,52.5 11.5,52.5 11.5,40.5 3,32 11.5,23.5 11.5,11.5 23.5,11.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 24c4-1.6 8-1 12 1.4v15c-4-2.4-8-3-12-1.4zM44 24c-4-1.6-8-1-12 1.4v15c4-2.4 8-3 12-1.4z" fill="currentColor"/></svg>',
@@ -353,9 +353,10 @@
       a.querySelector("b").textContent = title; a.querySelector("small").textContent = sub; a.querySelector(".mc-cta span").textContent = cta;
       box.appendChild(a); return a;
     };
-    if (MED.quran) {
+    if (MED.quran || MED.quranLocal.length) {
       const q = card("mc-quran", "quran.html", ICON.quran, "المصحف المرتّل", who ? "بصوت " + who : "تلاوة القرآن الكريم كاملاً", "استمع الآن");
-      iaFiles(MED.quran).then((files) => {
+      const loc = MED.quranLocal;
+      (MED.quran ? iaFiles(MED.quran).catch(() => []) : Promise.resolve([])).then((files) => { files = loc.concat(files);
         const n = new Set(files.map((f) => +((f.name.match(/(?:^|\/)0*(\d{1,3})(?=\D|$)/) || [])[1] || 0)).filter((x) => x >= 1 && x <= 114)).size;
         q.querySelector("em").textContent = n >= 114 ? "114 سورة كاملة" : n ? "متوفر " + en(n) + " من 114 سورة" : "قريباً بإذن الله";
       }, () => {});

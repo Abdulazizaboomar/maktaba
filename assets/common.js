@@ -174,8 +174,13 @@
   function mediaOf(data) {
     const m = (data && data.media) || {};
     const videos = (m.videos || []).map((v) => ({ title: String(v.title || "").trim(), list: ytList(v.playlist || v.list) })).filter((v) => v.title && v.list);
-    const audio = (m.audio || []).map((a) => ({ title: String(a.title || "").trim(), item: String(a.item || "").trim() })).filter((a) => a.title && a.item);
-    return { quran: String(m.quran || "").trim(), videos, audio, preview: !!m.preview };
+    // files: مقاطع داخل الموقع نفسه (اختياري) [{ url, title }] تُضاف قبل مقاطع archive.org
+    const audio = (m.audio || []).map((a) => ({ title: String(a.title || "").trim(), item: String(a.item || "").trim(),
+      files: (a.files || []).filter((f) => f && f.url).map((f) => ({ name: String(f.url).split("/").pop(), title: String(f.title || f.url.split("/").pop()), length: +f.length || 0, url: f.url })) }))
+      .filter((a) => a.title && (a.item || a.files.length));
+    // quranLocal: ملفات سور داخل الموقع نفسه (للتجربة قبل archive.org)، مثل ["audio/quran/001.mp3"]
+    const quranLocal = (m.quranLocal || []).map((x) => String(x || "").trim()).filter(Boolean).map((p) => ({ name: p.split("/").pop(), url: p }));
+    return { quran: String(m.quran || "").trim(), quranLocal, videos, audio, preview: !!m.preview };
   }
 
   window.Lib = { repoInfo, loadLibrary, readerUrl, store, ar, plural, iaFiles, ytList, mediaOf, titleFromFile, en, track, hits, bookPath };

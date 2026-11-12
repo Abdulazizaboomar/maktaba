@@ -372,6 +372,9 @@
  ],
  "media": {
   "quran": "abdulaziz-bin-ghaib-quran",
+  "quranLocal": [
+   "audio/quran/001.mp3"
+  ],
   "preview": true,
   "videos": [
    {
@@ -390,11 +393,25 @@
   "audio": [
    {
     "title": "خطب وكلمات",
-    "item": "abdulaziz-bin-ghaib-quran"
+    "item": "abdulaziz-bin-ghaib-quran",
+    "files": [
+     {
+      "url": "audio/quran/001.mp3",
+      "title": "001 الفاتحة",
+      "length": 49
+     }
+    ]
    },
    {
     "title": "دروس علمية",
-    "item": "abdulaziz-bin-ghaib-quran"
+    "item": "abdulaziz-bin-ghaib-quran",
+    "files": [
+     {
+      "url": "audio/quran/001.mp3",
+      "title": "001 الفاتحة",
+      "length": 49
+     }
+    ]
    }
   ]
  }

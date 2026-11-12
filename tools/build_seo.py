@@ -300,7 +300,7 @@ def main():
     sm += [f"  <url><loc>{e(base)}kitab/{quote(b['id'])}.html</loc>" + (f"<lastmod>{day(b)}</lastmod>" if day(b) else "") + "</url>" for b in books]
     # v39: صفحتا المصحف والصوتيات والمرئيات (فقط إذا مفعّلتان في books.json ← media)
     med = data.get("media") or {}
-    has_q = bool(str(med.get("quran") or "").strip()) and Path("quran.html").exists()
+    has_q = bool(str(med.get("quran") or "").strip() or med.get("quranLocal")) and Path("quran.html").exists()
     has_m = bool(med.get("videos") or med.get("audio")) and not med.get("preview") and Path("media.html").exists()  # المعاينة لا تُفهرس
     if has_q: sm.append(f"  <url><loc>{e(base)}quran.html</loc></url>")
     if has_m: sm.append(f"  <url><loc>{e(base)}media.html</loc></url>")

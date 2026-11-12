@@ -86,7 +86,7 @@
   const who = site.authorName || site.brandSub || "";
   if (who) { $("mVoice").textContent = who; document.title = "الصوتيات والمرئيات — " + who; }
   if (site.counter) track(site.counter, "/media", "الصوتيات والمرئيات");
-  if (M.quran) $("navQuran").hidden = false;
+  if (M.quran || M.quranLocal.length) $("navQuran").hidden = false;
   const enN = (n) => Number(n).toLocaleString("en-US");
   const fmt = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(x).padStart(2, "0"); };
   const toast = (t) => { const e = $("mToast"); e.textContent = t; e.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => e.classList.remove("show"), 2400); };
@@ -152,7 +152,9 @@
     document.querySelectorAll(".m-chip").forEach((b, k) => { b.classList.toggle("on", k === i); b.setAttribute("aria-selected", k === i); });
     const box = $("aList"); box.innerHTML = ""; box.appendChild(el("p", "m-wait", "جاري تحميل المقاطع…"));
     let files = [];
-    try { files = await iaFiles(M.audio[i].item); } catch (e) { if (aCat === i) { box.innerHTML = ""; box.appendChild(el("p", "m-wait", "تعذّر تحميل المقاطع الآن، تحقق من الاتصال ثم حدّث الصفحة.")); } return; }
+    const loc = M.audio[i].files || [];
+    try { files = loc.concat(M.audio[i].item ? await iaFiles(M.audio[i].item) : []); } catch (e) { if (!loc.length) { if (aCat === i) { box.innerHTML = ""; box.appendChild(el("p", "m-wait", "تعذّر تحميل المقاطع الآن، تحقق من الاتصال ثم حدّث الصفحة.")); } return; } files = loc; }
+    files = files.filter((f, k, a) => a.findIndex((x) => clean(x.title) === clean(f.title)) === k);
     if (aCat !== i) return;
     box.innerHTML = "";
     if (!files.length) { box.appendChild(el("p", "m-wait", "لا توجد مقاطع في هذا التصنيف بعد.")); return; }

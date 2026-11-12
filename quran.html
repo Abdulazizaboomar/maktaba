@@ -99,7 +99,7 @@
   if (site.brandTitle) $("bTitle").textContent = site.brandTitle;
   if (site.brandSub) $("bAuthor").textContent = site.brandSub;
   // مصدر الملفات (v39): عنصر archive.org في books.json ← media.quran. السورة تُعرف من رقمها أول اسم الملف («001 الفاتحة.mp3»)
-  const M = mediaOf(data); const ITEM = M.quran || (data.quran && data.quran.item) || "";
+  const M = mediaOf(data); const ITEM = M.quran || (data.quran && data.quran.item) || ""; const LOCAL = M.quranLocal;
   if (M.videos.length || M.audio.length) $("navMedia").hidden = false;
   const who = site.authorName || site.brandSub || "";
   if (who) { $("qVoice").textContent = "بصوت: " + who; document.title = "المصحف المرتّل — بصوت " + who; }
@@ -257,10 +257,12 @@
     if (!n) note("التلاوة قيد الرفع، وستظهر السور هنا تباعاً بإذن الله.");
     filter(); initCont();
   }
-  if (!ITEM) note("المصحف المرتّل قيد الإعداد، وستظهر السور هنا تباعاً بإذن الله.");
+  // ملفات الموقع أولاً (LOCAL)، ثم archive.org؛ وإذا تعذّر archive.org تبقى ملفات الموقع شغّالة
+  if (!ITEM && !LOCAL.length) note("المصحف المرتّل قيد الإعداد، وستظهر السور هنا تباعاً بإذن الله.");
+  else if (!ITEM) applyFiles(LOCAL);
   else {
     grid.classList.add("wait");
-    iaFiles(ITEM).then(applyFiles, () => note("تعذّر تحميل قائمة السور الآن، تحقق من الاتصال ثم حدّث الصفحة."))
+    iaFiles(ITEM).then((f) => applyFiles(LOCAL.concat(f)), () => LOCAL.length ? applyFiles(LOCAL) : note("تعذّر تحميل قائمة السور الآن، تحقق من الاتصال ثم حدّث الصفحة."))
       .finally(() => grid.classList.remove("wait"));
   }
   const bar = $("qBar"); addEventListener("scroll", () => { bar.classList.toggle("stuck", bar.getBoundingClientRect().top <= $("topbar").offsetHeight + 1); }, { passive: true });
