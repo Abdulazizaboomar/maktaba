@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css?v=36">
 <link rel="stylesheet" href="assets/home.css?v=39">
-<link rel="stylesheet" href="assets/quran.css?v=39">
+<link rel="stylesheet" href="assets/quran.css?v=40">
 </head>
 <body class="home q-page">
 <header class="topbar" id="topbar">
@@ -58,11 +58,13 @@
     <button class="qp-btn prevb" id="qpPrev" aria-label="السورة السابقة"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 5h2v14h-2zM4 5v14l9-7z"/></svg></button>
     <button class="qp-btn main" id="qpPlay" aria-label="تشغيل"><svg viewBox="0 0 24 24" fill="currentColor"><path class="ic" d="M8 5v14l11-7z"/></svg><span class="spin"></span></button>
     <button class="qp-btn nextb" id="qpNext" aria-label="السورة التالية"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5h2v14H8zM20 5v14l-9-7z"/></svg></button>
+    <button class="qp-btn qp-x" id="qpStop" aria-label="إيقاف وإغلاق المشغّل" title="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <div class="qp-sheet" id="qs" role="dialog" aria-modal="true" aria-label="التلاوة الحالية">
     <div class="qs-card">
       <div class="pat"></div>
       <button class="qp-btn qs-close" id="qsClose" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button class="qp-btn qs-stop" id="qsStop" aria-label="إيقاف وإغلاق المشغّل" title="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       <div class="qs-grab"></div>
       <div class="qs-head"><small id="qsNum">السورة 1</small><h2 id="qsName">سورة الفاتحة</h2></div>
       <div class="qs-sub" id="qsSub"></div>
@@ -197,7 +199,7 @@
   });
   audio.addEventListener("playing", () => { retries = 0; $("qp").classList.remove("loading"); setIcon(PAUSE); tiles[cur] && tiles[cur].classList.add("playing"); });
   audio.addEventListener("waiting", () => $("qp").classList.add("loading"));
-  audio.addEventListener("pause", () => { $("qp").classList.remove("loading"); setIcon(PLAY); tiles.forEach((t) => t.classList.remove("playing")); store.set("q:last", JSON.stringify({ i: cur, t: Math.floor(audio.currentTime) })); });
+  audio.addEventListener("pause", () => { $("qp").classList.remove("loading"); setIcon(PLAY); tiles.forEach((t) => t.classList.remove("playing")); if (cur >= 0) store.set("q:last", JSON.stringify({ i: cur, t: Math.floor(audio.currentTime) })); });
   audio.addEventListener("ended", () => {
     const nx = near(cur, 1); store.set("q:last", JSON.stringify({ i: nx > cur ? nx : cur, t: 0 }));
     const m = MODES[mode][0];
@@ -223,6 +225,16 @@
   function openSheet() { $("qs").classList.add("open"); document.body.style.overflow = "hidden"; }
   function closeSheet() { $("qs").classList.remove("open"); document.body.style.overflow = ""; }
   $("qpMed").onclick = $("qpInfo").onclick = openSheet; $("qsClose").onclick = closeSheet;
+  // ✕ إيقاف التلاوة وإغلاق المشغّل (ويبقى «تابع الاستماع» محفوظاً)
+  function stopAll() {
+    if (cur >= 0) store.set("q:last", JSON.stringify({ i: cur, t: Math.floor(audio.currentTime || 0) }));
+    audio.pause(); audio.removeAttribute("src"); try { audio.load(); } catch (e) {}
+    cur = -1; tiles.forEach((t) => t.classList.remove("cur", "playing"));
+    $("qp").classList.remove("on", "loading"); setIcon(PLAY); closeSheet(); paint(0, 0);
+    $("qpPlay").onclick = $("qsPlay").onclick = toggle;
+    if ("mediaSession" in navigator) { try { navigator.mediaSession.metadata = null; navigator.mediaSession.playbackState = "none"; } catch (e) {} }
+  }
+  $("qpStop").onclick = $("qsStop").onclick = stopAll;
   $("qs").addEventListener("click", (e) => { if (e.target.id === "qs") closeSheet(); });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeSheet();

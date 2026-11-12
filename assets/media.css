@@ -105,3 +105,4 @@ body.m-playing .m-track.cur .m-teq i{animation:meq .9s ease-in-out infinite}
 .m-prev{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding:10px 14px;border-radius:12px;background:#fbf4e2;border:1px dashed #d9bf83;color:#6e521c;font-size:14px;line-height:1.7}
 .m-prev[hidden]{display:none}
 .m-prev b{flex:none;padding:2px 10px;border-radius:999px;background:var(--gold-l);color:#fff;font-size:12.5px}
+.m-px{color:rgba(255,255,255,.7)}.m-px svg{width:18px;height:18px}.m-px:hover{color:#fff}

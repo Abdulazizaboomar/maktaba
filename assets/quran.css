@@ -140,3 +140,11 @@
 .q-prog-bar{height:6px;margin-top:8px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden}
 .q-prog-bar i{display:block;height:100%;border-radius:inherit;background:#f0c35a}
 .q-note div{justify-content:center;text-align:center}
+
+/* v39: زر التشغيل فوق حلقة التقدّم (كانت الحلقة تمنع الضغط)، وزر ✕ للإغلاق */
+.qs-ring svg{pointer-events:none}
+.qs-ring .qp-btn{position:relative;z-index:1}
+.qs-stop{position:absolute;top:12px;right:12px;z-index:2}
+.qp-x{width:36px;height:36px;color:rgba(255,255,255,.75)}
+.qp-x svg{width:18px;height:18px}
+.qp-x:hover{color:#fff}

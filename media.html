@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css?v=36">
 <link rel="stylesheet" href="assets/home.css?v=39">
-<link rel="stylesheet" href="assets/media.css?v=39">
+<link rel="stylesheet" href="assets/media.css?v=40">
 </head>
 <body class="home m-page">
 <header class="topbar" id="topbar">
@@ -70,6 +70,7 @@
     <div class="m-pinfo"><div class="n" id="mpName"></div><div class="c" id="mpCat"></div>
       <div class="m-pseek"><span id="mpCur" dir="ltr">0:00</span><input type="range" id="mpSeek" min="0" max="1000" value="0" aria-label="موضع التشغيل"><span id="mpDur" dir="ltr">0:00</span></div></div>
     <button class="m-pbtn" id="mpRate" aria-label="سرعة التشغيل"><b id="mpRateT" dir="ltr">1×</b></button>
+    <button class="m-pbtn m-px" id="mpStop" aria-label="إيقاف وإغلاق المشغّل" title="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
 </div>
 <div class="q-toast m-toast" id="mToast" role="status"></div>
@@ -184,12 +185,13 @@
   function toggle() { if (qi < 0) return; audio.paused ? audio.play().catch(() => {}) : audio.pause(); }
   const next = () => { if (qi + 1 < queue.length) playAt(qi + 1); }, prev = () => { if (audio.currentTime > 5) audio.currentTime = 0; else if (qi > 0) playAt(qi - 1); };
   $("mpPlay").onclick = toggle; $("mpNext").onclick = next; $("mpPrev").onclick = prev;
+  $("mpStop").onclick = () => { audio.pause(); audio.removeAttribute("src"); try { audio.load(); } catch (e) {} qi = -1; curUrl = ""; $("mp").classList.remove("on", "loading"); icon(PL); document.querySelectorAll(".m-track").forEach((r) => r.classList.remove("cur")); };
   $("mpRate").onclick = () => { rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length]; store.set("m:rate", String(rate)); audio.playbackRate = rate; $("mpRateT").textContent = rate + "×"; };
   audio.addEventListener("playing", () => { $("mp").classList.remove("loading"); icon(PA); document.body.classList.add("m-playing"); });
   audio.addEventListener("waiting", () => $("mp").classList.add("loading"));
   audio.addEventListener("pause", () => { $("mp").classList.remove("loading"); icon(PL); document.body.classList.remove("m-playing"); });
   audio.addEventListener("ended", next);
-  audio.addEventListener("error", () => { if (!audio.src) return; $("mp").classList.remove("loading"); icon(PL); toast("تعذّر تشغيل المقطع، حاول مرة أخرى"); });
+  audio.addEventListener("error", () => { if (!audio.src || qi < 0) return; $("mp").classList.remove("loading"); icon(PL); toast("تعذّر تشغيل المقطع، حاول مرة أخرى"); });
   audio.addEventListener("timeupdate", () => { const t = audio.currentTime, d = audio.duration || 0; $("mpCur").textContent = fmt(t); $("mpDur").textContent = d ? fmt(d) : "0:00"; if (!seeking && d) $("mpSeek").value = Math.round(t / d * 1000); });
   const sk = $("mpSeek");
   sk.addEventListener("input", () => { seeking = true; if (audio.duration) $("mpCur").textContent = fmt(audio.duration * sk.value / 1000); });
