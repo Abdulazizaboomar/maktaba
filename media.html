@@ -75,7 +75,7 @@
 </div>
 <div class="q-toast m-toast" id="mToast" role="status"></div>
 
-<script src="assets/common.js?v=40"></script>
+<script src="assets/common.js?v=41"></script>
 <script>
 (async function () {
   const $ = (id) => document.getElementById(id);
@@ -154,6 +154,7 @@
     const box = $("aList"); box.innerHTML = ""; box.appendChild(el("p", "m-wait", "جاري تحميل المقاطع…"));
     let files = [];
     const loc = M.audio[i].files || [];
+    if (!M.audio[i].item && !loc.length) { box.innerHTML = ""; box.appendChild(el("p", "m-wait", "تُضاف مقاطع «" + M.audio[i].title + "» قريباً بإذن الله.")); return; }
     try { files = loc.concat(M.audio[i].item ? await iaFiles(M.audio[i].item) : []); } catch (e) { if (!loc.length) { if (aCat === i) { box.innerHTML = ""; box.appendChild(el("p", "m-wait", "تعذّر تحميل المقاطع الآن، تحقق من الاتصال ثم حدّث الصفحة.")); } return; } files = loc; }
     files = files.filter((f, k, a) => a.findIndex((x) => clean(x.title) === clean(f.title)) === k);
     if (aCat !== i) return;

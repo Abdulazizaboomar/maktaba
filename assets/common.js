@@ -177,7 +177,7 @@
     // files: مقاطع داخل الموقع نفسه (اختياري) [{ url, title }] تُضاف قبل مقاطع archive.org
     const audio = (m.audio || []).map((a) => ({ title: String(a.title || "").trim(), item: String(a.item || "").trim(),
       files: (a.files || []).filter((f) => f && f.url).map((f) => ({ name: String(f.url).split("/").pop(), title: String(f.title || f.url.split("/").pop()), length: +f.length || 0, url: f.url })) }))
-      .filter((a) => a.title && (a.item || a.files.length));
+      .filter((a) => a.title && (a.item || a.files.length || m.preview)); // في المعاينة يظهر التصنيف ولو بدون مقاطع
     // quranLocal: ملفات سور داخل الموقع نفسه (للتجربة قبل archive.org)، مثل ["audio/quran/001.mp3"]
     const quranLocal = (m.quranLocal || []).map((x) => String(x || "").trim()).filter(Boolean).map((p) => ({ name: p.split("/").pop(), url: p }));
     return { quran: String(m.quran || "").trim(), quranLocal, videos, audio, preview: !!m.preview };

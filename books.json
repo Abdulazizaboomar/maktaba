@@ -392,26 +392,10 @@
   ],
   "audio": [
    {
-    "title": "خطب وكلمات",
-    "item": "abdulaziz-bin-ghaib-quran",
-    "files": [
-     {
-      "url": "audio/quran/001.mp3",
-      "title": "001 الفاتحة",
-      "length": 49
-     }
-    ]
+    "title": "خطب وكلمات"
    },
    {
-    "title": "دروس علمية",
-    "item": "abdulaziz-bin-ghaib-quran",
-    "files": [
-     {
-      "url": "audio/quran/001.mp3",
-      "title": "001 الفاتحة",
-      "length": 49
-     }
-    ]
+    "title": "دروس علمية"
    }
   ]
  }
