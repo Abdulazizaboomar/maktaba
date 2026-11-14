@@ -25,7 +25,7 @@
 
 <meta name="theme-color" content="#0c1f18">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23164e3b'/%3E%3Cpath d='M12 20c7-3 14-2 20 2v26c-6-4-13-5-20-2zM52 20c-7-3-14-2-20 2v26c6-4 13-5 20-2z' fill='%23c6a15b'/%3E%3Cpath d='M32 10l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z' fill='%23f7f3e8'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css?v=36">
+<link rel="stylesheet" href="assets/style.css?v=42">
 </head>
 <body class="reader">
 <header class="r-top">
@@ -80,6 +80,12 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>
     <span class="badge" id="bmCount" hidden></span>
   </button>
+  <button class="ibtn toc-btn pages-btn" id="pagesBtn" title="عرض مصغرات كل الصفحات للتنقل السريع" aria-label="الصفحات" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>الصفحات</span>
+  </button>
+  <button class="ibtn toc-btn" id="tocBtn" title="الانتقال إلى فهرس الكتاب" aria-label="الفهرس" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.4 4.4 9 4.6 12 6.4v13c-3-1.8-5.6-2-8-.9z"/><path d="M20 5.5c-2.4-1.1-5-.9-8 .9v13c3-1.8 5.6-2 8-.9z"/><path d="M14.5 10h3M14.5 13h3M6.5 10h3M6.5 13h3"/></svg><span>الفهرس</span>
+  </button>
   <div class="pager">
     <label class="sr" for="slider">الانتقال إلى صفحة</label>
     <input type="range" id="slider" min="1" max="1" value="1">
@@ -110,6 +116,22 @@
   <div class="sheet-head"><b>🔖 العلامات المحفوظة</b><button class="ibtn sheet-x" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <ul class="bm-list" id="bmList"></ul>
 </div>
+<div class="sheet toc-sheet" id="tocSheet" role="dialog" aria-label="الفهرس" hidden>
+  <div class="sheet-head"><b>📑 الفهرس</b><button class="ibtn sheet-x" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <ul class="bm-list toc-list" id="tocList"></ul>
+</div>
+<div class="pg-panel" id="pgPanel" role="dialog" aria-modal="true" aria-label="صفحات الكتاب" hidden>
+  <div class="pg-box">
+    <div class="pg-head">
+      <b>صفحات الكتاب</b><span class="pg-sub" id="pgSub"></span>
+      <button type="button" class="pg-cur" id="pgCur">الصفحة الحالية</button>
+      <button class="ibtn pg-x" id="pgX" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="pg-grid" id="pgGrid"></div>
+  </div>
+</div>
+<div class="scrub" id="scrub" hidden aria-hidden="true"><div class="scrub-img" id="scrubImg"></div><b id="scrubNum"></b></div>
+<div class="back-chip" id="backChip" hidden><button type="button" id="backGo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg><span id="backTxt"></span></button><button type="button" class="back-x" id="backX" aria-label="إخفاء زر العودة">✕</button></div>
 <div class="sheet" id="shareSheet" role="dialog" aria-label="مشاركة الصفحة" hidden>
   <div class="sheet-head"><b>📤 مشاركة الصفحة</b><button class="ibtn sheet-x" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <p class="share-what" id="shareWhat"></p>
@@ -209,6 +231,7 @@ const pageOf = (i) => T - i;
 const first = await pdf.getPage(1);
 const vp1 = first.getViewport({ scale: 1 });
 const RATIO = vp1.width / vp1.height;
+let retP = 0, landP = 0; // مكان القارئ قبل آخر قفزة كبيرة (فهرس، شريط، رقم صفحة، علامة) — v42
 
 $("total").textContent = ar(N);
 $("slider").max = N;
@@ -432,6 +455,7 @@ function onChange() {
   const v = visiblePages(); const p = current();
   const lo = Math.min(...v), hi = Math.max(...v);
   $("pageInput").value = lo === hi ? ar(lo) : ar(lo) + "–" + ar(hi);
+  paintBack();
   $("sizer").style.transform = "translateX(" + book2.shift() + "px)"; // توسيط الغلاف
   $("slider").value = p;
   store.set("pos:" + book.file, String(p));
@@ -499,7 +523,51 @@ turnCbs.push(playFlip);
 // ===== التنقل =====
 const next = () => book2.next(); // للأمام في الكتاب العربي
 const prev = () => book2.prev();
-function goTo(p) { p = Math.max(1, Math.min(N, p | 0)); book2.goTo(p); }
+function goTo(p, noRet) {
+  p = Math.max(1, Math.min(N, p | 0)); const c = current();
+  if (!noRet && Math.abs(p - c) > 2 && retP === 0 && c > 2) retP = c; // نحفظ مكان القارئ قبل أي قفزة كبيرة (لا نحفظ الغلاف)
+  landP = p; book2.goTo(p);
+}
+
+// ===== الفهرس + زر «العودة إلى صفحة …» (v42 — مأخوذ من مكتبة د. علي آل نومة) =====
+function paintBack() {
+  const chip = $("backChip"), v = visiblePages();
+  if (retP && landP && Math.abs(current() - landP) >= 6) retP = 0; // استقرّ القارئ وأكمل القراءة من مكانه الجديد
+  if (!retP || v.includes(retP)) { if (retP && v.includes(retP)) retP = 0; chip.hidden = true; return; }
+  $("backTxt").textContent = "العودة إلى صفحة " + ar(retP);
+  chip.style.bottom = ($("wsStrip").hidden ? 0 : $("wsStrip").offsetHeight) + document.querySelector(".r-bottom").offsetHeight + 12 + "px";
+  chip.hidden = false;
+}
+// التنبيهات ترتفع فوق زر العودة حتى لا يغطيها
+new MutationObserver(() => { const t = document.querySelector(".toast"), c = $("backChip"); if (t) t.style.bottom = c.hidden ? "" : (parseInt(c.style.bottom, 10) || 0) + 62 + "px"; }).observe($("backChip"), { attributes: true, attributeFilter: ["hidden", "style"] });
+$("backGo").onclick = () => { const p = retP; retP = 0; goTo(p, true); paintBack(); };
+$("backX").onclick = () => { retP = 0; paintBack(); };
+const TOC = parseInt(book.toc, 10) >= 1 && parseInt(book.toc, 10) <= N ? parseInt(book.toc, 10) : 0;
+let outline = [];
+async function buildOutline() {
+  try {
+    const items = (await pdf.getOutline()) || [], out = [];
+    const walk = async (arr, lvl) => { for (const it of arr) {
+      let dest = it.dest; if (typeof dest === "string") dest = await pdf.getDestination(dest);
+      if (Array.isArray(dest) && dest[0]) { const i = typeof dest[0] === "object" ? await pdf.getPageIndex(dest[0]) : dest[0]; if (it.title && it.title.trim()) out.push({ t: it.title.trim(), p: i + 1, l: lvl }); }
+      if (it.items && it.items.length && lvl < 2) await walk(it.items, lvl + 1);
+    } };
+    await walk(items, 0); outline = out.slice(0, 400);
+  } catch (e) { outline = []; }
+  $("tocBtn").hidden = !(TOC || outline.length);
+  // تعريف أول مرة: نلفت نظر القارئ لزر الفهرس مرة واحدة فقط
+  if (!$("tocBtn").hidden && !store.get("tocSeen")) { store.set("tocSeen", "1"); $("tocBtn").classList.add("glow"); setTimeout(() => toast("📑 لهذا الكتاب فهرس: اضغط «الفهرس» للانتقال إليه"), 1400); setTimeout(() => $("tocBtn").classList.remove("glow"), 6000); }
+}
+buildOutline();
+$("tocBtn").onclick = () => {
+  if (!outline.length) { closeSheets(); if (visiblePages().includes(TOC)) { if (retP) $("backGo").onclick(); return; } goTo(TOC); return; }
+  if (!$("tocSheet").hidden) return closeSheets();
+  const ul = $("tocList"); ul.innerHTML = "";
+  const row = (title, p, cls) => { const li = document.createElement("li"); const b = document.createElement("button"); b.className = "bm-go " + (cls || ""); b.innerHTML = "<b></b><small></small>"; b.querySelector("b").textContent = title; b.querySelector("small").textContent = ar(p); b.onclick = () => { closeSheets(); goTo(p); }; li.appendChild(b); ul.appendChild(li); };
+  if (TOC) row("صفحة الفهرس", TOC, "toc-main");
+  outline.forEach((x) => row(x.t, x.p, "lv" + x.l));
+  openSheet("tocSheet");
+};
 
 $("nextBtn").onclick = $("nextSide").onclick = next;
 $("prevBtn").onclick = $("prevSide").onclick = prev;
@@ -544,6 +612,79 @@ $("fsBtn").onclick = () => {
   if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
   else { const el = d.documentElement; (el.requestFullscreen || el.webkitRequestFullscreen || (() => toast("ملء الشاشة غير مدعوم في هذا المتصفح"))).call(el); }
 };
+
+// ===== مصغرات الصفحات: لوحة «الصفحات» + معاينة أثناء سحب الشريط (v42 — مأخوذ من مكتبة د. علي آل نومة) =====
+const thumbs = new Map(), thumbWait = new Map(); let thumbBusy = 0; const thumbQ = [];
+const thumbLabel = (p) => ar(p);
+function thumbURL(p) { // صورة مصغرة JPG للصفحة (تُرسم مرة وتُحفظ)
+  if (thumbs.has(p)) return Promise.resolve(thumbs.get(p));
+  if (thumbWait.has(p)) return thumbWait.get(p);
+  const pr = new Promise((res) => thumbQ.push({ p, res })); thumbWait.set(p, pr); pumpThumbs(); return pr;
+}
+async function pumpThumbs() {
+  while (thumbBusy < 2 && thumbQ.length) {
+    const { p, res } = thumbQ.pop(); thumbBusy++; // الأحدث أولاً: ما يراه القارئ الآن
+    (async () => {
+      try {
+        const page = await pdf.getPage(p), c = document.createElement("canvas");
+        c.width = 240; c.height = Math.round(240 / RATIO);
+        const ctx = c.getContext("2d", { alpha: false }); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
+        const v0 = page.getViewport({ scale: 1 }); await page.render({ canvasContext: ctx, viewport: page.getViewport({ scale: c.width / v0.width }) }).promise;
+        const blob = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.72));
+        const u = URL.createObjectURL(blob); thumbs.set(p, u); res(u);
+      } catch (e) { res(""); }
+      thumbWait.delete(p); thumbBusy--; pumpThumbs();
+    })();
+  }
+}
+let pgBuilt = false, pgIO = null;
+function buildPages() {
+  pgBuilt = true; const g = $("pgGrid"); g.style.setProperty("--pr", RATIO);
+  pgIO = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return; const b = e.target; pgIO.unobserve(b);
+    thumbURL(+b.dataset.p).then((u) => { if (u) { const im = new Image(); im.alt = ""; im.src = u; b.querySelector(".pg-img").appendChild(im); } });
+  }), { root: g, rootMargin: "400px 0px" });
+  const frag = document.createDocumentFragment();
+  for (let p = 1; p <= N; p++) {
+    const b = document.createElement("button"); b.type = "button"; b.className = "pg-th"; b.dataset.p = p;
+    b.setAttribute("aria-label", "الصفحة " + thumbLabel(p));
+    const im = document.createElement("span"); im.className = "pg-img"; const n = document.createElement("span"); n.className = "pg-n"; n.textContent = thumbLabel(p);
+    b.append(im, n); if (p === TOC) { const t = document.createElement("span"); t.className = "pg-tag"; t.textContent = "الفهرس"; b.appendChild(t); }
+    b.onclick = () => { closePages(); goTo(p); };
+    frag.appendChild(b); pgIO.observe(b);
+  }
+  g.appendChild(frag);
+}
+function paintPages() {
+  const v = visiblePages(), bm = new Set(getBm().map((x) => x.p));
+  $("pgGrid").querySelectorAll(".pg-th").forEach((b) => { const p = +b.dataset.p; b.classList.toggle("on", v.includes(p)); b.classList.toggle("bm", bm.has(p)); if (v.includes(p)) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  $("pgSub").textContent = ar(N) + " " + window.Lib.plural(N, "page");
+}
+function scrollToCur(smooth) { const b = $("pgGrid").querySelector(".pg-th.on"); if (b) b.scrollIntoView({ block: "center", behavior: smooth ? "smooth" : "auto" }); }
+function openPages() {
+  closeSheets(); if (!pgBuilt) buildPages(); paintPages();
+  $("pgPanel").hidden = false; document.body.classList.add("pg-open"); requestAnimationFrame(() => scrollToCur(false)); $("pgX").focus({ preventScroll: true });
+}
+function closePages() { $("pgPanel").hidden = true; document.body.classList.remove("pg-open"); }
+$("pagesBtn").onclick = () => $("pgPanel").hidden ? openPages() : closePages();
+$("pgX").onclick = closePages;
+$("pgCur").onclick = () => scrollToCur(true);
+$("pgPanel").addEventListener("click", (e) => { if (e.target.id === "pgPanel") closePages(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("pgPanel").hidden) { e.stopPropagation(); closePages(); } }, true);
+
+// معاينة أثناء السحب: صورة الصفحة ورقمها فوق مقبض الشريط
+let scrubT = 0;
+function showScrub(p) {
+  const sl = $("slider"), r = sl.getBoundingClientRect(), f = N > 1 ? (p - 1) / (N - 1) : 0;
+  const rtl = getComputedStyle(sl).direction === "rtl", x = rtl ? r.right - f * r.width : r.left + f * r.width;
+  const sc = $("scrub"); sc.hidden = false; $("scrubNum").textContent = thumbLabel(p);
+  const w = sc.offsetWidth; sc.style.left = Math.max(8, Math.min(innerWidth - w - 8, x - w / 2)) + "px"; sc.style.bottom = innerHeight - r.top + 14 + "px";
+  const box = $("scrubImg"); box.style.setProperty("--pr", RATIO); box.dataset.p = p;
+  const set = (u) => { if (box.dataset.p == p) box.style.backgroundImage = u ? "url(" + u + ")" : ""; };
+  if (thumbs.has(p)) set(thumbs.get(p)); else { clearTimeout(scrubT); scrubT = setTimeout(() => thumbURL(p).then(set), 60); }
+}
+$("slider").addEventListener("input", (e) => showScrub(+e.target.value));
+["change", "pointerup", "touchend", "blur"].forEach((ev) => $("slider").addEventListener(ev, () => setTimeout(() => { $("scrub").hidden = true; }, 150)));
 
 // ===== العلامات المرجعية (تُحفظ في جهاز القارئ) =====
 const BMK = "bm:" + book.file;
