@@ -334,6 +334,16 @@
    "category": "رسائل علمية",
    "date": "2026-10-27",
    "added": "2026-10-27"
+  },
+  {
+   "id": "wasiyyati",
+   "title": "وصيتي",
+   "file": "books/wasiyyati.pdf",
+   "cover": "covers/wasiyyati.jpg",
+   "pages": 21,
+   "category": "بحوث فقهية وأصولية",
+   "date": "2026-11-14",
+   "added": "2026-11-14"
   }
  ],
  "upcoming": [
@@ -372,6 +382,7 @@
  ],
  "media": {
   "quran": "abdulaziz-bin-ghaib-quran",
+  "quranNote": "أبو عمر (برواية حفص، وقصر المنفصل)",
   "preview": true,
   "videos": [
    {
