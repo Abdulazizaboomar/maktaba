@@ -1,22 +1,22 @@
 {
- "updated": "2026-11-18T04:04Z",
- "total": 332,
- "last28": 332,
+ "updated": "2026-11-18T05:11Z",
+ "total": 0,
+ "last28": 339,
  "countries": [
   {
    "code": "SA",
    "name": "Saudi Arabia",
-   "count": 279
+   "count": 283
+  },
+  {
+   "code": "KW",
+   "name": "Kuwait",
+   "count": 13
   },
   {
    "code": "QA",
    "name": "Qatar",
    "count": 13
-  },
-  {
-   "code": "KW",
-   "name": "Kuwait",
-   "count": 10
   },
   {
    "code": "DJ",
