@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-19T21:03Z",
- "total": 396,
- "last28": 396,
+ "updated": "2026-11-19T21:58Z",
+ "total": 406,
+ "last28": 406,
  "countries": [
   {
    "code": "SA",
    "name": "Saudi Arabia",
-   "count": 327
+   "count": 329
   },
   {
    "code": "KW",
@@ -17,6 +17,11 @@
    "code": "QA",
    "name": "Qatar",
    "count": 13
+  },
+  {
+   "code": "SY",
+   "name": "Syria",
+   "count": 8
   },
   {
    "code": "EG",
@@ -39,6 +44,11 @@
    "count": 4
   },
   {
+   "code": "DE",
+   "name": "Germany",
+   "count": 3
+  },
+  {
    "code": "US",
    "name": "United States",
    "count": 3
@@ -46,11 +56,6 @@
   {
    "code": "BF",
    "name": "Burkina Faso",
-   "count": 2
-  },
-  {
-   "code": "DE",
-   "name": "Germany",
    "count": 2
   },
   {
@@ -81,11 +86,6 @@
   {
    "code": "PK",
    "name": "Pakistan",
-   "count": 1
-  },
-  {
-   "code": "SY",
-   "name": "Syria",
    "count": 1
   }
  ]
