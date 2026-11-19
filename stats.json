@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-19T21:58Z",
- "total": 406,
- "last28": 406,
+ "updated": "2026-11-19T22:57Z",
+ "total": 409,
+ "last28": 409,
  "countries": [
   {
    "code": "SA",
@@ -46,6 +46,11 @@
   {
    "code": "DE",
    "name": "Germany",
+   "count": 3
+  },
+  {
+   "code": "PS",
+   "name": "Palestine",
    "count": 3
   },
   {
