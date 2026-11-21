@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-21T14:08Z",
- "total": 450,
- "last28": 450,
+ "updated": "2026-11-21T16:55Z",
+ "total": 451,
+ "last28": 451,
  "countries": [
   {
    "code": "SA",
@@ -96,6 +96,11 @@
   {
    "code": "ET",
    "name": "Ethiopia",
+   "count": 1
+  },
+  {
+   "code": "NP",
+   "name": "Nepal",
    "count": 1
   },
   {
